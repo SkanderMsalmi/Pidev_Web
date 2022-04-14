@@ -1,0 +1,63 @@
+<div class="top-margin">
+<article class="col-xs-12 maincontent">
+<div style="display: flex;align-items: center;justify-content: center;padding:70px ">
+	<div class="panel panel-default"style="padding:30px">
+        <div class="panel-body">
+							<h2 class="thin text-center">Ajouter Un Stage</h2>
+							<hr>
+							
+							{{ form_start(f1,{attr:{novalidate:'novalidate'}}) }}
+								<div class="top-margin" >
+									<label>Durèe<span class="text-danger">*</span></label>
+									{{ form_widget(f1.duree,{attr:{'class':'form-control'}}) }} 
+                                    {{ form_errors(f1.duree,{attr:{'class':'text-danger'}}) }}
+								</div>
+								<div class="top-margin">  
+                                <label>Type <span class='text-danger'>*</span></label>
+                                    {{ form_widget(f1.type,{attr:{'class':'form-control'}}) }} 
+                                    {{ form_errors(f1.type,{attr:{'class':'text-danger'}}) }}
+                                </div>
+                                <div class="top-margin">  
+                                <label>Domaine <span class='text-danger'>*</span></label>
+                                {{ form_widget(f1.domaine,{attr:{'class':'form-control'}}) }} 
+                                {{ form_errors(f1.domaine,{attr:{'class':'text-danger'}}) }}
+                                </div>
+
+                                <div class="top-margin">  
+                                <label>Description <span class='text-danger'>*</span></label>
+                                {{ form_widget(f1.description,{attr:{'class':'form-control'}}) }} 
+                                {{ form_errors(f1.description,{attr:{'class':'text-danger'}}) }}
+                                </div>
+
+                                <div class="top-margin">  
+                                <label>Sujet <span class='text-danger'>*</span></label>
+                                {{ form_widget(f1.sujet,{attr:{'class':'form-control'}}) }} 
+                                {{ form_errors(f1.sujet,{attr:{'class':'text-danger'}}) }}
+                                </div>
+                            <div class="row top-margin">
+                                <div class="top-margin">  
+                                <label>Date Debut <span class='text-danger'>*</span></label>
+                                {{ form_widget(f1.datedebut,{attr:{'class':'form-control'}}) }} 
+                                
+                                </div>
+                            <br>
+                                
+                                {{ form_errors(f1.datedebut,{attr:{'class':'text-danger'}}) }}
+                                
+                                <div class="top-margin">  
+                                <label>Date Fin <span class='text-danger'>*</span></label>
+                                {{ form_widget(f1.datefin,{attr:{'class':'form-control'}}) }} 
+                                
+                                </div>
+                                {{ form_errors(f1.datefin,{attr:{'class':'text-danger'}}) }}
+                            </div>    
+								<hr>
+
+								
+							{{ form_end(f1) }}
+						</div>
+        </div>
+    </div>
+</div>
+</article>
+</div>

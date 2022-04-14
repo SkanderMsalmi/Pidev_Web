@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Stage{% endblock %}
+
+{% block body %}
+<div style="display: flex;align-items: center;justify-content: center;padding:70px ">
+  <div class="top-margin" >
+    <h1>Stage</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Idstage</th>
+                <td>{{ stage.idstage }}</td>
+            </tr>
+            <tr>
+                <th>Duree</th>
+                <td>{{ stage.duree }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ stage.type }}</td>
+            </tr>
+            <tr>
+                <th>Domaine</th>
+                <td>{{ stage.domaine }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ stage.description }}</td>
+            </tr>
+            <tr>
+                <th>Sujet</th>
+                <td>{{ stage.sujet }}</td>
+            </tr>
+            <tr>
+                <th>Datedebut</th>
+                <td>{{ stage.datedebut | date }}</td>
+            </tr>
+            <tr>
+                <th>Datefin</th>
+                <td>{{ stage.datefin | date }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+    <a class="btn" href="{{ path('app_stage_index') }}">back to list</a>
+
+    <a class="btn" href="{{ path('app_stage_edit', {'idstage': stage.idstage}) }}">Edit</a>
+
+    {{ include('stage/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes Stage Recruteur{% endblock %}
+
+{% block body %}
+ 
+<h1 style="padding:60px">Mes Stage </h1>
+    <table class="table">
+       
+        <thead>
+            <tr>
+                <th>Idstage</th>
+                <th>Duree</th>
+                <th>Type</th>
+                <th>Domaine</th>
+                <th>Description</th>
+                <th>Sujet</th>
+                <th>Datedebut</th>
+                <th>Datefin</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for s in stage %}
+            <tr>
+                <td>{{ s.idstage }}</td>
+                <td>{{ s.duree }}</td>
+                <td>{{ s.type }}</td>
+                <td>{{ s.domaine }}</td>
+                <td>{{ s.description }}</td>
+                <td>{{ s.sujet }}</td>
+                <td>{{ s.datedebut | date}}</td>
+                <td>{{ s.datefin | date}}</td>
+                <td>
+                    <a href="{{ path('app_stage_show', {'idstage': s.idstage}) }}">show</a>
+                    <a href="{{ path('app_stage_edit', {'idstage': s.idstage}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_stage_new') }}">Create new</a>
+{% endblock %}

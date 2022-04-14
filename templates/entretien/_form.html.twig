@@ -1,0 +1,43 @@
+<div class="top-margin">
+<article class="col-xs-12 maincontent">
+<div style="display: flex;align-items: center;justify-content: center;padding:70px ">
+	<div class="panel panel-default"style="padding:30px">
+        <div class="panel-body">
+							<h2 class="thin text-center">Ajouter Un Entretien</h2>
+							<hr>
+
+{{ form_start(form,{attr:{novalidate:'novalidate'}}) }}
+                                 <div class="top-margin" >
+
+									<label>Date Entretien<span class="text-danger">*</span></label>
+									{{ form_widget(form.dateentretien,{attr:{'class':'form-control'}}) }} 
+                                    {{ form_errors(form.dateentretien,{attr:{'class':'text-danger'}}) }}
+								</div>
+                                 <div class="top-margin" >
+
+									<label>Heure Entretien<span class="text-danger">*</span></label>
+									{{ form_widget(form.heureentretien,{attr:{'class':'form-control'}}) }} 
+                                    {{ form_errors(form.heureentretien,{attr:{'class':'text-danger'}}) }}
+								</div>								
+                                <div class="top-margin">  
+                                <label>Lien <span class='text-danger'>*</span></label>
+                                {{ form_widget(form.lienentretien,{attr:{'class':'form-control'}}) }} 
+                                {{ form_errors(form.lienentretien,{attr:{'class':'text-danger'}}) }}
+                                </div>
+    							<hr>
+
+  								<div class="row">
+									<div class="col-lg-4 text-right">
+										<button class="btn btn-action" type="submit">Annuler</button>
+									</div>									
+									<div class="col-lg-4 text-right">
+										<button class="btn btn-action" type="submit">Ajouter</button>
+									</div>
+								</div>
+{{ form_end(form) }}
+
+</div>
+    </div>
+</div>
+</article>
+</div>

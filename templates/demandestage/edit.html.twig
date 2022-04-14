@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Demandestage{% endblock %}
+
+{% block body %}
+    <h1 style="padding:60px">Edit Demandestage</h1>
+
+    {{ include('demandestage/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_demandestage_index') }}">back to list</a>
+
+    {{ include('demandestage/_delete_form.html.twig') }}
+{% endblock %}
