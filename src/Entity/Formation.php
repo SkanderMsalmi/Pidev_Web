@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Formation
  *
- * @ORM\Table(name="formation", indexes={@ORM\Index(name="fk_personne", columns={"idPersonne"})})
+ * @ORM\Table(name="formation", indexes={@ORM\Index(name="fk_personne", columns={"idUser"})})
  * @ORM\Entity
  */
 class Formation
@@ -75,10 +75,111 @@ class Formation
      *
      * @ORM\ManyToOne(targetEntity="Personne")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idPersonne", referencedColumnName="idPersonne")
+     *   @ORM\JoinColumn(name="idUser", referencedColumnName="idPersonne")
      * })
      */
-    private $idpersonne;
+    private $iduser;
+
+    public function getIdformation(): ?int
+    {
+        return $this->idformation;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getTitre(): ?string
+    {
+        return $this->titre;
+    }
+
+    public function setTitre(string $titre): self
+    {
+        $this->titre = $titre;
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function getDomaine(): ?string
+    {
+        return $this->domaine;
+    }
+
+    public function setDomaine(string $domaine): self
+    {
+        $this->domaine = $domaine;
+
+        return $this;
+    }
+
+    public function getPrix(): ?float
+    {
+        return $this->prix;
+    }
+
+    public function setPrix(float $prix): self
+    {
+        $this->prix = $prix;
+
+        return $this;
+    }
+
+    public function getDatedebut(): ?\DateTimeInterface
+    {
+        return $this->datedebut;
+    }
+
+    public function setDatedebut(\DateTimeInterface $datedebut): self
+    {
+        $this->datedebut = $datedebut;
+
+        return $this;
+    }
+
+    public function getDatefin(): ?\DateTimeInterface
+    {
+        return $this->datefin;
+    }
+
+    public function setDatefin(\DateTimeInterface $datefin): self
+    {
+        $this->datefin = $datefin;
+
+        return $this;
+    }
+
+    public function getIduser(): ?Personne
+    {
+        return $this->iduser;
+    }
+
+    public function setIduser(?Personne $iduser): self
+    {
+        $this->iduser = $iduser;
+
+        return $this;
+    }
 
 
 }

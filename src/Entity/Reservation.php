@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Reservation
  *
- * @ORM\Table(name="reservation", indexes={@ORM\Index(name="fk_formation", columns={"idFormation"}), @ORM\Index(name="fk_personneReservation", columns={"idPersonne"})})
+ * @ORM\Table(name="reservation", indexes={@ORM\Index(name="fk_formation", columns={"idFormation"}), @ORM\Index(name="fk_personneReservation", columns={"idUser"})})
  * @ORM\Entity
  */
 class Reservation
@@ -47,10 +47,63 @@ class Reservation
      *
      * @ORM\ManyToOne(targetEntity="Personne")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idPersonne", referencedColumnName="idPersonne")
+     *   @ORM\JoinColumn(name="idUser", referencedColumnName="idPersonne")
      * })
      */
-    private $idpersonne;
+    private $iduser;
+
+    public function getIdreservation(): ?int
+    {
+        return $this->idreservation;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getDatereservation(): ?\DateTimeInterface
+    {
+        return $this->datereservation;
+    }
+
+    public function setDatereservation(\DateTimeInterface $datereservation): self
+    {
+        $this->datereservation = $datereservation;
+
+        return $this;
+    }
+
+    public function getIdformation(): ?int
+    {
+        return $this->idformation;
+    }
+
+    public function setIdformation(int $idformation): self
+    {
+        $this->idformation = $idformation;
+
+        return $this;
+    }
+
+    public function getIduser(): ?Personne
+    {
+        return $this->iduser;
+    }
+
+    public function setIduser(?Personne $iduser): self
+    {
+        $this->iduser = $iduser;
+
+        return $this;
+    }
 
 
 }

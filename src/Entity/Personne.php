@@ -92,6 +92,16 @@ class Personne
     private $pdp;
 
     /**
+     * @var \Societe
+     *
+     * @ORM\ManyToOne(targetEntity="Societe")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idSociete", referencedColumnName="idSociete")
+     * })
+     */
+    private $idsociete;
+
+    /**
      * @var \Faculte
      *
      * @ORM\ManyToOne(targetEntity="Faculte")
@@ -101,15 +111,154 @@ class Personne
      */
     private $idfaculte;
 
-    /**
-     * @var \Societe
-     *
-     * @ORM\ManyToOne(targetEntity="Societe")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idSociete", referencedColumnName="idSociete")
-     * })
-     */
-    private $idsociete;
+    public function getIdpersonne(): ?int
+    {
+        return $this->idpersonne;
+    }
+
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(string $prenom): self
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    public function getTel(): ?int
+    {
+        return $this->tel;
+    }
+
+    public function setTel(int $tel): self
+    {
+        $this->tel = $tel;
+
+        return $this;
+    }
+
+    public function getCin(): ?int
+    {
+        return $this->cin;
+    }
+
+    public function setCin(int $cin): self
+    {
+        $this->cin = $cin;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getDatenaissance(): ?\DateTimeInterface
+    {
+        return $this->datenaissance;
+    }
+
+    public function setDatenaissance(\DateTimeInterface $datenaissance): self
+    {
+        $this->datenaissance = $datenaissance;
+
+        return $this;
+    }
+
+    public function getRole(): ?string
+    {
+        return $this->role;
+    }
+
+    public function setRole(string $role): self
+    {
+        $this->role = $role;
+
+        return $this;
+    }
+
+    public function getPdp(): ?string
+    {
+        return $this->pdp;
+    }
+
+    public function setPdp(string $pdp): self
+    {
+        $this->pdp = $pdp;
+
+        return $this;
+    }
+
+    public function getIdsociete(): ?Societe
+    {
+        return $this->idsociete;
+    }
+
+    public function setIdsociete(?Societe $idsociete): self
+    {
+        $this->idsociete = $idsociete;
+
+        return $this;
+    }
+
+    public function getIdfaculte(): ?Faculte
+    {
+        return $this->idfaculte;
+    }
+
+    public function setIdfaculte(?Faculte $idfaculte): self
+    {
+        $this->idfaculte = $idfaculte;
+
+        return $this;
+    }
 
 
 }

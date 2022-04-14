@@ -38,5 +38,34 @@ class Rate
      */
     private $idl;
 
+    public function getIdr(): ?int
+    {
+        return $this->idr;
+    }
+
+    public function getRate(): ?float
+    {
+        return $this->rate;
+    }
+
+    public function setRate(float $rate): self
+    {
+        $this->rate = $rate;
+
+        return $this;
+    }
+
+    public function getIdl(): ?Livre
+    {
+        return $this->idl;
+    }
+
+    public function setIdl(?Livre $idl): self
+    {
+        $this->idl = $idl;
+
+        return $this;
+    }
+
 
 }
