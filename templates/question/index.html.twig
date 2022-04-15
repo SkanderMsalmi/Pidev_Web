@@ -1,39 +1,42 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseAdmin.html.twig' %}
 
-{% block title %}Question index{% endblock %}
+{% block title %}Question index
+{% endblock %}
 
 {% block body %}
-    <h1>Question index</h1>
+	<div class="center">
+		<h1>Question index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Idquestion</th>
-                <th>Enonce</th>
-                <th>Domaine</th>
-                <th>Reponsecorrecte</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for question in questions %}
-            <tr>
-                <td>{{ question.idquestion }}</td>
-                <td>{{ question.enonce }}</td>
-                <td>{{ question.domaine }}</td>
-                <td>{{ question.reponsecorrecte }}</td>
-                <td>
-                    <a href="{{ path('app_question_show', {'idquestion': question.idquestion}) }}">show</a>
-                    <a href="{{ path('app_question_edit', {'idquestion': question.idquestion}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Idquestion</th>
+					<th>Enonce</th>
+					<th>Domaine</th>
+					<th>Reponsecorrecte</th>
+					<th>actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for question in questions %}
+					<tr>
+						<td>{{ question.idquestion }}</td>
+						<td>{{ question.enonce }}</td>
+						<td>{{ question.domaine }}</td>
+						<td>{{ question.reponsecorrecte }}</td>
+						<td>
+							<a href="{{ path('afficherQuestion', {'idquestion': question.idquestion}) }}">show</a>
+							<a href="{{ path('modifierQuestion', {'idquestion': question.idquestion}) }}">edit</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="5">no records found</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
 
-    <a href="{{ path('app_question_new') }}">Create new</a>
+		<a href="{{ path('ajouterQuestion') }}">Create new</a>
+	</div>
 {% endblock %}

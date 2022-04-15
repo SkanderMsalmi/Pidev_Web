@@ -10,13 +10,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/question")
- */
+
 class QuestionController extends AbstractController
 {
     /**
-     * @Route("/", name="app_question_index", methods={"GET"})
+     * @Route("/listQuestions", name="afficherQuestions", methods={"GET"})
      */
     public function index(EntityManagerInterface $entityManager): Response
     {
@@ -30,7 +28,7 @@ class QuestionController extends AbstractController
     }
 
     /**
-     * @Route("/addQuestion", name="app_question_new", methods={"GET", "POST"})
+     * @Route("/addQuestion", name="ajouterQuestion", methods={"GET", "POST"})
      */
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -42,7 +40,7 @@ class QuestionController extends AbstractController
             $entityManager->persist($question);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_question_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('afficherQuestions', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('question/new.html.twig', [
@@ -52,7 +50,7 @@ class QuestionController extends AbstractController
     }
 
     /**
-     * @Route("/{idquestion}", name="app_question_show", methods={"GET"})
+     * @Route("listQuestions/{idquestion}", name="afficherQuestion", methods={"GET"})
      */
     public function show(Question $question): Response
     {
@@ -62,7 +60,7 @@ class QuestionController extends AbstractController
     }
 
     /**
-     * @Route("/{idquestion}/edit", name="app_question_edit", methods={"GET", "POST"})
+     * @Route("editQuestion/{idquestion}", name="modifierQuestion", methods={"GET", "POST"})
      */
     public function edit(Request $request, Question $question, EntityManagerInterface $entityManager): Response
     {
@@ -72,7 +70,7 @@ class QuestionController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_question_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('afficherQuestions', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('question/edit.html.twig', [
@@ -82,7 +80,7 @@ class QuestionController extends AbstractController
     }
 
     /**
-     * @Route("/{idquestion}", name="app_question_delete", methods={"POST"})
+     * @Route("deleteQuestion/{idquestion}", name="supprimerQuestion", methods={"POST"})
      */
     public function delete(Request $request, Question $question, EntityManagerInterface $entityManager): Response
     {
@@ -91,6 +89,6 @@ class QuestionController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_question_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('afficherQuestions', [], Response::HTTP_SEE_OTHER);
     }
 }
