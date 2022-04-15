@@ -4,13 +4,14 @@
 {% endblock %}
 
 {% block body %}
-	<div class="center">
-		<h1>Question index</h1>
-
-		<table class="table">
+<div style="display: flex;align-items: center;justify-content: center;padding:150px">
+   <div>
+       <h1 class="card-title">Liste des Questions</h1>
+        <div style="display: flex;align-items: right;justify-content: right;">       
+		<a class="btn btn-success" href="{{ path('ajouterQuestion') }}">Ajouter Question </a></div>
+        <table class="table">
 			<thead>
 				<tr>
-					<th>Idquestion</th>
 					<th>Enonce</th>
 					<th>Domaine</th>
 					<th>Reponsecorrecte</th>
@@ -20,13 +21,12 @@
 			<tbody>
 				{% for question in questions %}
 					<tr>
-						<td>{{ question.idquestion }}</td>
 						<td>{{ question.enonce }}</td>
 						<td>{{ question.domaine }}</td>
 						<td>{{ question.reponsecorrecte }}</td>
 						<td>
-							<a href="{{ path('afficherQuestion', {'idquestion': question.idquestion}) }}">show</a>
-							<a href="{{ path('modifierQuestion', {'idquestion': question.idquestion}) }}">edit</a>
+							<a class="btn btn-outline-primary" href="{{ path('afficherQuestion', {'idquestion': question.idquestion}) }}">show</a>
+							<a class="btn btn-outline-secondary" href="{{ path('modifierQuestion', {'idquestion': question.idquestion}) }}">edit</a>
 						</td>
 					</tr>
 				{% else %}
@@ -36,7 +36,6 @@
 				{% endfor %}
 			</tbody>
 		</table>
-
-		<a href="{{ path('ajouterQuestion') }}">Create new</a>
-	</div>
+         </div>
+    </div>
 {% endblock %}

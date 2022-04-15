@@ -5,6 +5,8 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Question
@@ -27,6 +29,13 @@ class Question
      * @var string
      *
      * @ORM\Column(name="enonce", type="string", length=30, nullable=false)
+     * @Assert\Length(
+     * 
+     * min = 10,
+     * max = 255,
+     * minMessage = "Un enonce valide doit avoir 10 caracteres au minimum et 255 caracteres au maximum"
+     * )
+     * @Assert\NotBlank
      */
     private $enonce;
 
@@ -34,6 +43,12 @@ class Question
      * @var string
      *
      * @ORM\Column(name="domaine", type="string", length=30, nullable=false)
+     *     @Assert\Regex(
+     *     pattern="/\d/",
+     *     match=false,
+     *     message="Vous ne pouvez pas utiliser des numéros pour le domaine"
+     * )
+     * @Assert\NotBlank
      */
     private $domaine;
 
@@ -41,6 +56,7 @@ class Question
      * @var string
      *
      * @ORM\Column(name="reponseCorrecte", type="string", length=30, nullable=false)
+     * @Assert\NotBlank
      */
     private $reponsecorrecte;
 
@@ -50,12 +66,13 @@ class Question
      */
     protected $propositions;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->propositions = new ArrayCollection();
     }
 
 
-    public function getPropositions() : Collection
+    public function getPropositions(): Collection
     {
         return $this->propositions;
     }
@@ -101,10 +118,12 @@ class Question
         return $this;
     }
 
+
     public function addProposition(Proposition $proposition): void
     {
+
         $proposition->setIdquestion($this->idquestion);
-        
+
         $this->propositions->add($proposition);
     }
 
@@ -112,5 +131,4 @@ class Question
     {
         # code...
     }
-
 }

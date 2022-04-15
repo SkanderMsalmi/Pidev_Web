@@ -17,4 +17,12 @@ class AcceuilController extends AbstractController
             'controller_name' => 'AcceuilController',
         ]);
     }
+    
+    /**
+     * @Route("/404", name="erreur")
+     */
+    public function FunctionName(): Response
+    {
+        return $this->render('pages-error-404.html.twig', []);
+    }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -25,6 +27,14 @@ class Proposition
      * @var string
      *
      * @ORM\Column(name="proposition", type="string", length=30, nullable=false)
+     * @Assert\Length(
+     * 
+     * min = 1,
+     * max = 255,
+     * minMessage = "Une proposition valide doit avoir 1 caractere au minimum et 255 caracteres au maximum"
+     * )
+     * @Assert\NotBlank
+     * @Assert\IsNull
      */
     private $proposition;
 
