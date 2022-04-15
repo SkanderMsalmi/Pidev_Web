@@ -13,7 +13,6 @@ class PropositionType extends AbstractType
     {
         $builder
             ->add('proposition')
-            ->add('idquestion')
         ;
     }
 

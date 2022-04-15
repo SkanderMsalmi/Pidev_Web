@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Proposition;
 use App\Entity\Question;
 use App\Form\QuestionType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -33,6 +34,18 @@ class QuestionController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $question = new Question();
+
+        //prepare propositions fields
+        $prop1 = new Proposition();
+        $prop1->setProposition("");
+        $question->getPropositions()->add($prop1);
+        $prop2 = new Proposition();
+        $prop2->setProposition("");
+        $question->getPropositions()->add($prop2);
+        $prop3 = new Proposition();
+        $prop3->setProposition("");
+        $question->getPropositions()->add($prop3);
+        // end preparation
         $form = $this->createForm(QuestionType::class, $question);
         $form->handleRequest($request);
 

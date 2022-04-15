@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Proposition
  *
  * @ORM\Table(name="proposition", indexes={@ORM\Index(name="fk_propositionQuestion", columns={"idQuestion"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\PropositionRepository")
  */
 class Proposition
 {
@@ -60,7 +60,7 @@ class Proposition
         return $this->idquestion;
     }
 
-    public function setIdquestion(?Question $idquestion): self
+    public function setIdquestion($idquestion): self
     {
         $this->idquestion = $idquestion;
 

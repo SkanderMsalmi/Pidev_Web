@@ -2,13 +2,15 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Question
  *
  * @ORM\Table(name="question")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\QuestionRepository")
  */
 class Question
 {
@@ -41,6 +43,22 @@ class Question
      * @ORM\Column(name="reponseCorrecte", type="string", length=30, nullable=false)
      */
     private $reponsecorrecte;
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Proposition",mappedBy="Question", cascade={"persist"})
+     */
+    protected $propositions;
+
+    public function __construct() {
+        $this->propositions = new ArrayCollection();
+    }
+
+
+    public function getPropositions() : Collection
+    {
+        return $this->propositions;
+    }
 
     public function getIdquestion(): ?int
     {
@@ -83,5 +101,16 @@ class Question
         return $this;
     }
 
+    public function addProposition(Proposition $proposition): void
+    {
+        $proposition->setIdquestion($this->idquestion);
+        
+        $this->propositions->add($proposition);
+    }
+
+    public function removeProposition(Proposition $proposition): void
+    {
+        # code...
+    }
 
 }

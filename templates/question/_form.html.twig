@@ -1,4 +1,11 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+    {{ form_row(form.enonce) }}
+    {{ form_row(form.domaine) }}
+    {{ form_row(form.reponsecorrecte) }}
+    <ul class="props" data-index="{{ form.propositions|length > 0 ? form.propositions|last.vars.name + 1 : 0 }}" data-prototype="{{ form_widget(form.propositions.vars.prototype)|e('html_attr') }}">
+    {% for prop in form.propositions %}
+        <li>{{ form_row(prop.proposition) }}</li>
+    {% endfor %}
+    </ul>
     <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
