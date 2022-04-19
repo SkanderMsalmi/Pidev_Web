@@ -1,3 +1,5 @@
+
+
 {{ form_start(form,{attr:{novalidate:'novalidate'}}) }}
     {{ form_row(form.enonce) }}
     {{ form_row(form.domaine) }}
@@ -7,5 +9,5 @@
         <li>{{ form_row(prop.proposition) }}</li>
     {% endfor %}
     </ul>
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <button class="btn btn-outline-success">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

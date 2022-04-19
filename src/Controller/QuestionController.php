@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Proposition;
 use App\Entity\Question;
 use App\Form\QuestionType;
+use App\Repository\PropositionRepository;
+use App\Repository\QuestionRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +33,7 @@ class QuestionController extends AbstractController
     /**
      * @Route("/addQuestion", name="ajouterQuestion", methods={"GET", "POST"})
      */
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, PropositionRepository $pr, QuestionRepository $qr): Response
     {
         $question = new Question();
 
@@ -52,7 +54,7 @@ class QuestionController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($question);
             $entityManager->flush();
-
+            $pr->addProposition($question, $qr);
             return $this->redirectToRoute('afficherQuestions', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -67,8 +69,11 @@ class QuestionController extends AbstractController
      */
     public function show(Question $question): Response
     {
+        $pr = $this->getDoctrine()->getRepository(Proposition::class);
+        $props = $pr->findByQuestion($question->getIdquestion());
         return $this->render('question/show.html.twig', [
             'question' => $question,
+            'props' => $props
         ]);
     }
 
