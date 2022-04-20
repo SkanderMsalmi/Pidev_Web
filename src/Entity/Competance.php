@@ -1,13 +1,13 @@
 <?php
 
 namespace App\Entity;
-
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Competance
  *
- * @ORM\Table(name="competance", indexes={@ORM\Index(name="fk_competencePersonne", columns={"idPersonne"})})
+ * @ORM\Table(name="competance", indexes={@ORM\Index(name="fk_competencePersonne", columns={"idUser"})})
  * @ORM\Entity(repositoryClass="App\Repository\CompetanceRepository")
  */
 class Competance
@@ -23,14 +23,14 @@ class Competance
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="vous devez entrer nom du competence")
      * @ORM\Column(name="nomCompetance", type="string", length=30, nullable=false)
      */
     private $nomcompetance;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="vous devez entrer votre niveau")
      * @ORM\Column(name="niveau", type="string", length=0, nullable=false)
      */
     private $niveau;
@@ -44,13 +44,12 @@ class Competance
 
     /**
      * @var \User
-     *
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idPersonne", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="idUser", referencedColumnName="id")
      * })
      */
-    private $idpersonne;
+    private $idUser;
 
     public function getIdcompetance(): ?int
     {
@@ -93,14 +92,14 @@ class Competance
         return $this;
     }
 
-    public function getIdpersonne(): ?User
+    public function getIdUser(): ?User
     {
-        return $this->idpersonne;
+        return $this->idUser;
     }
 
-    public function setIdpersonne(?User $idpersonne): self
+    public function setIdUser(?User $idUser): self
     {
-        $this->idpersonne = $idpersonne;
+        $this->idUser = $idUser;
 
         return $this;
     }

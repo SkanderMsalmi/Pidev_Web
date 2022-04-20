@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Entity;
-
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -14,7 +14,6 @@ class Experience
 {
     /**
      * @var int
-     *
      * @ORM\Column(name="idExperience", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
@@ -23,35 +22,47 @@ class Experience
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Entrer le poste svp")
      * @ORM\Column(name="poste", type="string", length=30, nullable=false)
      */
     private $poste;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Entrer le nom de societe svp")
      * @ORM\Column(name="societe", type="string", length=30, nullable=false)
      */
     private $societe;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="entrer vos competences mise en oeuvre")
      * @ORM\Column(name="competanMiseEnOuvre", type="string", length=30, nullable=false)
      */
     private $competanmiseenouvre;
 
     /**
-     * @var \DateTime
-     *
+     * @var \Date
+     * @Assert\LessThan("today")
+     * @Assert\Expression (
+     *     "this.getDatedebut() != null",
+     *     message="entrer date"
+     * )
      * @ORM\Column(name="dateDebut", type="date", nullable=false)
      */
     private $datedebut;
 
     /**
-     * @var \DateTime
-     *
+     * @var \Date
+     * @Assert\LessThan("today",message="Veuillez vous entrer votre experiencee apres qu'elle termine")
+     * @Assert\Expression(
+     *     "this.getDatefin() >= this.getDatedebut()",
+     *     message="Impossible d'avoir date final avant date debut"
+     * )
+     * @Assert\Expression (
+     *     "this.getDatefin() != null",
+     *     message="entrer date"
+     * )
      * @ORM\Column(name="dateFin", type="date", nullable=false)
      */
     private $datefin;
@@ -112,7 +123,7 @@ class Experience
         return $this->datedebut;
     }
 
-    public function setDatedebut(\DateTimeInterface $datedebut): self
+    public function setDatedebut(?\DateTimeInterface $datedebut): self
     {
         $this->datedebut = $datedebut;
 
@@ -124,7 +135,7 @@ class Experience
         return $this->datefin;
     }
 
-    public function setDatefin(\DateTimeInterface $datefin): self
+    public function setDatefin(?\DateTimeInterface $datefin): self
     {
         $this->datefin = $datefin;
 

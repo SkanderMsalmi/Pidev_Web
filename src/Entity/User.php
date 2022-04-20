@@ -5,10 +5,18 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
-
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * User
- *
+ * @UniqueEntity(
+ * fields = {"email"},
+ * message =" email déjà utilisé"
+ * )
+ * @UniqueEntity (
+ * fields = {"username"},
+ * message = "Username déjà utilisé"
+ * )
  * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_8D93D649F85E0677", columns={"username"})}, indexes={@ORM\Index(name="IDX_8D93D6499DC564F", columns={"idSociete"}), @ORM\Index(name="IDX_8D93D649132E57FE", columns={"idFaculte"})})
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
@@ -22,7 +30,15 @@ class User implements UserInterface
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\NotBlank(message="entrer username")
+     * @Assert\Length(
+     *  min=4,
+     *     max=10,
+     *     minMessage = " username doit etre au moins 4 caractères",
+     *     maxMessage = "username doit etre au max 10 caractères",
+     *
+     * )
+     * @ORM\Column(type="string", length=180, unique=true, nullable=false)
      */
     private $username;
 
@@ -34,41 +50,68 @@ class User implements UserInterface
 
     /**
      * @var string The hashed password
+     * @Assert\NotBlank(message="entrer un mot passe")
      * @ORM\Column(name="password", type="string", length=255, nullable=false)
      */
     private $password;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="entrer votre nom svp")
+     * @Assert\Regex(
+     *     pattern="/\d/",
+     *     match=false,
+     *     message="Your name cannot contain a number"
+     * )
      * @ORM\Column(name="nom", type="string", length=255, nullable=false)
      */
     private $nom;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="entrer votre prenom svp")
+     * @Assert\Regex(
+     *     pattern="/\d/",
+     *     match=false,
+     *     message="Your name cannot contain a number"
+     * )
      * @ORM\Column(name="prenom", type="string", length=255, nullable=false)
      */
     private $prenom;
 
     /**
      * @var int
-     *
+     * @Assert\Length(
+     *     min=8,
+     *     max=8,
+     *     minMessage = " username doit etre au moins 4 caractères",
+     *     maxMessage = "username doit etre au max 10 caractères",
+     *     allowEmptyString = false
+     * )
      * @ORM\Column(name="tel", type="integer", nullable=false)
+
      */
     private $tel;
 
     /**
      * @var int
-     *
+     * @Assert\Length(
+     *  min=8,
+     *     max=8,
+     *     minMessage = " username doit etre au moins 4 caractères",
+     *     maxMessage = "username doit etre au max 10 caractères",
+     *     allowEmptyString = false
+     * )
      * @ORM\Column(name="cin", type="integer", nullable=false)
+
      */
     private $cin;
 
     /**
      * @var string
-     *
+     * @Assert\Email(
+     *     message = "Email n'est pas valide.",
+     * )
      * @ORM\Column(name="email", type="string", length=255, nullable=false, unique=true)
      */
     private $email;
@@ -82,21 +125,24 @@ class User implements UserInterface
 
     /**
      * @var string|null
-     *
      * @ORM\Column(name="pdp", type="string", length=255, nullable=true)
      */
     private $pdp;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="datenaissance", type="date", nullable=false)
+     * @var \Date
+     * @Assert\LessThan("-18 years",message="vous devez etre plus que 18 ans")
+     * @ORM\Column(name="datenaissance", type="date", nullable=true)
+     * @Assert\Expression (
+     *     "this.getDatenaissance() != null",
+     *     message="entrer date"
+     * )
      */
     private $datenaissance;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="entrer votre profil")
      * @ORM\Column(name="profil", type="string", length=255, nullable=false)
      */
     private $profil;
@@ -105,19 +151,21 @@ class User implements UserInterface
      * @var string|null
      *
      * @ORM\Column(name="infos", type="string", length=255, nullable=true)
+
      */
     private $infos;
 
     /**
      * @var int|null
-     *
+
      * @ORM\Column(name="note", type="integer", nullable=true)
+
      */
     private $note;
 
     /**
      * @var \Societe
-     *
+
      * @ORM\ManyToOne(targetEntity="Societe")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="idSociete", referencedColumnName="idSociete")
@@ -127,7 +175,7 @@ class User implements UserInterface
 
     /**
      * @var \Faculte
-     *
+
      * @ORM\ManyToOne(targetEntity="Faculte")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="idFaculte", referencedColumnName="idFaculte")

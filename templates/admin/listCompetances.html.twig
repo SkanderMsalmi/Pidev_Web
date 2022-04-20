@@ -1,0 +1,60 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block body %}
+    <main id="main" class="main">
+
+        <div class="pagetitle">
+            <h1>Data Tables</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item">Tables</li>
+                    <li class="breadcrumb-item active">Competances</li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+
+        <section class="section">
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Competances</h5>
+
+                            <!-- Table with stripped rows -->
+                            <table class="table datatable">
+                                <thead>
+                                <tr>
+                                    <th scope="col">id Competance</th>
+                                    <th scope="col">Competance</th>
+                                    <th scope="col">Niveau </th>
+                                    <th scope="col">certifie</th>
+
+                                    <th scope="col">User</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for u in competances %}
+                                    <tr>
+                                        <th scope="row">{{ u.idCompetance }}</th>
+                                        <td>{{ u.nomCompetance}}</td>
+                                        <td>{{ u.niveau}}</td>
+                                        <td>{{ u.verifie}}</td>
+                                        <td>{{ u.idUser.nom }} {{ u.idUser.prenom }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            <!-- End Table with stripped rows -->
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+{% endblock %}

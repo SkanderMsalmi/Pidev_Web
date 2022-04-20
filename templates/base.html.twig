@@ -12,6 +12,7 @@
         <link rel="stylesheet" media="screen" href="{{ asset('http://fonts.googleapis.com/css?family=Open+Sans:300,400,700') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css" rel="stylesheet"/>
 
         <!-- Custom styles for our template -->
         <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-theme.css') }}" media="screen" >
@@ -28,6 +29,15 @@
         <script src="{{ asset('assets/js/jQuery.headroom.min.js') }}"></script>
         <script src="{{ asset('assets/js/template.js') }}"></script>
         <script src="https://kit.fontawesome.com/cc2c1873c0.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
+        <script>
+            $(document).ready(function() {
+                // you may need to change this code if you are not using Bootstrap Datepicker
+                $('.js-datepicker').datepicker({
+                    format: 'yyyy-mm-dd'
+                });
+            });
+        </script>
     {% endblock %}
 </head>
 <body>
@@ -52,13 +62,13 @@
                             <li class="active"><a href="sidebar-right.html">Right Sidebar</a></li>
                         </ul>
                     </li>
-{#        {% if is_granted('ROLE_USER')  %}
+        {% if is_granted('ROLE_USER')  %}
                              <li><a href="{{ path('profile') }}">{{ app.user.nom }} {{ app.user.prenom }}</a></li>
                                     <li><a href="{{ path('app_logout') }}"> Log Out</a> </li>
                                 {% else %}
-                                        <li><a href="{{ path('choixRole') }}">Inscription</a></li>
+                                        <li><a href="{{ path('inscription') }}">Inscription</a></li>
                                        <li><a class="btn" href="{{ path('app_login') }}">Se Connecter</a></li>
-                                {% endif %} #}
+                                {% endif %}
 
                             </ul>
                         </div><!--/.nav-collapse -->
@@ -124,7 +134,7 @@
                                 <a href="about.html">About</a> |
                                 <a href="sidebar-right.html">Sidebar</a> |
                                 <a href="contact.html">Contact</a> |
-                          {#     <b><a href="{{ path('choixRole') }}">Sign up</a></b> #}
+                               <b><a href="{{ path('choixRole') }}">Sign up</a></b>
                             </p>
                         </div>
                     </div>
