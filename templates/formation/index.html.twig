@@ -3,18 +3,42 @@
 {% block title %}Hello FormationController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <div class="example-wrapper">
+    <table>
+        <thread>
+            <th>Idformation</th>
+            <th>Description</th>
+            <th>Titre</th>
+            <th>Type</th>
+            <th>Domaine</th>
+            <th>Prix</th>
+            <th>Datedebut</th>
+            <th>Datefin</th>
+            <th>actions</th>
+        </thread>
+        <tbody>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/Anis MALLEK/Desktop/Skan/Pidev_Web/src/Controller/FormationController.php'|file_link(0) }}">src/Controller/FormationController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/Anis MALLEK/Desktop/Skan/Pidev_Web/templates/formation/index.html.twig'|file_link(0) }}">templates/formation/index.html.twig</a></code></li>
-    </ul>
-</div>
+        {% for formation in f %}
+            <tr>
+                <td>{{ formation.description }}</td>
+                <td>{{ formation.titre }}</td>
+                <td>{{ formation.type }}</td>
+                <td>{{ formation.domaine }}</td>
+                <td>{{ formation.prix }}</td>
+                <td>{{ formation.datedebut ? formation.datedebut|date('Y-m-d') : '' }}</td>
+                <td>{{ formation.datefin ? formation.datefin|date('Y-m-d') : '' }}</td>
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
