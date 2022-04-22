@@ -49,8 +49,8 @@ class QuestionRepository extends ServiceEntityRepository
     // /**
     //  * @return Question[] Returns an array of Question objects
     //  */
-    
-    public function findByDomaine($value)
+
+  /*  public function findByDomaine($value)
     {
         return $this->createQueryBuilder('q')
             ->andWhere('q.domaine = :val')
@@ -58,7 +58,11 @@ class QuestionRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult()
         ;
-    }
+    }*/
+
+
+
+
 
 
     /*

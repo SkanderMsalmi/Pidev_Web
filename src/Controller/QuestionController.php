@@ -7,6 +7,7 @@ use App\Entity\Question;
 use App\Form\QuestionType;
 use App\Repository\PropositionRepository;
 use App\Repository\QuestionRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,11 +20,20 @@ class QuestionController extends AbstractController
     /**
      * @Route("/listQuestions", name="afficherQuestions", methods={"GET"})
      */
-    public function index(EntityManagerInterface $entityManager): Response
+    public function index(
+        EntityManagerInterface $entityManager,
+        PaginatorInterface $paginator,
+        Request $request
+    ): Response
     {
-        $questions = $entityManager
+        $data = $entityManager
             ->getRepository(Question::class)
             ->findAll();
+        $questions = $paginator->paginate(
+            $data,
+            $request->query->getInt('page', 1),
+            10
+        );
 
         return $this->render('question/index.html.twig', [
             'questions' => $questions,
@@ -70,7 +80,7 @@ class QuestionController extends AbstractController
     public function show(Question $question): Response
     {
         $pr = $this->getDoctrine()->getRepository(Proposition::class);
-        $props = $pr->findByQuestion($question->getIdquestion());
+        $props = $pr->find($question->getIdquestion());
         return $this->render('question/show.html.twig', [
             'question' => $question,
             'props' => $props

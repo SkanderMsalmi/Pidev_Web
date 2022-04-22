@@ -67,7 +67,7 @@ class PropositionRepository extends ServiceEntityRepository
     // /**
     //  * @return Proposition[] Returns an array of Proposition objects
     //  */
-
+/*
     public function findByQuestion($value)
     {
         return $this->createQueryBuilder('p')
@@ -78,7 +78,7 @@ class PropositionRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    
+    */
 
     /*
     public function findOneBySomeField($value): ?Proposition

@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Quiz{% endblock %}
+
+
+
+    
+
+    
+
+
+{% block body %}
+<div class="card" style="display: flex;align-items: center;justify-content: center;padding:150px">
+            <div class="card-body">
+                {{ include('quiz/_form.html.twig') }}
+                <a href="{{ path('app_quiz_index') }}">back to list</a>
+            </div>
+          </div>
+
+          {% endblock %}

@@ -2,16 +2,15 @@
 
 namespace App\Entity;
 
-use App\Entity\Question;
-use App\Repository\QuestionRepository;
 use Doctrine\ORM\Mapping as ORM;
 use phpDocumentor\Reflection\Types\Self_;
 
 /**
  * Quiz
  *
- * @ORM\Table(name="quiz", indexes={@ORM\Index(name="fk_question2", columns={"idQuestion2"}), @ORM\Index(name="fk_question4", columns={"idQuestion4"}), @ORM\Index(name="fk_question1", columns={"idQuestion1"}), @ORM\Index(name="fk_question3", columns={"idQuestion3"}), @ORM\Index(name="fk_question5", columns={"idQuestion5"})})
- * @ORM\Entity
+ * @ORM\Table(name="quiz", indexes={@ORM\Index(name="fk_question2", columns={"idQuestion2"}),
+ * @ORM\Index(name="fk_question4", columns={"idQuestion4"}), @ORM\Index(name="fk_question1", columns={"idQuestion1"}), @ORM\Index(name="fk_question3", columns={"idQuestion3"}), @ORM\Index(name="fk_question5", columns={"idQuestion5"})})
+  * @ORM\Entity(repositoryClass="App\Repository\QuizRepository")
  */
 class Quiz 
 {
@@ -93,15 +92,6 @@ class Quiz
 
     }
 
-    public static function generate($domaine)
-    {
-        $instance = new self();
-        $instance->setdomaine($domaine);
-        $datecreation =  new \DateTime();
-        $instance->setDatecreation($datecreation);
-        $instance->generateQuiz($domaine);
-        return $instance;
-    }
 
     public function getIdquiz(): ?int
     {
@@ -113,7 +103,7 @@ class Quiz
         return $this->domaine;
     }
 
-    public function setDomaine(string $domaine): self
+    public function setDomaine($domaine): self
     {
         $this->domaine = $domaine;
 
@@ -192,20 +182,6 @@ class Quiz
         return $this;
     }
 
-    private function generateQuiz($domaine)
-    {
-        $qr = $this->getDoctrine()->getRepository(Question::class);
-        $questions = $qr->findByDomaine($domaine);
-        if (count($questions)<5) {
-            return null;
-        }else {
-            $selectedQuestions=array_rand($questions,5);
-            $this->setIdquestion1($selectedQuestions[0]->getIdquestion());
-            $this->setIdquestion2($selectedQuestions[1]->getIdquestion());
-            $this->setIdquestion3($selectedQuestions[2]->getIdquestion());
-            $this->setIdquestion4($selectedQuestions[3]->getIdquestion());
-            $this->setIdquestion5($selectedQuestions[4]->getIdquestion());
-        }
-    }
+
 
 }

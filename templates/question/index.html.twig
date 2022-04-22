@@ -1,6 +1,6 @@
 {% extends 'baseAdmin.html.twig' %}
 
-{% block title %}Question index
+{% block title %}Questions
 {% endblock %}
 
 {% block body %}
@@ -37,5 +37,11 @@
 			</tbody>
 		</table>
          </div>
+
+
     </div>
+			 <div class="d-flex justify-content-center">
+		 {% do questions.setPageRange(2) %}
+		 {{ knp_pagination_render (questions ,'pagination.html.twig') }}
+		 </div>
 {% endblock %}

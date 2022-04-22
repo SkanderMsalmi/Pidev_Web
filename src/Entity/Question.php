@@ -74,9 +74,19 @@ class Question
 
     public function getPropositions(): Collection
     {
-        return $this->propositions;
+        $props = new ArrayCollection($this->propositions);
+        return $props;
     }
 
+    public function setPropositions($propositionsP)
+    {
+        $this->propositions = $propositionsP;
+    }
+
+    public function setIdquestion($idquestion)
+    {
+        $this->idquestion = $idquestion;
+    }
     public function getIdquestion(): ?int
     {
         return $this->idquestion;
@@ -130,5 +140,12 @@ class Question
     public function removeProposition(Proposition $proposition): void
     {
         # code...
+    }
+
+    public function __toString(){
+        // to show the name of the Category in the select
+        return $this->domaine;
+        // to show the id of the Category in the select
+        // return $this->id;
     }
 }
