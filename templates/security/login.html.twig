@@ -5,7 +5,7 @@
 {% block body %}
     <div style="margin-top: 120px;display: flex;align-items: center;justify-content: center;">
 
-<form method="post" ">
+<form method="post" >
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}

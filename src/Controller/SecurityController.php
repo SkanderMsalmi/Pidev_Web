@@ -13,6 +13,7 @@ use App\Repository\ResetPasswordRepository;
 use App\Repository\SocieteRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use MercurySeries\FlashyBundle\FlashyNotifier;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -37,6 +38,7 @@ class SecurityController extends AbstractController
      */
     public function index(MailerInterface $mailer,EntityManagerInterface $em,Request $request,UserPasswordEncoderInterface $passwordEncoder): Response
     {
+
         $user = new User();
         $userForm = $this->createForm(UserType::class,$user);
 
@@ -59,7 +61,7 @@ class SecurityController extends AbstractController
             $email->from('MonStage <msalmi.skander@esprit.fr>')
                   ->to($user->getEmail())
                   ->subject('Bienvenue Sur Mon Stage')
-                  ->htmlTemplate('@email_templates/welcome.html.twig')
+                  ->htmlTemplate('@email_templatephs/welcome.html.twig')
                   ->context([
                         'username'=>$user->getUsername()
                     ]);
@@ -122,7 +124,7 @@ class SecurityController extends AbstractController
      * @Route("/reset-password/{token}", name ="reset-password")
      */
 
-    public function resetPassword(UserPasswordEncoderInterface $passwordEncoder,Request $request,EntityManagerInterface $em,String $token,ResetPasswordRepository  $resetPasswordRepository){
+    public function resetPassword(FlashyNotifier $flashyNotifier,UserPasswordEncoderInterface $passwordEncoder,Request $request,EntityManagerInterface $em,String $token,ResetPasswordRepository  $resetPasswordRepository){
 
         $resetPasswod = $resetPasswordRepository->findOneBy(['token'=>$token]);
         if(!$resetPasswod || $resetPasswod->getExpiredAt()< new \DateTime('now')){
@@ -130,12 +132,12 @@ class SecurityController extends AbstractController
                 $em->remove($resetPasswod);
                 $em->flush();
             }
-            $this->addFlash('error','Votre demande est expiré veuillez refaire une demande');
+            $flashyNotifier->error('error',' Votre demande est expiré veuillez refaire une demande');
             return $this->redirectToRoute('login');
         }
         $passwordForm = $this->createFormBuilder()
             ->add('password',PasswordType::class,[
-                "label"=>"nouveau mot de passe"
+                "label"=>"Entrer nouveau mot de passe"
 
             ])->getForm();
 
@@ -147,7 +149,7 @@ class SecurityController extends AbstractController
             $user->setPassword($hash);
             $em->remove($resetPasswod);
             $em->flush();
-            $this->addFlash('success','votre mot de passe a été modifié.');
+            $flashyNotifier->success('success','votre mot de passe a été modifié.');
             return $this->redirectToRoute('app_login');
         }
         return $this->render('security/reset_password_form.html.twig',[
@@ -160,11 +162,12 @@ class SecurityController extends AbstractController
      */
 
 
-    public function resetPasswordRequest(MailerInterface $mailer,Request $request,UserRepository $userRepository,ResetPasswordRepository $resetPasswordRepository,EntityManagerInterface $em){
+    public function resetPasswordRequest(FlashyNotifier $flashyNotifier,MailerInterface $mailer,Request $request,UserRepository $userRepository,ResetPasswordRepository $resetPasswordRepository,EntityManagerInterface $em){
         $emailForm = $this->createFormBuilder()->add('email',EmailType::class,[
+            'required'   => false,
            'constraints'=> [
                new NotBlank([
-                   'message'=>'Veuillez rtenseigner votre email'
+                   'message'=>'Veuillez entrer votre email'
                ])
            ]
         ])->getForm();
@@ -194,12 +197,15 @@ class SecurityController extends AbstractController
                         ->subject('Demande de réinitialisation de mot de passe')
                         ->htmlTemplate('@email_templates/reset_password_request.html.twig')
                         ->context([
-                            'token' => $token
+                            'token' => $token,
+                            'username'=>$user->getUsername()
                         ]);
                     $mailer->send($email);
                 }
-                $this->addFlash('success','Un email vous a été envoyé pour reinitialiser votre mot de ppasse');
-                return $this->redirectToRoute('acceuil');
+                $flashyNotifier->success('un email a etait envoye a votre email');
+            }else{
+                $flashyNotifier->error("Adresse Mail n'existe pas ");
+
             }
             }
 
@@ -208,6 +214,21 @@ class SecurityController extends AbstractController
             'form'=>$emailForm->createView()
         ]);
     }
+
+    /**
+     * @param $idUser
+     * @param UserRepository $userRepository
+     * @Route("/block/{idUser}",name="blockUser")
+     * @return void
+     */
+    public function block_deblock_User($idUser,UserRepository $userRepository,EntityManagerInterface $em){
+        $user = $userRepository->find($idUser);
+        $user->setEtatBlock(!$user->getEtatBlock());
+        $em->flush();
+        return $this->redirectToRoute('app_admin_users');
+    }
+
+
 }
 
 
