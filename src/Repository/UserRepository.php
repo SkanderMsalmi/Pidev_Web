@@ -90,4 +90,12 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         ;
     }
     */
+
+    public function search($term){
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.nom LIKE :searchTerm')
+            ->setParameter('searchTerm','%'.$term.'%')
+            ->getQuery()
+            ->execute();
+    }
 }

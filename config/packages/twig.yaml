@@ -6,3 +6,4 @@ twig:
     paths:
         '%kernel.project_dir%/emails/css': email_css
         '%kernel.project_dir%/emails/templates': email_templates
+        '%kernel.project_dir%/vendor/knplabs/knp-paginator-bundle/templates': KnpPaginator

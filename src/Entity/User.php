@@ -183,6 +183,11 @@ class User implements UserInterface
      */
     private $idfaculte;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $etatBlock;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -420,6 +425,18 @@ class User implements UserInterface
     public function setIdfaculte(?Faculte $idfaculte): self
     {
         $this->idfaculte = $idfaculte;
+
+        return $this;
+    }
+
+    public function getEtatBlock(): ?bool
+    {
+        return $this->etatBlock;
+    }
+
+    public function setEtatBlock(bool $etatBlock): self
+    {
+        $this->etatBlock = $etatBlock;
 
         return $this;
     }
