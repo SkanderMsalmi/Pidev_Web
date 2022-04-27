@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\Entity\Experience" table="experience">
+    <indexes>
+      <index name="fk_personneExperience" columns="idPersonne"/>
+    </indexes>
+    <id name="idexperience" type="integer" column="idExperience">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="poste" type="string" column="poste" length="30" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="societe" type="string" column="societe" length="30" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="competanmiseenouvre" type="string" column="competanMiseEnOuvre" length="30" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="datedebut" type="date" column="dateDebut" nullable="false"/>
+    <field name="datefin" type="date" column="dateFin" nullable="false"/>
+    <many-to-one field="idpersonne" target-entity="User" fetch="LAZY">
+      <join-columns>
+        <join-column name="idPersonne" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

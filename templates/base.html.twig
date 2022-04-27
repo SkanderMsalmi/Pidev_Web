@@ -12,12 +12,14 @@
         <link rel="stylesheet" media="screen" href="{{ asset('http://fonts.googleapis.com/css?family=Open+Sans:300,400,700') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css" rel="stylesheet"/>
 
         <!-- Custom styles for our template -->
         <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-theme.css') }}" media="screen" >
         <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/styleRole.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/rateStar.css') }}">
+        <link rel="stylesheet" href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
     {% endblock %}
 
     {% block javascripts %}
@@ -28,6 +30,20 @@
         <script src="{{ asset('assets/js/jQuery.headroom.min.js') }}"></script>
         <script src="{{ asset('assets/js/template.js') }}"></script>
         <script src="https://kit.fontawesome.com/cc2c1873c0.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
+        <script src="//code.jquery.com/jquery.js"></script>
+        <!-- Load Flashy default JavaScript -->
+        <script src="{{ asset('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
+        <!-- Include Flashy default partial -->
+
+        <script>
+            $(document).ready(function() {
+                // you may need to change this code if you are not using Bootstrap Datepicker
+                $('.js-datepicker').datepicker({
+                    format: 'yyyy-mm-dd'
+                });
+            });
+        </script>
     {% endblock %}
 </head>
 <body>
@@ -52,13 +68,13 @@
                             <li class="active"><a href="sidebar-right.html">Right Sidebar</a></li>
                         </ul>
                     </li>
-{#        {% if is_granted('ROLE_USER')  %}
+        {% if is_granted('ROLE_USER')  %}
                              <li><a href="{{ path('profile') }}">{{ app.user.nom }} {{ app.user.prenom }}</a></li>
                                     <li><a href="{{ path('app_logout') }}"> Log Out</a> </li>
                                 {% else %}
-                                        <li><a href="{{ path('choixRole') }}">Inscription</a></li>
+                                        <li><a href="{{ path('inscription') }}">Inscription</a></li>
                                        <li><a class="btn" href="{{ path('app_login') }}">Se Connecter</a></li>
-                                {% endif %} #}
+                                {% endif %}
 
                             </ul>
                         </div><!--/.nav-collapse -->
@@ -66,8 +82,49 @@
     </div>
     <!-- /.navbar -->
 {% endblock %}
-{% block body %}
+    {% block body %}
 
+    {% endblock %}
+{% block contact %}
+    <div style="width: 80%;margin: auto">
+        <header class="page-header">
+            <h1 class="page-title">Contact us</h1>
+        </header>
+
+        <p>
+            We’d love to hear from you. Interested in working together? Fill out the form below with some info about your project and I will get back to you as soon as I can. Please allow a couple days for me to respond.
+        </p>
+        <br>
+        <form>
+            <div class="row">
+                <div class="col-sm-4">
+                    <input class="form-control" type="text" placeholder="Name">
+                </div>
+                <div class="col-sm-4">
+                    <input class="form-control" type="text" placeholder="Email">
+                </div>
+                <div class="col-sm-4">
+                    <input class="form-control" type="text" placeholder="Phone">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-12">
+                    <textarea placeholder="Type your message here..." class="form-control" rows="9"></textarea>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-6">
+                    <label class="checkbox"><input type="checkbox"> Sign up for newsletter</label>
+                </div>
+                <div class="col-sm-6 text-right">
+                    <input class="btn btn-action" type="submit" value="Send message">
+                </div>
+            </div>
+        </form>
+
+    </div>
 {% endblock %}
 
 
@@ -124,7 +181,7 @@
                                 <a href="about.html">About</a> |
                                 <a href="sidebar-right.html">Sidebar</a> |
                                 <a href="contact.html">Contact</a> |
-                          {#     <b><a href="{{ path('choixRole') }}">Sign up</a></b> #}
+                               <b><a href="{{ path('choixRole') }}">Sign up</a></b>
                             </p>
                         </div>
                     </div>
@@ -140,8 +197,13 @@
                 </div> <!-- /row of widgets -->
             </div>
         </div>
+        <div style="margin-top: 300px">
+            {{ include('@MercurySeriesFlashy/flashy.html.twig') }}
+
+        </div>
 
     </footer>
 {% endblock %}
+
 </body>
 </html>

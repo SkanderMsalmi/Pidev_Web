@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\Entity\Quiz" table="quiz">
+    <indexes>
+      <index name="fk_question3" columns="idQuestion3"/>
+      <index name="fk_question4" columns="idQuestion4"/>
+      <index name="fk_question1" columns="idQuestion1"/>
+      <index name="fk_question5" columns="idQuestion5"/>
+      <index name="fk_question2" columns="idQuestion2"/>
+    </indexes>
+    <id name="idquiz" type="integer" column="idQuiz">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="domaine" type="string" column="domaine" length="30" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="datecreation" type="datetime" column="dateCreation" nullable="false">
+      <options>
+        <option name="default">CURRENT_TIMESTAMP</option>
+      </options>
+    </field>
+    <many-to-one field="idquestion3" target-entity="Question" fetch="LAZY">
+      <join-columns>
+        <join-column name="idQuestion3" referenced-column-name="idQuestion"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idquestion2" target-entity="Question" fetch="LAZY">
+      <join-columns>
+        <join-column name="idQuestion2" referenced-column-name="idQuestion"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idquestion5" target-entity="Question" fetch="LAZY">
+      <join-columns>
+        <join-column name="idQuestion5" referenced-column-name="idQuestion"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idquestion1" target-entity="Question" fetch="LAZY">
+      <join-columns>
+        <join-column name="idQuestion1" referenced-column-name="idQuestion"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idquestion4" target-entity="Question" fetch="LAZY">
+      <join-columns>
+        <join-column name="idQuestion4" referenced-column-name="idQuestion"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>
