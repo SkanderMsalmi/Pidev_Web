@@ -3,14 +3,16 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Self_;
 
 /**
  * Quiz
  *
- * @ORM\Table(name="quiz", indexes={@ORM\Index(name="fk_question3", columns={"idQuestion3"}), @ORM\Index(name="fk_question4", columns={"idQuestion4"}), @ORM\Index(name="fk_question1", columns={"idQuestion1"}), @ORM\Index(name="fk_question5", columns={"idQuestion5"}), @ORM\Index(name="fk_question2", columns={"idQuestion2"})})
- * @ORM\Entity
+ * @ORM\Table(name="quiz", indexes={@ORM\Index(name="fk_question2", columns={"idQuestion2"}),
+ * @ORM\Index(name="fk_question4", columns={"idQuestion4"}), @ORM\Index(name="fk_question1", columns={"idQuestion1"}), @ORM\Index(name="fk_question3", columns={"idQuestion3"}), @ORM\Index(name="fk_question5", columns={"idQuestion5"})})
+  * @ORM\Entity(repositoryClass="App\Repository\QuizRepository")
  */
-class Quiz
+class Quiz 
 {
     /**
      * @var int
@@ -34,16 +36,6 @@ class Quiz
      * @ORM\Column(name="dateCreation", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
      */
     private $datecreation = 'CURRENT_TIMESTAMP';
-
-    /**
-     * @var \Question
-     *
-     * @ORM\ManyToOne(targetEntity="Question")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idQuestion4", referencedColumnName="idQuestion")
-     * })
-     */
-    private $idquestion4;
 
     /**
      * @var \Question
@@ -85,6 +77,22 @@ class Quiz
      */
     private $idquestion1;
 
+    /**
+     * @var \Question
+     *
+     * @ORM\ManyToOne(targetEntity="Question")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idQuestion4", referencedColumnName="idQuestion")
+     * })
+     */
+    private $idquestion4;
+
+
+    public function __construct() {
+
+    }
+
+
     public function getIdquiz(): ?int
     {
         return $this->idquiz;
@@ -95,7 +103,7 @@ class Quiz
         return $this->domaine;
     }
 
-    public function setDomaine(string $domaine): self
+    public function setDomaine($domaine): self
     {
         $this->domaine = $domaine;
 
@@ -114,65 +122,66 @@ class Quiz
         return $this;
     }
 
-    public function getIdquestion4(): ?Question
-    {
-        return $this->idquestion4;
-    }
-
-    public function setIdquestion4(?Question $idquestion4): self
-    {
-        $this->idquestion4 = $idquestion4;
-
-        return $this;
-    }
-
-    public function getIdquestion3(): ?Question
+    public function getIdquestion3()
     {
         return $this->idquestion3;
     }
 
-    public function setIdquestion3(?Question $idquestion3): self
+    public function setIdquestion3(Question $idquestion3): self
     {
         $this->idquestion3 = $idquestion3;
 
         return $this;
     }
 
-    public function getIdquestion2(): ?Question
+    public function getIdquestion2()
     {
         return $this->idquestion2;
     }
 
-    public function setIdquestion2(?Question $idquestion2): self
+    public function setIdquestion2(Question $idquestion2): self
     {
         $this->idquestion2 = $idquestion2;
 
         return $this;
     }
 
-    public function getIdquestion5(): ?Question
+    public function getIdquestion5()
     {
         return $this->idquestion5;
     }
 
-    public function setIdquestion5(?Question $idquestion5): self
+    public function setIdquestion5(Question $idquestion5): self
     {
         $this->idquestion5 = $idquestion5;
 
         return $this;
     }
 
-    public function getIdquestion1(): ?Question
+    public function getIdquestion1()
     {
         return $this->idquestion1;
     }
 
-    public function setIdquestion1(?Question $idquestion1): self
+    public function setIdquestion1(Question $idquestion1): self
     {
         $this->idquestion1 = $idquestion1;
 
         return $this;
     }
+
+    public function getIdquestion4()
+    {
+        return $this->idquestion4;
+    }
+
+    public function setIdquestion4(Question $idquestion4): self
+    {
+        $this->idquestion4 = $idquestion4;
+
+        return $this;
+    }
+
 
 
 }

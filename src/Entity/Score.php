@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Score
  *
- * @ORM\Table(name="score", indexes={@ORM\Index(name="fk_scorePersonne", columns={"idUser"}), @ORM\Index(name="fk_scoreQuiz", columns={"idQuiz"})})
+ * @ORM\Table(name="score", indexes={@ORM\Index(name="fk_scoreQuiz", columns={"idQuiz"}), @ORM\Index(name="fk_scorePersonne", columns={"idUser"})})
  * @ORM\Entity
  */
 class Score
@@ -29,16 +29,6 @@ class Score
     private $score;
 
     /**
-     * @var \Quiz
-     *
-     * @ORM\ManyToOne(targetEntity="Quiz")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idQuiz", referencedColumnName="idQuiz")
-     * })
-     */
-    private $idquiz;
-
-    /**
      * @var \User
      *
      * @ORM\ManyToOne(targetEntity="User")
@@ -47,6 +37,16 @@ class Score
      * })
      */
     private $iduser;
+
+    /**
+     * @var \Quiz
+     *
+     * @ORM\ManyToOne(targetEntity="Quiz")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idQuiz", referencedColumnName="idQuiz")
+     * })
+     */
+    private $idquiz;
 
     public function getIdscore(): ?int
     {
@@ -65,18 +65,6 @@ class Score
         return $this;
     }
 
-    public function getIdquiz(): ?Quiz
-    {
-        return $this->idquiz;
-    }
-
-    public function setIdquiz(?Quiz $idquiz): self
-    {
-        $this->idquiz = $idquiz;
-
-        return $this;
-    }
-
     public function getIduser(): ?User
     {
         return $this->iduser;
@@ -85,6 +73,18 @@ class Score
     public function setIduser(?User $iduser): self
     {
         $this->iduser = $iduser;
+
+        return $this;
+    }
+
+    public function getIdquiz(): ?Quiz
+    {
+        return $this->idquiz;
+    }
+
+    public function setIdquiz(?Quiz $idquiz): self
+    {
+        $this->idquiz = $idquiz;
 
         return $this;
     }

@@ -151,7 +151,6 @@ class User implements UserInterface
      * @var string|null
      *
      * @ORM\Column(name="infos", type="string", length=255, nullable=true)
-
      */
     private $infos;
 

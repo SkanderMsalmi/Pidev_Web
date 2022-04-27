@@ -123,7 +123,11 @@ class Experience
         return $this->datedebut;
     }
 
+<<<<<<< HEAD
     public function setDatedebut(?\DateTimeInterface $datedebut): self
+=======
+    public function setDatedebut(\DateTimeInterface $datedebut): self
+>>>>>>> khalil
     {
         $this->datedebut = $datedebut;
 
@@ -135,7 +139,11 @@ class Experience
         return $this->datefin;
     }
 
+<<<<<<< HEAD
     public function setDatefin(?\DateTimeInterface $datefin): self
+=======
+    public function setDatefin(\DateTimeInterface $datefin): self
+>>>>>>> khalil
     {
         $this->datefin = $datefin;
 

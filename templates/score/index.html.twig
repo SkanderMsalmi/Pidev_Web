@@ -1,0 +1,41 @@
+
+
+{% block title %}Score index{% endblock %}
+
+{% block body %}
+  <div style="margin-top:120px;">
+    <h1>Score index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Idscore</th>
+                <th>Score</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for score in scores %}
+            <tr>
+                <td>{{ score.idscore }}</td>
+                <td>{{ score.score }}</td>
+                <td>
+                    <a href="{{ path('app_score_show', {'idscore': score.idscore}) }}">show</a>
+                    <a href="{{ path('app_score_edit', {'idscore': score.idscore}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {{ score }}
+
+
+
+    <a href="{{ path('app_score_new') }}">Create new</a>
+    </div>
+{% endblock %}
