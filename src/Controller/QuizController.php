@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 
@@ -25,12 +26,19 @@ class QuizController extends AbstractController
     /**
      * @Route("/", name="app_quiz_index", methods={"GET"})
      */
-    public function index(EntityManagerInterface $entityManager): Response
+    public function index(
+        EntityManagerInterface $entityManager,
+        PaginatorInterface $paginator,
+        Request $request): Response
     {
-        $quizzes = $entityManager
+        $data = $entityManager
             ->getRepository(Quiz::class)
             ->findAll();
-
+            $quizzes = $paginator->paginate(
+                $data,
+                $request->query->getInt('page', 1),
+                10
+            );
             
 
         return $this->render('quiz/index.html.twig', [

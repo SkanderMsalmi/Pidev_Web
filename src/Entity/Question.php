@@ -74,7 +74,7 @@ class Question
 
     public function getPropositions(): Collection
     {
-        $props = new ArrayCollection($this->propositions);
+       $props = new ArrayCollection($this->propositions);
         return $props;
     }
 

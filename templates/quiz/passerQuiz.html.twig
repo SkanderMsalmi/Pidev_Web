@@ -2,8 +2,12 @@
 
 {% block body %}
 
+<div id="test">
 
-    <form id="regForm" action="">
+</div>
+
+
+    <form id="regForm" action="http://127.0.0.1:8000/score/" method="GET" >
 
 <h1>{{ quiz.domaine | upper }} QUIZ</h1>
 
@@ -13,9 +17,9 @@
     {% if quiz.idquestion1.propositions is empty %}
          <h1>IL N'EXISTE RIEN</h1>
     {% else %}
-       <ul> <input type="radio" id="prop1"> {{ quiz.idquestion1.propositions[0].proposition }}</input></ul>
-       <ul> <input type="radio" id="prop2"> {{ quiz.idquestion1.propositions[1].proposition }}</input></ul>
-       <ul> <input type="radio" id="prop3"> {{ quiz.idquestion1.propositions[2].proposition }}</input></ul>
+       <ul> <input type="radio" name="question1" value="{{quiz.idquestion1.propositions[0].proposition }}~{{ quiz.idquestion1.idquestion }}" id="prop1" oninput="this.className = ''"> {{ quiz.idquestion1.propositions[0].proposition }}</input></ul>
+       <ul> <input type="radio" name="question1" value="{{quiz.idquestion1.propositions[1].proposition }}~{{ quiz.idquestion1.idquestion }}" id="prop2" oninput="this.className = ''"> {{ quiz.idquestion1.propositions[1].proposition }}</input></ul>
+       <ul> <input type="radio" name="question1" value="{{quiz.idquestion1.propositions[2].proposition }}~{{ quiz.idquestion1.idquestion }}" id="prop3" oninput="this.className = ''"> {{ quiz.idquestion1.propositions[2].proposition }}</input></ul>
     {% endif %}
 </div>
 
@@ -24,9 +28,9 @@
     {% if quiz.idquestion2.propositions is empty %}
          <h1>IL N'EXISTE RIEN</h1>
     {% else %}
-       <ul> <input type="radio" id="prop1"> {{ quiz.idquestion2.propositions[0].proposition }}</input></ul>
-       <ul> <input type="radio" id="prop2"> {{ quiz.idquestion2.propositions[1].proposition }}</input></ul>
-       <ul> <input type="radio" id="prop3"> {{ quiz.idquestion2.propositions[2].proposition }}</input></ul>
+       <ul> <input type="radio" name="question2" value="{{quiz.idquestion2.propositions[0].proposition }}~{{ quiz.idquestion2.idquestion }}" id="prop1" oninput="this.className = ''"> {{ quiz.idquestion2.propositions[0].proposition }}</input></ul>
+       <ul> <input type="radio" name="question2" value="{{quiz.idquestion2.propositions[1].proposition }}~{{ quiz.idquestion2.idquestion }}" id="prop2"  oninput="this.className = ''"> {{ quiz.idquestion2.propositions[1].proposition }}</input></ul>
+       <ul> <input type="radio" name="question2" value="{{quiz.idquestion2.propositions[2].proposition }}~{{ quiz.idquestion2.idquestion }}" id="prop3" oninput="this.className = ''"> {{ quiz.idquestion2.propositions[2].proposition }}</input></ul>
     {% endif %}
 </div>
 
@@ -35,9 +39,9 @@
     {% if quiz.idquestion3.propositions is empty %}
          <h1>IL N'EXISTE RIEN</h1>
     {% else %}
-       <ul> <input type="radio" id="prop1"> {{ quiz.idquestion3.propositions[0].proposition }}</input></ul>
-       <ul> <input type="radio" id="prop2"> {{ quiz.idquestion3.propositions[1].proposition }}</input></ul>
-       <ul> <input type="radio" id="prop3"> {{ quiz.idquestion3.propositions[2].proposition }}</input></ul>
+       <ul> <input type="radio" name="question3" value="{{quiz.idquestion3.propositions[0].proposition }}~{{ quiz.idquestion3.idquestion }}" id="prop1" oninput="this.className = ''"> {{ quiz.idquestion3.propositions[0].proposition }}</input></ul>
+       <ul> <input type="radio" name="question3" value="{{quiz.idquestion3.propositions[1].proposition }}~{{ quiz.idquestion3.idquestion }}" id="prop2" oninput="this.className = ''"> {{ quiz.idquestion3.propositions[1].proposition }}</input></ul>
+       <ul> <input type="radio" name="question3" value="{{quiz.idquestion3.propositions[2].proposition }}~{{ quiz.idquestion3.idquestion }}" id="prop3" oninput="this.className = ''"> {{ quiz.idquestion3.propositions[2].proposition }}</input></ul>
     {% endif %}
 </div>
 
@@ -46,9 +50,9 @@
     {% if quiz.idquestion4.propositions is empty %}
         <h1>IL N'EXISTE RIEN</h1>
     {% else %}
-        <ul> <input type="radio" id="prop1"> {{ quiz.idquestion4.propositions[0].proposition }}</input></ul>
-        <ul> <input type="radio" id="prop2"> {{ quiz.idquestion4.propositions[1].proposition }}</input></ul>
-        <ul> <input type="radio" id="prop3"> {{ quiz.idquestion4.propositions[2].proposition }}</input></ul>
+        <ul> <input type="radio" name="question4" value="{{quiz.idquestion4.propositions[0].proposition }}~{{ quiz.idquestion4.idquestion }}" id="prop1" oninput="this.className = ''"> {{ quiz.idquestion4.propositions[0].proposition }}</input></ul>
+        <ul> <input type="radio" name="question4" value="{{quiz.idquestion4.propositions[1].proposition }}~{{ quiz.idquestion4.idquestion }}" id="prop2" oninput="this.className = ''"> {{ quiz.idquestion4.propositions[1].proposition }}</input></ul>
+        <ul> <input type="radio" name="question4" value="{{quiz.idquestion4.propositions[2].proposition }}~{{ quiz.idquestion4.idquestion }}" id="prop3" oninput="this.className = ''"> {{ quiz.idquestion4.propositions[2].proposition }}</input></ul>
     {% endif %}
 </div>
 
@@ -57,15 +61,16 @@
     {% if quiz.idquestion5.propositions is empty %}
         <h1>IL N'EXISTE RIEN</h1>
     {% else %}
-        <ul> <input type="radio" id="prop1"> {{ quiz.idquestion5.propositions[0].proposition }}</input></ul>
-        <ul> <input type="radio" id="prop2"> {{ quiz.idquestion5.propositions[1].proposition }}</input></ul>
-        <ul> <input type="radio" id="prop3"> {{ quiz.idquestion5.propositions[2].proposition }}</input></ul>
+        <ul> <input type="radio" name="question5" value="{{quiz.idquestion5.propositions[0].proposition }}~{{ quiz.idquestion5.idquestion }}" id="prop1" oninput="this.className = ''"> {{ quiz.idquestion5.propositions[0].proposition }}</input></ul>
+        <ul> <input type="radio" name="question5" value="{{quiz.idquestion5.propositions[1].proposition }}~{{ quiz.idquestion5.idquestion }}" id="prop2" oninput="this.className = ''"> {{ quiz.idquestion5.propositions[1].proposition }}</input></ul>
+        <ul> <input type="radio" name="question5" value="{{quiz.idquestion5.propositions[2].proposition }}~{{ quiz.idquestion5.idquestion }}" id="prop3" oninput="this.className = ''"> {{ quiz.idquestion5.propositions[2].proposition }}</input></ul>
     {% endif %}
 </div>
 
 <div style="overflow:auto;">
   <div style="float:right;">
-    <button type="button"  class="btn btn-success" id="nextBtn" onclick="nextPrev(1)">Suivant</button>
+   <button type="button" style="display: none;"id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+    <button type="button" id="nextBtn" onclick="nextPrev(1)">Suivant</button>
   </div>
 </div>
 
@@ -94,7 +99,7 @@ function showTab(n) {
   if (n == 0) {
     document.getElementById("prevBtn").style.display = "none";
   } else {
-    document.getElementById("prevBtn").style.display = "inline";
+    document.getElementById("prevBtn").style.display = "none";
   }
   if (n == (x.length - 1)) {
     document.getElementById("nextBtn").innerHTML = "Terminer";
@@ -106,9 +111,9 @@ function showTab(n) {
 }
 
 function nextPrev(n) {
-
   // This function will figure out which tab to display
   var x = document.getElementsByClassName("tab");
+  y = x[currentTab].getElementsByTagName("input");
   // Exit the function if any field in the current tab is invalid:
   if (n == 1 && !validateForm()) return false;
   // Hide the current tab:
@@ -122,9 +127,10 @@ function nextPrev(n) {
     return false;
   }
   // Otherwise, display the correct tab:
+  var te = document.getElementById("prop1")
+   document.getElementById("test").innerHTML = te.value;
   showTab(currentTab);
 }
-
 
 function validateForm() {
   // This function deals with validation of the form fields
@@ -140,6 +146,8 @@ function validateForm() {
       // and set the current valid status to false:
       valid = false;
     }
+ 
+    
   }
   // If the valid status is true, mark the step as finished and valid:
   if (valid) {
@@ -158,13 +166,8 @@ function fixStepIndicator(n) {
   x[n].className += " active";
 }
 
-        function validate(){
-          var spare= document.getElementById('prop1');
-          if (spare.checked){
-            alert("checked") ;
-          }else{
-            alert("You didn't check spare-price! Let me check it for you.")
-          }
-        }
+function calculScore(){
+  
+}
 </script>
 {% endblock %} 

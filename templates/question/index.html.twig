@@ -8,7 +8,7 @@
    <div>
        <h1 class="card-title">Liste des Questions</h1>
         <div style="display: flex;align-items: right;justify-content: right;">       
-		<a class="btn btn-success" href="{{ path('ajouterQuestion') }}">Ajouter Question </a></div>
+		<a class="btn btn-outline-success" href="{{ path('ajouterQuestion') }}">Ajouter Question </a></div>
         <table class="table">
 			<thead>
 				<tr>
@@ -25,8 +25,8 @@
 						<td>{{ question.domaine }}</td>
 						<td>{{ question.reponsecorrecte }}</td>
 						<td>
-							<a class="btn btn-outline-primary" href="{{ path('afficherQuestion', {'idquestion': question.idquestion}) }}">show</a>
-							<a class="btn btn-outline-secondary" href="{{ path('modifierQuestion', {'idquestion': question.idquestion}) }}">edit</a>
+							<a class="btn btn-outline-primary" href="{{ path('afficherQuestion', {'idquestion': question.idquestion}) }}">Afficher</a>
+							<a class="btn btn-outline-secondary" href="{{ path('modifierQuestion', {'idquestion': question.idquestion}) }}">Modifier</a>
 						</td>
 					</tr>
 				{% else %}
