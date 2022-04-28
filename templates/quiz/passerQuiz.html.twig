@@ -61,8 +61,17 @@
     {% if quiz.idquestion5.propositions is empty %}
         <h1>IL N'EXISTE RIEN</h1>
     {% else %}
-        <ul> <input type="radio" name="question5" value="{{quiz.idquestion5.propositions[0].proposition }}~{{ quiz.idquestion5.idquestion }}**{{ quiz.idquiz }}" id="prop1" oninput="this.className = ''"> {{ quiz.idquestion5.propositions[0].proposition }}</input></ul>
-        <ul> <input type="radio" name="question5" value="{{quiz.idquestion5.propositions[1].proposition }}~{{ quiz.idquestion5.idquestion }}**{{ quiz.idquiz }}" id="prop2" oninput="this.className = ''"> {{ quiz.idquestion5.propositions[1].proposition }}</input></ul>
+        <ul> <label>{{ quiz.idquestion5.propositions[0].proposition }}</label><input type="radio" name="question5" value="{{quiz.idquestion5.propositions[0].proposition }}~{{ quiz.idquestion5.idquestion }}**{{ quiz.idquiz }}" id="prop1" oninput="this.className = ''"></input></ul>
+        <ul> <input type="radio" style="  appearance: none;
+  background-color: #fff;
+  margin: 0;
+  font: inherit;
+  color: currentColor;
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.15em solid currentColor;
+  border-radius: 50%;
+  transform: translateY(-0.075em);"name="question5" value="{{quiz.idquestion5.propositions[1].proposition }}~{{ quiz.idquestion5.idquestion }}**{{ quiz.idquiz }}" id="prop2" oninput="this.className = ''"> {{ quiz.idquestion5.propositions[1].proposition }}</input></ul>
         <ul> <input type="radio" name="question5" value="{{quiz.idquestion5.propositions[2].proposition }}~{{ quiz.idquestion5.idquestion }}**{{ quiz.idquiz }}" id="prop3" oninput="this.className = ''"> {{ quiz.idquestion5.propositions[2].proposition }}</input></ul>
     {% endif %}
 </div>
@@ -70,7 +79,7 @@
 <div style="overflow:auto;">
   <div style="float:right;">
    <button type="button" style="display: none;"id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-    <button type="button" id="nextBtn" onclick="nextPrev(1)">Suivant</button>
+    <button type="button" class="btn btn-outline-success" id="nextBtn" onclick="nextPrev(1)">Suivant</button>
   </div>
 </div>
 

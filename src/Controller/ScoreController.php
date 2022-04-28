@@ -117,15 +117,17 @@ class ScoreController extends AbstractController
         $sr = $this->getDoctrine()->getRepository(Score::class);
         $qr = $this->getDoctrine()->getRepository(Quiz::class);
         $score = $sr->findBy(["iduser" => NULL]);
+        $quizzes=[];
        // dd($score);
-        $idquiz = $score[0]->getIdquiz()->getIdquiz();
+       foreach ($score as $s ) {
+        $idquiz = $s->getIdquiz()->getIdquiz();
         $quiz = $qr->find($idquiz);
-        $domaine = $quiz->getDomaine();
-        $date = $quiz->getDatecreation();
+        array_push($quizzes,$quiz);
+       }
+     //  dd($quizzes);
         return $this->render('score/show.html.twig', [
             'score' => $score,
-            'domaine' => $domaine,
-            'date' => $date,
+            'quizzes' => $quizzes,
         ]);
     }
 

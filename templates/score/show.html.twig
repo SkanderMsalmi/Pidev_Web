@@ -1,26 +1,38 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Score{% endblock %}
+{% block title %}Score
+{% endblock %}
 
 {% block body %}
-<div style="display: flex;align-items: center;justify-content: center;padding:150px">
-    {% for s in score %}
+	<div style="display: flex;align-items: center;justify-content: center;padding:150px">
+		{% for s in score %}
 
-    <div class="col-md-3 col-sm-6 highlight" style="box-shadow:5px 2px 2px" >
-					<div class="h-caption"></i><h4>{{ domaine }} Quiz</h4></div>
-					<div class="h-body text-center">
-                        Note : {{ s.score }}
-                        <br>
-                        Date : {{ date | date("d/m/Y") }}
+
+			{% for q in quizzes %}
+
+				{% if q.idquiz is same as s.idquiz.idquiz %}
+					<div class="service-item text-center pt-3">
+						<div class="p-4">
+							<i class="fa fa-graduation-cap fa-6" aria-hidden="true"></i>
+							<h4 class="mb-3">{{ q.domaine }}
+								Quiz</h4>
+							<div class="h-body text-center">
+								Note :
+								{{ s.score }}
+								<br>
+								Date :
+								{{ q.datecreation | date("d/m/Y") }}
+							</div>
+						</div>
 					</div>
-				</div>
+				{% endif %}
 
 
-   
-        
-    {% endfor %}
+			{% endfor %}
 
-</div>
- <a href="{{ path('app_score_index') }}">back to list</a>
 
+		{% endfor %}
+
+	</div>
+	<a href="{{ path('app_score_index') }}">back to list</a>
 {% endblock %}
