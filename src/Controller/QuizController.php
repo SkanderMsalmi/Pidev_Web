@@ -54,6 +54,7 @@ class QuizController extends AbstractController
         $quiz = new Quiz();
         $time = new \DateTime();
         $quiz->setDatecreation($time);
+        
         $form = $this->createForm(QuizType::class, $quiz);
         /*$domaines = $this->getDoctrine()->getRepository(Quiz::class)->getDomaines();
         $domaineArray = [];
@@ -66,14 +67,18 @@ class QuizController extends AbstractController
             'choices'  => [$domaineArray],
         ]);*/
         $form->handleRequest($request);
+        $quiz->setDomaine($form["domaine"]->getData());
+        
+       // dd($form["domaine"]->getData());
+
         //dd($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $domaine = $request->request->get("domaine");
-            //dd($domaine);
-            $domaine = "java";
+        if ($form->isSubmitted()) {
+            //$domaine = $request->request->get("domaine");
+            $domaine = $form["domaine"]->getData();
+           // dd($domaine);
             $questions = $entityManager->getRepository(Question::class)->findBy(array(
-                "domaine" => $domaine,
+                "domaine" => $quiz->getDomaine(),
             ));
             $randomKeys = array_rand($questions,5);
             $idQ1 = $questions[$randomKeys[0]]->getIdquestion();
@@ -91,7 +96,7 @@ class QuizController extends AbstractController
             $quiz->setIdquestion3($question3);
             $quiz->setIdquestion4($question4);
             $quiz->setIdquestion5($question5);
-            //dd($quiz);
+            
             $entityManager->persist($quiz);
             $entityManager->flush();
             $this->addFlash("success","Le quiz est bien crée");
@@ -110,6 +115,7 @@ class QuizController extends AbstractController
      */
     public function passerQuiz(): Response
     {
+        
         $quiz = new Quiz();
         $quiz=$this->getDoctrine()->getRepository(Quiz::class)->findLastQuiz();
         $idQ1 = $quiz->getIdquestion1()->getidQuestion();

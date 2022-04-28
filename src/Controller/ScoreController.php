@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Question;
 use App\Entity\Score;
+use App\Entity\Quiz;
 use App\Form\ScoreType;
 use App\Repository\QuestionRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -23,12 +24,15 @@ class ScoreController extends AbstractController
     public function index(EntityManagerInterface $entityManager): Response
     {
         $uri = $_SERVER['REQUEST_URI'];
-      //  $foo = $_GET['prop1'];
+        $reps = [];
         $score = 0;
-        //dd($_GET);
+        $idquiz = $this->getIdquiz($_GET["question1"]);
+        $qr = $this->getDoctrine()->getRepository(Quiz::class);
+        $quiz = $qr->find($idquiz);
         foreach ($_GET as $question) {
             $id = $this->getId($question);
             $rep = $this->getReponse($question);
+            array_push($reps,$rep);
             if ($this->verifierReponse($rep,$id)){
                 $score++;
             }
@@ -37,17 +41,31 @@ class ScoreController extends AbstractController
             ->getRepository(Score::class)
             ->findAll();
 
+        $scoreFinal= new Score();
+        $scoreFinal->setIdquiz($quiz);
+        $scoreFinal->setScore($score);
+        $manager = $this->getDoctrine()->getManager();
+        $manager->persist($scoreFinal);
+        $manager->flush();
+
         return $this->render('score/index.html.twig', [
             'scores' => $scores,
             'score' => $score,
+            'reponses' => $reps,
         
         ]);
     }
 
+    private function getIdquiz($str)
+    {
+        $x = strpos($str,"*")+1;
+        return substr($str,$x);
+    }
     private function getId($str)
     {
         $x = strpos($str,"~")+1;
-        return substr($str,$x);
+        $y = strpos($str,"*")+1;
+        return substr($str,$x,$y-$x);
     }
 
     private function getReponse($str)
@@ -61,13 +79,8 @@ class ScoreController extends AbstractController
         $qr = $this->getDoctrine()->getRepository(Question::class);
         $question = $qr->find($id);
         $repCor = $question->getReponsecorrecte();
-        var_dump($repCor);
-        var_dump($reponse);
-        if ("h"=="h") {
-            
-        }
+
         if ($repCor==$reponse) {
-            echo "3aslema";
             return true;
         }
         return false;
@@ -99,10 +112,20 @@ class ScoreController extends AbstractController
     /**
      * @Route("/{idscore}", name="app_score_show", methods={"GET"})
      */
-    public function show(Score $score): Response
+    public function show($idscore): Response
     {
+        $sr = $this->getDoctrine()->getRepository(Score::class);
+        $qr = $this->getDoctrine()->getRepository(Quiz::class);
+        $score = $sr->findBy(["iduser" => NULL]);
+       // dd($score);
+        $idquiz = $score[0]->getIdquiz()->getIdquiz();
+        $quiz = $qr->find($idquiz);
+        $domaine = $quiz->getDomaine();
+        $date = $quiz->getDatecreation();
         return $this->render('score/show.html.twig', [
             'score' => $score,
+            'domaine' => $domaine,
+            'date' => $date,
         ]);
     }
 

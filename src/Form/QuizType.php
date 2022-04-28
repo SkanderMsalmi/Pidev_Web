@@ -21,7 +21,7 @@ class QuizType extends AbstractType
         $builder->add("domaine", EntityType::class,[
             'class'=> Question::class,
             'query_builder' => function(QuestionRepository $qr){
-                return $qr->createQueryBuilder('u')->distinct();
+                return $qr->createQueryBuilder('u')->groupBy("u.domaine");
             },
             'choice_label' => 'domaine',
         ]);

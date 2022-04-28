@@ -2,13 +2,14 @@
 
 namespace App\Entity;
 
+use App\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Score
  *
  * @ORM\Table(name="score", indexes={@ORM\Index(name="fk_scoreQuiz", columns={"idQuiz"}), @ORM\Index(name="fk_scorePersonne", columns={"idUser"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\ScoreRepository")
  */
 class Score
 {
@@ -70,19 +71,19 @@ class Score
         return $this->iduser;
     }
 
-    public function setIduser(?User $iduser): self
+    public function setIduser(User $iduser): self
     {
         $this->iduser = $iduser;
 
         return $this;
     }
 
-    public function getIdquiz(): ?Quiz
+    public function getIdquiz()
     {
         return $this->idquiz;
     }
 
-    public function setIdquiz(?Quiz $idquiz): self
+    public function setIdquiz($idquiz): self
     {
         $this->idquiz = $idquiz;
 

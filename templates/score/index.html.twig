@@ -1,41 +1,68 @@
+{% extends "base.html.twig" %}
 
 
-{% block title %}Score index{% endblock %}
+
+{% block title %}Score
+{% endblock %}
 
 {% block body %}
-  <div style="margin-top:120px;">
-    <h1>Score index</h1>
+	{% set score = score %}
+	<div style="display: flex;align-items: center;justify-content: center;padding:150px">
+		<div class="col-md-6 col-sm-6 highlight">
+			<div>
+				<div class="info-box card">
+					<i class="bi bi-telephone"></i>
+					<h2>Votre note est :</h2>
+					<h3 class="h-caption">{{ score }}/5</h3>
+					{% if score < 3 %}
+						<div>
+							<h4>
+								""Trust yourself. You know more than you think you do.""
+							</h4>
+						</div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Idscore</th>
-                <th>Score</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for score in scores %}
-            <tr>
-                <td>{{ score.idscore }}</td>
-                <td>{{ score.score }}</td>
-                <td>
-                    <a href="{{ path('app_score_show', {'idscore': score.idscore}) }}">show</a>
-                    <a href="{{ path('app_score_edit', {'idscore': score.idscore}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    {{ score }}
+					{% elseif score <5 %}
+						<div>
+							<h4>
+								""Today is your opportunity to build the tomorrow you want""
+							</h4>
+						</div>
+					{% else %}
+						<div>
+							<h4>
+								""Think big. Trust yourself and make it happen.""
+							</h4>
+						</div>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
 
 
+            </div>
+	<div style="display: flex;align-items: center;justify-content: center;padding:10px">
+		<a class="btn btn-info" href="{{ path('app_quiz_new') }}">Passer de nouveau</a>
+		<span>
+			<button class="btn btn-success" id="verifreponses">Verifier vos réponses</button>
+			</span>
+            		<span>
+			<a class="btn btn-dark" href={{ path('app_score_show',{'idscore': 10})}}>Go to Home</a>
+			</span>
+            </div>
 
-    <a href="{{ path('app_score_new') }}">Create new</a>
-    </div>
-{% endblock %}
+    <script>
+let togg1 = document.getElementById("verifreponses");
+let d1 = document.getElementById("reponses");
+togg1.addEventListener("click", () => {
+  if(getComputedStyle(d1).display != "none"){
+    d1.style.display = "none";
+    reponses.innerHtml = "Afficher reponses";
+
+  } else {
+    d1.style.display = "block";
+    reponses.innerHtml = "Masquer reponses";
+  }
+})
+    </script>
+		{% endblock %}

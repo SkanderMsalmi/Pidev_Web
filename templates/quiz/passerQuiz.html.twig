@@ -17,9 +17,9 @@
     {% if quiz.idquestion1.propositions is empty %}
          <h1>IL N'EXISTE RIEN</h1>
     {% else %}
-       <ul> <input type="radio" name="question1" value="{{quiz.idquestion1.propositions[0].proposition }}~{{ quiz.idquestion1.idquestion }}" id="prop1" oninput="this.className = ''"> {{ quiz.idquestion1.propositions[0].proposition }}</input></ul>
-       <ul> <input type="radio" name="question1" value="{{quiz.idquestion1.propositions[1].proposition }}~{{ quiz.idquestion1.idquestion }}" id="prop2" oninput="this.className = ''"> {{ quiz.idquestion1.propositions[1].proposition }}</input></ul>
-       <ul> <input type="radio" name="question1" value="{{quiz.idquestion1.propositions[2].proposition }}~{{ quiz.idquestion1.idquestion }}" id="prop3" oninput="this.className = ''"> {{ quiz.idquestion1.propositions[2].proposition }}</input></ul>
+       <ul> <input type="radio" name="question1" value="{{quiz.idquestion1.propositions[0].proposition }}~{{ quiz.idquestion1.idquestion }}*{{ quiz.idquiz }}" id="prop1" oninput="this.className = ''"> {{ quiz.idquestion1.propositions[0].proposition }}</input></ul>
+       <ul> <input type="radio" name="question1" value="{{quiz.idquestion1.propositions[1].proposition }}~{{ quiz.idquestion1.idquestion }}*{{ quiz.idquiz }}" id="prop2" oninput="this.className = ''"> {{ quiz.idquestion1.propositions[1].proposition }}</input></ul>
+       <ul> <input type="radio" name="question1" value="{{quiz.idquestion1.propositions[2].proposition }}~{{ quiz.idquestion1.idquestion }}*{{ quiz.idquiz }}" id="prop3" oninput="this.className = ''"> {{ quiz.idquestion1.propositions[2].proposition }}</input></ul>
     {% endif %}
 </div>
 
@@ -28,9 +28,9 @@
     {% if quiz.idquestion2.propositions is empty %}
          <h1>IL N'EXISTE RIEN</h1>
     {% else %}
-       <ul> <input type="radio" name="question2" value="{{quiz.idquestion2.propositions[0].proposition }}~{{ quiz.idquestion2.idquestion }}" id="prop1" oninput="this.className = ''"> {{ quiz.idquestion2.propositions[0].proposition }}</input></ul>
-       <ul> <input type="radio" name="question2" value="{{quiz.idquestion2.propositions[1].proposition }}~{{ quiz.idquestion2.idquestion }}" id="prop2"  oninput="this.className = ''"> {{ quiz.idquestion2.propositions[1].proposition }}</input></ul>
-       <ul> <input type="radio" name="question2" value="{{quiz.idquestion2.propositions[2].proposition }}~{{ quiz.idquestion2.idquestion }}" id="prop3" oninput="this.className = ''"> {{ quiz.idquestion2.propositions[2].proposition }}</input></ul>
+       <ul> <input type="radio" name="question2" value="{{quiz.idquestion2.propositions[0].proposition }}~{{ quiz.idquestion2.idquestion }}*{{ quiz.idquiz }}" id="prop1" oninput="this.className = ''"> {{ quiz.idquestion2.propositions[0].proposition }}</input></ul>
+       <ul> <input type="radio" name="question2" value="{{quiz.idquestion2.propositions[1].proposition }}~{{ quiz.idquestion2.idquestion }}*{{ quiz.idquiz }}" id="prop2"  oninput="this.className = ''"> {{ quiz.idquestion2.propositions[1].proposition }}</input></ul>
+       <ul> <input type="radio" name="question2" value="{{quiz.idquestion2.propositions[2].proposition }}~{{ quiz.idquestion2.idquestion }}*{{ quiz.idquiz }}" id="prop3" oninput="this.className = ''"> {{ quiz.idquestion2.propositions[2].proposition }}</input></ul>
     {% endif %}
 </div>
 
@@ -39,9 +39,9 @@
     {% if quiz.idquestion3.propositions is empty %}
          <h1>IL N'EXISTE RIEN</h1>
     {% else %}
-       <ul> <input type="radio" name="question3" value="{{quiz.idquestion3.propositions[0].proposition }}~{{ quiz.idquestion3.idquestion }}" id="prop1" oninput="this.className = ''"> {{ quiz.idquestion3.propositions[0].proposition }}</input></ul>
-       <ul> <input type="radio" name="question3" value="{{quiz.idquestion3.propositions[1].proposition }}~{{ quiz.idquestion3.idquestion }}" id="prop2" oninput="this.className = ''"> {{ quiz.idquestion3.propositions[1].proposition }}</input></ul>
-       <ul> <input type="radio" name="question3" value="{{quiz.idquestion3.propositions[2].proposition }}~{{ quiz.idquestion3.idquestion }}" id="prop3" oninput="this.className = ''"> {{ quiz.idquestion3.propositions[2].proposition }}</input></ul>
+       <ul> <input type="radio" name="question3" value="{{quiz.idquestion3.propositions[0].proposition }}~{{ quiz.idquestion3.idquestion }}*{{ quiz.idquiz }}" id="prop1" oninput="this.className = ''"> {{ quiz.idquestion3.propositions[0].proposition }}</input></ul>
+       <ul> <input type="radio" name="question3" value="{{quiz.idquestion3.propositions[1].proposition }}~{{ quiz.idquestion3.idquestion }}*{{ quiz.idquiz }}" id="prop2" oninput="this.className = ''"> {{ quiz.idquestion3.propositions[1].proposition }}</input></ul>
+       <ul> <input type="radio" name="question3" value="{{quiz.idquestion3.propositions[2].proposition }}~{{ quiz.idquestion3.idquestion }}*{{ quiz.idquiz }}" id="prop3" oninput="this.className = ''"> {{ quiz.idquestion3.propositions[2].proposition }}</input></ul>
     {% endif %}
 </div>
 
@@ -50,9 +50,9 @@
     {% if quiz.idquestion4.propositions is empty %}
         <h1>IL N'EXISTE RIEN</h1>
     {% else %}
-        <ul> <input type="radio" name="question4" value="{{quiz.idquestion4.propositions[0].proposition }}~{{ quiz.idquestion4.idquestion }}" id="prop1" oninput="this.className = ''"> {{ quiz.idquestion4.propositions[0].proposition }}</input></ul>
-        <ul> <input type="radio" name="question4" value="{{quiz.idquestion4.propositions[1].proposition }}~{{ quiz.idquestion4.idquestion }}" id="prop2" oninput="this.className = ''"> {{ quiz.idquestion4.propositions[1].proposition }}</input></ul>
-        <ul> <input type="radio" name="question4" value="{{quiz.idquestion4.propositions[2].proposition }}~{{ quiz.idquestion4.idquestion }}" id="prop3" oninput="this.className = ''"> {{ quiz.idquestion4.propositions[2].proposition }}</input></ul>
+        <ul> <input type="radio" name="question4" value="{{quiz.idquestion4.propositions[0].proposition }}~{{ quiz.idquestion4.idquestion }}*{{ quiz.idquiz }}" id="prop1" oninput="this.className = ''"> {{ quiz.idquestion4.propositions[0].proposition }}</input></ul>
+        <ul> <input type="radio" name="question4" value="{{quiz.idquestion4.propositions[1].proposition }}~{{ quiz.idquestion4.idquestion }}*{{ quiz.idquiz }}" id="prop2" oninput="this.className = ''"> {{ quiz.idquestion4.propositions[1].proposition }}</input></ul>
+        <ul> <input type="radio" name="question4" value="{{quiz.idquestion4.propositions[2].proposition }}~{{ quiz.idquestion4.idquestion }}*{{ quiz.idquiz }}" id="prop3" oninput="this.className = ''"> {{ quiz.idquestion4.propositions[2].proposition }}</input></ul>
     {% endif %}
 </div>
 
@@ -61,9 +61,9 @@
     {% if quiz.idquestion5.propositions is empty %}
         <h1>IL N'EXISTE RIEN</h1>
     {% else %}
-        <ul> <input type="radio" name="question5" value="{{quiz.idquestion5.propositions[0].proposition }}~{{ quiz.idquestion5.idquestion }}" id="prop1" oninput="this.className = ''"> {{ quiz.idquestion5.propositions[0].proposition }}</input></ul>
-        <ul> <input type="radio" name="question5" value="{{quiz.idquestion5.propositions[1].proposition }}~{{ quiz.idquestion5.idquestion }}" id="prop2" oninput="this.className = ''"> {{ quiz.idquestion5.propositions[1].proposition }}</input></ul>
-        <ul> <input type="radio" name="question5" value="{{quiz.idquestion5.propositions[2].proposition }}~{{ quiz.idquestion5.idquestion }}" id="prop3" oninput="this.className = ''"> {{ quiz.idquestion5.propositions[2].proposition }}</input></ul>
+        <ul> <input type="radio" name="question5" value="{{quiz.idquestion5.propositions[0].proposition }}~{{ quiz.idquestion5.idquestion }}**{{ quiz.idquiz }}" id="prop1" oninput="this.className = ''"> {{ quiz.idquestion5.propositions[0].proposition }}</input></ul>
+        <ul> <input type="radio" name="question5" value="{{quiz.idquestion5.propositions[1].proposition }}~{{ quiz.idquestion5.idquestion }}**{{ quiz.idquiz }}" id="prop2" oninput="this.className = ''"> {{ quiz.idquestion5.propositions[1].proposition }}</input></ul>
+        <ul> <input type="radio" name="question5" value="{{quiz.idquestion5.propositions[2].proposition }}~{{ quiz.idquestion5.idquestion }}**{{ quiz.idquiz }}" id="prop3" oninput="this.className = ''"> {{ quiz.idquestion5.propositions[2].proposition }}</input></ul>
     {% endif %}
 </div>
 
