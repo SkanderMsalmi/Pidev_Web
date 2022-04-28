@@ -3,11 +3,16 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\User;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Reservation
- * @ORM\Table(name="reservation", indexes={@ORM\Index(name="fk_personneReservation", columns={"idUser"}), @ORM\Index(name="fk_formation", columns={"idFormation"})})
- * @ORM\Entity(repositoryClass=ReservationRepository::class)
+ *
+ * @ORM\Table(name="reservation", indexes={@ORM\Index(name="fk_formation", columns={"idFormation"}), @ORM\Index(name="idUser", columns={"idUser"})})
+ * @ORM\Entity
  */
 class Reservation
 {
@@ -21,23 +26,27 @@ class Reservation
     private $idreservation;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="nom", type="string", length=30, nullable=false)
+     * @Assert\NotBlank(message="nom doit etre non vide")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 20,
+     *      minMessage = "nom doit etre >=2 ",
+     *      maxMessage = "nom doit etre <=100" )
+     * @ORM\Column(type="string", length=1000)
      */
     private $nom;
 
     /**
      * @var \DateTime
-     *
-     * @ORM\Column(name="dateReservation", type="date", nullable=false)
+     * @Assert\NotBlank(message="il faut choisir une date ")
+     * @ORM\Column(name="dateReservation", type="date", nullable=true)
      */
     private $datereservation;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="idFormation", type="integer", nullable=false)
+     * @ORM\Column(name="idFormation", type="integer", nullable=true)
      */
     private $idformation;
 
@@ -51,58 +60,108 @@ class Reservation
      */
     private $iduser;
 
-    public function getIdreservation(): ?int
+    /**
+     * @return int
+     */
+    public function getIdreservation(): int
     {
         return $this->idreservation;
     }
 
+    /**
+     * @param int $idreservation
+     */
+    public function setIdreservation(int $idreservation): void
+    {
+        $this->idreservation = $idreservation;
+    }
+
+    /**
+     * @return string
+     */
     public function getNom(): ?string
     {
         return $this->nom;
     }
 
-    public function setNom(string $nom): self
+    /**
+     * @param string $nom
+     */
+    public function setNom(string $nom): void
     {
         $this->nom = $nom;
-
-        return $this;
     }
 
-    public function getDatereservation(): ?\DateTimeInterface
+    /**
+     * @return \DateTime
+     */
+    public function getDatereservation(): ?\DateTime
     {
         return $this->datereservation;
     }
 
-    public function setDatereservation(\DateTimeInterface $datereservation): self
+    /**
+     * @param \DateTime $datereservation
+     */
+    public function setDatereservation(\DateTime $datereservation): void
     {
         $this->datereservation = $datereservation;
-
-        return $this;
     }
 
+    /**
+     * @return int
+     */
     public function getIdformation(): ?int
     {
         return $this->idformation;
     }
 
-    public function setIdformation(int $idformation): self
+    /**
+     * @param int $idformation
+     */
+    public function setIdformation(int $idformation): void
     {
         $this->idformation = $idformation;
-
-        return $this;
     }
 
-    public function getIduser(): ?User
+    /**
+     * @return \User
+     */
+    public function getIdUser(): \User
     {
         return $this->iduser;
     }
 
-    public function setIduser(?User $iduser): self
+    /**
+     * @param \User $iduser
+     */
+    public function setIdUser(\User $iduser): void
     {
         $this->iduser = $iduser;
-
-        return $this;
     }
+
+# zedtha jdida
+
+/*
+     /**
+     * @return \Formation
+     */
+/*    public function getFormation(): ?int
+    {
+        return $this->formation;
+    }
+
+    /*
+     * @param \Formation
+     */
+/*   public function setFormation(int $formation): void
+    {
+        $this->formation = $formation;
+    }
+    */
+
+
+
 
 
 }

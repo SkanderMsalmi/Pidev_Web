@@ -35,34 +35,5 @@ class Faculte
      */
     private $acronyme;
 
-    public function getIdfaculte(): ?int
-    {
-        return $this->idfaculte;
-    }
-
-    public function getNomfaculte(): ?string
-    {
-        return $this->nomfaculte;
-    }
-
-    public function setNomfaculte(string $nomfaculte): self
-    {
-        $this->nomfaculte = $nomfaculte;
-
-        return $this;
-    }
-
-    public function getAcronyme(): ?string
-    {
-        return $this->acronyme;
-    }
-
-    public function setAcronyme(string $acronyme): self
-    {
-        $this->acronyme = $acronyme;
-
-        return $this;
-    }
-
 
 }

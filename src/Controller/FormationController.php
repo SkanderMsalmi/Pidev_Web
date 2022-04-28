@@ -3,25 +3,38 @@
 namespace App\Controller;
 
 use App\Entity\Formation;
-use App\Entity\Reservation;
+use App\Entity\PropertySearch;
 use App\Form\FormationType;
-use Doctrine\ORM\EntityManagerInterface;
-use Psr\Container\ContainerInterface;
+use App\Repository\FormationRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\ORM\EntityManagerInterface;
+
+use Knp\Component\Pager\PaginatorInterface;
+
+
 
 class FormationController extends AbstractController
 {
     /**
-     * @Route("/formation", name="app_formation")
+     * @Route("/formation", name="app_formation", methods={"GET"})
      */
-    public function index(): Response
+
+    public function index(FormationRepository $repository,\Symfony\Component\HttpFoundation\Request $request, PaginatorInterface $paginator): Response
     {
-        $formation=$this->getDoctrine()->getManager()->getRepository()->findAll();
-        return $this->render('formation/index.html.twig', ['f'=>$formation]);
+        $formation = $paginator->paginate(
+            $formation = $repository->findAll(),
+            $request->query->getInt('page', 1),3
+        );
+
+        return $this->render('formation/index.html.twig', [
+            'f' => $formation,
+        ]);
     }
+
+
 
     ## Ajout formation
     /**
@@ -30,7 +43,7 @@ class FormationController extends AbstractController
     public function newformation(Request $request): Response
     {
         $formation = new Formation();
-        $formation->setIduser($this->getUser());
+        #$formation->setIduser($this->getUser());
         $form= $this->createForm(Formationtype::class,$formation);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
@@ -44,36 +57,55 @@ class FormationController extends AbstractController
     }
 
     ## Modifier formation
+    #@Route("/editformation/{idFormation}", name="editformation", methods={"GET", "POST"})
     /**
-     * @Route("/editformation/{idFormation}", name="editformation")
+     *
+     * @Route("/edit/{idFormation}", name="editformation", methods={"GET", "POST"})
      */
-    public function editformation ($idFormation,Request $request, FormationRepository $formationRepository)
+    public function editformation ($idFormation, Request $request, FormationRepository $formationRepository):Response
     {
-        $formation=$$formationRepository-›find($idFormation);
-        $form=$this-›createForm(FormationType::class,$formation);
+        $formation = $formationRepository->find($idFormation);
+        $form = $this->createForm(FormationType::class, $formation);
+
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid())
         {
             $em = $this->getDoctrine()->getManager();
-            Sem->flush();
-            return $this-›redirectToRoute('profile');
+            $em->flush();
+            return $this->redirectToRoute('app_formation');
+            # kenet profile : app_reservation_index
         }
-        return $this-›render('formation/editformation.html.twig',['f'=>$form->createView()]);
+        return $this->render('formation/editformation.html.twig',['ff'=>$form->createView()]);
     }
 
 ## Supprimer formation
     /**
      * @Route("/deleteformation/{idFormation}", name="deleteformation")
      */
-    public function deleteformation($idformation,FormationRepository $repository)
+    public function deleteformation($idFormation,FormationRepository $repository)
     {
-        $formation = $repository->find($idformation);
-        $em = $this - ›getDoctrine()->getManager();
+        $formation = $repository->find($idFormation);
+        $em = $this ->getDoctrine()->getManager();
         $em->remove($formation);
-        Sem->fLush();
-    return $this-›redirectToRoute('profile');
+        $em->fLush();
+        return $this->redirectToRoute('app_formation');
+
     }
 
 
+
+    /**
+     * @Route("/formation/{idFormation}", name="app_formation_show", methods={"GET"})
+     */
+    public function show(EntityManagerInterface $entityManager, $idFormation): Response
+    {
+        $formation = $entityManager
+            ->getRepository(Formation::class)
+            ->find($idFormation);
+
+        return $this->render('formation/show.html.twig', [
+            'formation' => $formation,
+        ]);
+    }
 
 }

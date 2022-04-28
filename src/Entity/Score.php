@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Score
  *
- * @ORM\Table(name="score", indexes={@ORM\Index(name="fk_scoreQuiz", columns={"idQuiz"}), @ORM\Index(name="fk_scorePersonne", columns={"idUser"})})
+ * @ORM\Table(name="score", indexes={@ORM\Index(name="fk_scorePersonne", columns={"idUser"}), @ORM\Index(name="fk_scoreQuiz", columns={"idQuiz"})})
  * @ORM\Entity
  */
 class Score
@@ -47,47 +47,6 @@ class Score
      * })
      */
     private $iduser;
-
-    public function getIdscore(): ?int
-    {
-        return $this->idscore;
-    }
-
-    public function getScore(): ?int
-    {
-        return $this->score;
-    }
-
-    public function setScore(int $score): self
-    {
-        $this->score = $score;
-
-        return $this;
-    }
-
-    public function getIdquiz(): ?Quiz
-    {
-        return $this->idquiz;
-    }
-
-    public function setIdquiz(?Quiz $idquiz): self
-    {
-        $this->idquiz = $idquiz;
-
-        return $this;
-    }
-
-    public function getIduser(): ?User
-    {
-        return $this->iduser;
-    }
-
-    public function setIduser(?User $iduser): self
-    {
-        $this->iduser = $iduser;
-
-        return $this;
-    }
 
 
 }

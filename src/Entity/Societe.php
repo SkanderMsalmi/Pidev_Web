@@ -28,22 +28,5 @@ class Societe
      */
     private $nomsociete;
 
-    public function getIdsociete(): ?int
-    {
-        return $this->idsociete;
-    }
-
-    public function getNomsociete(): ?string
-    {
-        return $this->nomsociete;
-    }
-
-    public function setNomsociete(string $nomsociete): self
-    {
-        $this->nomsociete = $nomsociete;
-
-        return $this;
-    }
-
 
 }

@@ -52,58 +52,5 @@ class Competance
      */
     private $idpersonne;
 
-    public function getIdcompetance(): ?int
-    {
-        return $this->idcompetance;
-    }
-
-    public function getNomcompetance(): ?string
-    {
-        return $this->nomcompetance;
-    }
-
-    public function setNomcompetance(string $nomcompetance): self
-    {
-        $this->nomcompetance = $nomcompetance;
-
-        return $this;
-    }
-
-    public function getNiveau(): ?string
-    {
-        return $this->niveau;
-    }
-
-    public function setNiveau(string $niveau): self
-    {
-        $this->niveau = $niveau;
-
-        return $this;
-    }
-
-    public function getVerifie(): ?string
-    {
-        return $this->verifie;
-    }
-
-    public function setVerifie(string $verifie): self
-    {
-        $this->verifie = $verifie;
-
-        return $this;
-    }
-
-    public function getIdpersonne(): ?User
-    {
-        return $this->idpersonne;
-    }
-
-    public function setIdpersonne(?User $idpersonne): self
-    {
-        $this->idpersonne = $idpersonne;
-
-        return $this;
-    }
-
 
 }

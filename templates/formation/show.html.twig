@@ -1,0 +1,54 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Formation{% endblock %}
+
+{% block body %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1>Formation</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Idformation</th>
+                <td>{{ formation.id }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ formation.description }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ formation.titre }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ formation.type }}</td>
+            </tr>
+            <tr>
+                <th>Domaine</th>
+                <td>{{ formation.domaine }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ formation.prix }}</td>
+            </tr>
+            <tr>
+                <th>Datedebut</th>
+                <td>{{ formation.datedebut ? formation.datedebut|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Datefin</th>
+                <td>{{ formation.datefin ? formation.datefin|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_formation') }}">back to list</a>
+
+    <a href="{{ path('editformation', {'idFormation': formation.idformation}) }}">edit</a>
+
+    {{ include('formation/deleteformation.html.twig') }}
+{% endblock %}

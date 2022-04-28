@@ -49,58 +49,5 @@ class RemembermeToken
      */
     private $username;
 
-    public function getSeries(): ?string
-    {
-        return $this->series;
-    }
-
-    public function getValue(): ?string
-    {
-        return $this->value;
-    }
-
-    public function setValue(string $value): self
-    {
-        $this->value = $value;
-
-        return $this;
-    }
-
-    public function getLastused(): ?\DateTimeInterface
-    {
-        return $this->lastused;
-    }
-
-    public function setLastused(\DateTimeInterface $lastused): self
-    {
-        $this->lastused = $lastused;
-
-        return $this;
-    }
-
-    public function getClass(): ?string
-    {
-        return $this->class;
-    }
-
-    public function setClass(string $class): self
-    {
-        $this->class = $class;
-
-        return $this;
-    }
-
-    public function getUsername(): ?string
-    {
-        return $this->username;
-    }
-
-    public function setUsername(string $username): self
-    {
-        $this->username = $username;
-
-        return $this;
-    }
-
 
 }

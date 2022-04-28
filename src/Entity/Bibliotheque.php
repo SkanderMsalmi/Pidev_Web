@@ -42,46 +42,5 @@ class Bibliotheque
      */
     private $domainec;
 
-    public function getIntc(): ?int
-    {
-        return $this->intc;
-    }
-
-    public function getNomc(): ?string
-    {
-        return $this->nomc;
-    }
-
-    public function setNomc(string $nomc): self
-    {
-        $this->nomc = $nomc;
-
-        return $this;
-    }
-
-    public function getDescriptionc(): ?string
-    {
-        return $this->descriptionc;
-    }
-
-    public function setDescriptionc(string $descriptionc): self
-    {
-        $this->descriptionc = $descriptionc;
-
-        return $this;
-    }
-
-    public function getDomainec(): ?string
-    {
-        return $this->domainec;
-    }
-
-    public function setDomainec(string $domainec): self
-    {
-        $this->domainec = $domainec;
-
-        return $this;
-    }
-
 
 }

@@ -38,34 +38,5 @@ class Proposition
      */
     private $idquestion;
 
-    public function getIdproposition(): ?int
-    {
-        return $this->idproposition;
-    }
-
-    public function getProposition(): ?string
-    {
-        return $this->proposition;
-    }
-
-    public function setProposition(string $proposition): self
-    {
-        $this->proposition = $proposition;
-
-        return $this;
-    }
-
-    public function getIdquestion(): ?Question
-    {
-        return $this->idquestion;
-    }
-
-    public function setIdquestion(?Question $idquestion): self
-    {
-        $this->idquestion = $idquestion;
-
-        return $this;
-    }
-
 
 }

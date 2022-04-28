@@ -3,11 +3,18 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\User;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Formation
- * @ORM\Table(name="formation", indexes={@ORM\Index(name="fk_personne", columns={"idUser"})})
- * @ORM\Entity(repositoryClass=FormationRepository::class)
+ *
+ * @ORM\Table(name="formation", indexes={@ORM\Index(name="idUser", columns={"idUser"})})
+ * @ORM\Entity
+ * @UniqueEntity("titre")
+
  */
 class Formation
 {
@@ -21,50 +28,67 @@ class Formation
     private $idformation;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="description", type="string", length=30, nullable=false)
+     * @Assert\NotBlank(message="description doit etre non vide")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 20,
+     *      minMessage = "description doit etre >=2 ",
+     *      maxMessage = "description doit etre <=100" )
+     * @ORM\Column(type="string", length=1000)
      */
     private $description;
 
     /**
-     * @var string
+     * @Assert\NotBlank(message=" titre doit etre non vide")
+     * @Assert\Length(
+     *      min = 3,
+     *      minMessage=" Entrer un titre au mini de 3 caracteres"
      *
-     * @ORM\Column(name="titre", type="string", length=30, nullable=false)
+     *     )
+     * @ORM\Column(type="string", length=255)
      */
     private $titre;
 
     /**
-     * @var string
+     * @Assert\NotBlank(message=" type doit etre non vide")
+     * @Assert\Length(
+     *      min = 3,
+     *      minMessage=" Entrer un type au mini de 3 caracteres"
      *
-     * @ORM\Column(name="type", type="string", length=30, nullable=false)
+     *     )
+     * @ORM\Column(type="string", length=255)
      */
     private $type;
 
     /**
-     * @var string
+     * @Assert\NotBlank(message=" domaine doit etre non vide")
+     * @Assert\Length(
+     *      min = 3,
+     *      minMessage=" Entrer un domaine au mini de 3 caracteres"
      *
-     * @ORM\Column(name="domaine", type="string", length=30, nullable=false)
+     *     )
+     * @ORM\Column(type="string", length=255)
      */
     private $domaine;
 
     /**
      * @var float
-     *
-     * @ORM\Column(name="prix", type="float", precision=10, scale=0, nullable=false)
+     * @Assert\NotBlank(message="prix formation doit etre non vide")
+     * @Assert\Positive
+     * @ORM\Column(name="prix", type="float", precision=10, scale=0, nullable=true)
      */
     private $prix;
 
     /**
      * @var \DateTime
-     *
+     * @Assert\NotBlank(message="il faut choisir une date ")
      * @ORM\Column(name="dateDebut", type="date", nullable=false)
      */
     private $datedebut;
 
     /**
      * @var \DateTime
-     *
+     * @Assert\NotBlank(message="il faut choisir une date ")
      * @ORM\Column(name="dateFin", type="date", nullable=false)
      */
     private $datefin;
@@ -79,106 +103,152 @@ class Formation
      */
     private $iduser;
 
+    /**
+     * @return int
+     */
     public function getIdformation(): ?int
     {
         return $this->idformation;
     }
 
+    /**
+     * @param int $idformation
+     */
+    public function setIdformation(int $idformation): void
+    {
+        $this->idformation = $idformation;
+    }
+
+    /**
+     * @return string
+     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    public function setDescription(string $description): self
+    /**
+     * @param string $description
+     */
+    public function setDescription(string $description): void
     {
         $this->description = $description;
-
-        return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getTitre(): ?string
     {
         return $this->titre;
     }
 
-    public function setTitre(string $titre): self
+    /**
+     * @param string $titre
+     */
+    public function setTitre(string $titre): void
     {
         $this->titre = $titre;
-
-        return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getType(): ?string
     {
         return $this->type;
     }
 
-    public function setType(string $type): self
+    /**
+     * @param string $type
+     */
+    public function setType(string $type): void
     {
         $this->type = $type;
-
-        return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getDomaine(): ?string
     {
         return $this->domaine;
     }
 
-    public function setDomaine(string $domaine): self
+    /**
+     * @param string $domaine
+     */
+    public function setDomaine(string $domaine): void
     {
         $this->domaine = $domaine;
-
-        return $this;
     }
 
+    /**
+     * @return float
+     */
     public function getPrix(): ?float
     {
         return $this->prix;
     }
 
-    public function setPrix(float $prix): self
+    /**
+     * @param float $prix
+     */
+    public function setPrix(float $prix): void
     {
         $this->prix = $prix;
-
-        return $this;
     }
 
-    public function getDatedebut(): ?\DateTimeInterface
+    /**
+     * @return \DateTime
+     */
+    public function getDatedebut(): ?\DateTime
     {
         return $this->datedebut;
     }
 
-    public function setDatedebut(\DateTimeInterface $datedebut): self
+    /**
+     * @param \DateTime $datedebut
+     */
+    public function setDatedebut(\DateTime $datedebut): void
     {
         $this->datedebut = $datedebut;
-
-        return $this;
     }
 
-    public function getDatefin(): ?\DateTimeInterface
+    /**
+     * @return \DateTime
+     */
+    public function getDatefin(): ?\DateTime
     {
         return $this->datefin;
     }
 
-    public function setDatefin(\DateTimeInterface $datefin): self
+    /**
+     * @param \DateTime $datefin
+     */
+    public function setDatefin(\DateTime $datefin): void
     {
         $this->datefin = $datefin;
-
-        return $this;
     }
 
-    public function getIduser(): ?User
+    /**
+     * @return \User
+     */
+    public function getIdUser(): ?\User
     {
         return $this->iduser;
     }
 
-    public function setIduser(?User $iduser): self
+    /**
+     * @param \User $iduser
+     */
+    public function setIdUser(\User $iduser): void
     {
         $this->iduser = $iduser;
-
-        return $this;
     }
 
 
+
 }
+
+

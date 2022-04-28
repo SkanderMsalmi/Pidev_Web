@@ -52,58 +52,5 @@ class Adresse
      */
     private $idpersonne;
 
-    public function getIdadresse(): ?int
-    {
-        return $this->idadresse;
-    }
-
-    public function getRue(): ?int
-    {
-        return $this->rue;
-    }
-
-    public function setRue(int $rue): self
-    {
-        $this->rue = $rue;
-
-        return $this;
-    }
-
-    public function getVille(): ?string
-    {
-        return $this->ville;
-    }
-
-    public function setVille(string $ville): self
-    {
-        $this->ville = $ville;
-
-        return $this;
-    }
-
-    public function getCodepostal(): ?int
-    {
-        return $this->codepostal;
-    }
-
-    public function setCodepostal(int $codepostal): self
-    {
-        $this->codepostal = $codepostal;
-
-        return $this;
-    }
-
-    public function getIdpersonne(): ?User
-    {
-        return $this->idpersonne;
-    }
-
-    public function setIdpersonne(?User $idpersonne): self
-    {
-        $this->idpersonne = $idpersonne;
-
-        return $this;
-    }
-
 
 }
