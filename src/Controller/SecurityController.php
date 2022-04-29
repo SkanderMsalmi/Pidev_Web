@@ -21,6 +21,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormError;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
@@ -46,14 +47,25 @@ class SecurityController extends AbstractController
 
         $userForm->handleRequest($request);
         if($userForm->isSubmitted() && $userForm->isValid()){
-           /* $picture = $userForm->get('pdp')->getData();
-            $folder = $this->getParameter('profile.folder');
-            $ext = $picture->guessExtension()?? 'bin';
-            $filename = bin2hex(random_bytes(10)) . '.' . $ext;
-            $picture->move($folder,$filename);
-            $user->setPdp($this->getParameter('profile.folder.public_path') . '/' . $filename);*/
+           $file = $userForm->get('pdp')->getData();
+           if($file){
+               $fileName = md5(uniqid()).'.'.$file->guessExtension();
+               try{
+                   $file->move(
+                       $this->getParameter('profiles_directory'),
+                       $fileName
+                   );
+               }catch(FileException $e){
+
+               }
+           }else{
+               $fileName="download.png";
+           }
+
             $hash = $passwordEncoder->encodePassword($user,$user->getPassword());
             $user->setPassword($hash);
+            $user->setPdp($fileName);
+            $user->setEtatBlock(0);
             $em->persist($user);
             $em->flush();
             $email = new TemplatedEmail();
@@ -61,7 +73,7 @@ class SecurityController extends AbstractController
             $email->from('MonStage <msalmi.skander@esprit.fr>')
                   ->to($user->getEmail())
                   ->subject('Bienvenue Sur Mon Stage')
-                  ->htmlTemplate('@email_templatephs/welcome.html.twig')
+                  ->htmlTemplate('@email_templates/welcome.html.twig')
                   ->context([
                         'username'=>$user->getUsername()
                     ]);
@@ -221,11 +233,17 @@ class SecurityController extends AbstractController
      * @Route("/block/{idUser}",name="blockUser")
      * @return void
      */
-    public function block_deblock_User($idUser,UserRepository $userRepository,EntityManagerInterface $em){
+    public function block_deblock_User($idUser,UserRepository $userRepository,EntityManagerInterface $em,FlashyNotifier $flashyNotifier){
         $user = $userRepository->find($idUser);
         $user->setEtatBlock(!$user->getEtatBlock());
+        $mes = "vous avez debloque ".$user->getNom();
+
         $em->flush();
-        return $this->redirectToRoute('app_admin_users');
+        if($flashyNotifier->success($mes)){
+            return $this->redirectToRoute('app_admin_users');
+
+
+        }
     }
 
 

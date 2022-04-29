@@ -28,6 +28,7 @@ class CompetanceController extends AbstractController
     public function addCompetance(Request $request):Response{
         $competance = new Competance();
         $competance->setIdUser($this->getUser());
+        $competance->setVerifie("Non");
         $compForm = $this->createForm(CompetanceType::class,$competance);
         $compForm->handleRequest($request);
         if($compForm->isSubmitted() && $compForm->isValid()){

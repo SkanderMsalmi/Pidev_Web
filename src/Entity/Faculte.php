@@ -106,5 +106,10 @@ class Faculte
         return $this;
     }
 
+    public function __toString()
+    {
+        return $this->nomfaculte;
+    }
+
 
 }
