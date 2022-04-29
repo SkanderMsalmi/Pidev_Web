@@ -16,14 +16,15 @@ class ReservationType extends AbstractType
         $builder
             ->add('nom')
             ->add('datereservation')
-            ->add('formation', EntityType::class, [
-                'class' => Formation::class,
-                'choice_label' => 'titre',
-            ])
+
             ->add('Ajouter',SubmitType::class)
 
         ;
     }
+#->add('formation', EntityType::class, [
+#'class' => Formation::class,
+#'choice_label' => 'titre',
+#])
 
     public function configureOptions(OptionsResolver $resolver): void
     {

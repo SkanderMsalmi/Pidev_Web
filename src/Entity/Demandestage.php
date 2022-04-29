@@ -48,5 +48,46 @@ class Demandestage
      */
     private $iduser;
 
+    public function getIddemande(): ?int
+    {
+        return $this->iddemande;
+    }
+
+    public function getEtat(): ?string
+    {
+        return $this->etat;
+    }
+
+    public function setEtat(string $etat): self
+    {
+        $this->etat = $etat;
+
+        return $this;
+    }
+
+    public function getIdstage(): ?Stage
+    {
+        return $this->idstage;
+    }
+
+    public function setIdstage(?Stage $idstage): self
+    {
+        $this->idstage = $idstage;
+
+        return $this;
+    }
+
+    public function getIduser(): ?User
+    {
+        return $this->iduser;
+    }
+
+    public function setIduser(?User $iduser): self
+    {
+        $this->iduser = $iduser;
+
+        return $this;
+    }
+
 
 }

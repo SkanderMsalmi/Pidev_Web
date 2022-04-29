@@ -85,5 +85,94 @@ class Quiz
      */
     private $idquestion1;
 
+    public function getIdquiz(): ?int
+    {
+        return $this->idquiz;
+    }
+
+    public function getDomaine(): ?string
+    {
+        return $this->domaine;
+    }
+
+    public function setDomaine(string $domaine): self
+    {
+        $this->domaine = $domaine;
+
+        return $this;
+    }
+
+    public function getDatecreation(): ?\DateTimeInterface
+    {
+        return $this->datecreation;
+    }
+
+    public function setDatecreation(\DateTimeInterface $datecreation): self
+    {
+        $this->datecreation = $datecreation;
+
+        return $this;
+    }
+
+    public function getIdquestion4(): ?Question
+    {
+        return $this->idquestion4;
+    }
+
+    public function setIdquestion4(?Question $idquestion4): self
+    {
+        $this->idquestion4 = $idquestion4;
+
+        return $this;
+    }
+
+    public function getIdquestion3(): ?Question
+    {
+        return $this->idquestion3;
+    }
+
+    public function setIdquestion3(?Question $idquestion3): self
+    {
+        $this->idquestion3 = $idquestion3;
+
+        return $this;
+    }
+
+    public function getIdquestion2(): ?Question
+    {
+        return $this->idquestion2;
+    }
+
+    public function setIdquestion2(?Question $idquestion2): self
+    {
+        $this->idquestion2 = $idquestion2;
+
+        return $this;
+    }
+
+    public function getIdquestion5(): ?Question
+    {
+        return $this->idquestion5;
+    }
+
+    public function setIdquestion5(?Question $idquestion5): self
+    {
+        $this->idquestion5 = $idquestion5;
+
+        return $this;
+    }
+
+    public function getIdquestion1(): ?Question
+    {
+        return $this->idquestion1;
+    }
+
+    public function setIdquestion1(?Question $idquestion1): self
+    {
+        $this->idquestion1 = $idquestion1;
+
+        return $this;
+    }
+
 
 }

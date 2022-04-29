@@ -66,5 +66,82 @@ class Livre
      */
     private $intc;
 
+    public function getIdl(): ?int
+    {
+        return $this->idl;
+    }
+
+    public function getTitrel(): ?string
+    {
+        return $this->titrel;
+    }
+
+    public function setTitrel(string $titrel): self
+    {
+        $this->titrel = $titrel;
+
+        return $this;
+    }
+
+    public function getAuteurl(): ?string
+    {
+        return $this->auteurl;
+    }
+
+    public function setAuteurl(string $auteurl): self
+    {
+        $this->auteurl = $auteurl;
+
+        return $this;
+    }
+
+    public function getDescriptionl(): ?string
+    {
+        return $this->descriptionl;
+    }
+
+    public function setDescriptionl(string $descriptionl): self
+    {
+        $this->descriptionl = $descriptionl;
+
+        return $this;
+    }
+
+    public function getImagestring(): ?string
+    {
+        return $this->imagestring;
+    }
+
+    public function setImagestring(string $imagestring): self
+    {
+        $this->imagestring = $imagestring;
+
+        return $this;
+    }
+
+    public function getPdfivre(): ?string
+    {
+        return $this->pdfivre;
+    }
+
+    public function setPdfivre(string $pdfivre): self
+    {
+        $this->pdfivre = $pdfivre;
+
+        return $this;
+    }
+
+    public function getIntc(): ?Bibliotheque
+    {
+        return $this->intc;
+    }
+
+    public function setIntc(?Bibliotheque $intc): self
+    {
+        $this->intc = $intc;
+
+        return $this;
+    }
+
 
 }

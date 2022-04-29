@@ -6,13 +6,17 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use App\Repository\FormationRepository;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 
 /**
  * Formation
  *
  * @ORM\Table(name="formation", indexes={@ORM\Index(name="idUser", columns={"idUser"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\FormationRepository")
  * @UniqueEntity("titre")
 
  */
@@ -21,9 +25,10 @@ class Formation
     /**
      * @var int
      *
-     * @ORM\Column(name="idFormation", type="integer", nullable=false)
+     * @ORM\Column(name="idformation", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @Groups("post:read")
      */
     private $idformation;
 
@@ -34,7 +39,8 @@ class Formation
      *      max = 20,
      *      minMessage = "description doit etre >=2 ",
      *      maxMessage = "description doit etre <=100" )
-     * @ORM\Column(type="string", length=1000)
+     * @ORM\Column(type="string", length=1000,nullable=false)
+     * @Groups("post:read")
      */
     private $description;
 
@@ -45,7 +51,8 @@ class Formation
      *      minMessage=" Entrer un titre au mini de 3 caracteres"
      *
      *     )
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255,nullable=false)
+     * @Groups("post:read")
      */
     private $titre;
 
@@ -56,7 +63,8 @@ class Formation
      *      minMessage=" Entrer un type au mini de 3 caracteres"
      *
      *     )
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255,nullable=false)
+     * @Groups("post:read")
      */
     private $type;
 
@@ -67,7 +75,8 @@ class Formation
      *      minMessage=" Entrer un domaine au mini de 3 caracteres"
      *
      *     )
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255,nullable=false)
+     * @Groups("post:read")
      */
     private $domaine;
 
@@ -75,7 +84,8 @@ class Formation
      * @var float
      * @Assert\NotBlank(message="prix formation doit etre non vide")
      * @Assert\Positive
-     * @ORM\Column(name="prix", type="float", precision=10, scale=0, nullable=true)
+     * @ORM\Column(name="prix", type="float", precision=10, scale=0, nullable=false)
+     * @Groups("post:read")
      */
     private $prix;
 
@@ -83,6 +93,7 @@ class Formation
      * @var \DateTime
      * @Assert\NotBlank(message="il faut choisir une date ")
      * @ORM\Column(name="dateDebut", type="date", nullable=false)
+     * @Groups("post:read")
      */
     private $datedebut;
 
@@ -90,6 +101,7 @@ class Formation
      * @var \DateTime
      * @Assert\NotBlank(message="il faut choisir une date ")
      * @ORM\Column(name="dateFin", type="date", nullable=false)
+     * @Groups("post:read")
      */
     private $datefin;
 
@@ -98,7 +110,8 @@ class Formation
      *
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idUser", referencedColumnName="id")
+     * @ORM\JoinColumn(name="idUser", referencedColumnName="id")
+     *
      * })
      */
     private $iduser;
@@ -231,21 +244,7 @@ class Formation
         $this->datefin = $datefin;
     }
 
-    /**
-     * @return \User
-     */
-    public function getIdUser(): ?\User
-    {
-        return $this->iduser;
-    }
 
-    /**
-     * @param \User $iduser
-     */
-    public function setIdUser(\User $iduser): void
-    {
-        $this->iduser = $iduser;
-    }
 
 
 

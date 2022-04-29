@@ -14,10 +14,57 @@
     <br>
     <br>
     <div class="example-wrapper">
-<table class="table table-striped">
+
+        <!-- Jobs Container -->
+        <strong>Filter By :</strong>
+        <div class="row">
+            <form action="{{ path('formationByIdASC') }}">
+                <button class="list-apply-button-ADD-FORM"><i class="fas fa-sort-numeric-up-alt"></i>
+                    Titre
+                </button>
+
+            <form action="{{ path('formationByName') }}">
+                <button class="list-apply-button-ADD-FORM"><i class="fas fa-sort-alpha-up-alt"></i>
+                    Type
+                </button>
+            <form action="{{ path('formationByExpiredDate') }}">
+                <button style="" class="list-apply-button-ADD-FORM"><i class="fas fa-clock"></i>
+                    Expired Date
+                </button>
+            </form>
+
+            {# for filter buttons #}
+            </form>
+            </form>
+        </div>
+        <!-- Jobs Container / End -->
 
 
-    <thread>
+
+    <div>
+        <p style="100px" > <input  id="myInput"  type="text" placeholder="search">
+            <img src="https://img.icons8.com/nolan/344/google-web-search.png" style="width:50px;height:50px;"/></p>
+
+    </div>
+
+    <div class="example-wrapper">
+
+
+        {% for message in app.flashes('success')%}
+            <div class="alert alert-success">
+
+                {{ message }}
+            </div>
+        {% endfor %}
+
+
+        <table class="table table-striped" id="t">
+        </thead>
+
+
+
+
+    <tr>
             <th>Description</th>
             <th>Titre</th>
             <th>Type</th>
@@ -26,9 +73,14 @@
             <th>Datedebut</th>
             <th>Datefin</th>
 
-        </thread>
-        <tbody>
+        </tr>
 
+
+
+        <tbody id="all">
+        <tbody>
+        <tbody>
+        <tbody id="myTable">
         {% for formation in f %}
             <tr>
                 <td>{{ formation.description }}</td>
@@ -50,10 +102,49 @@
                 <td colspan="9">no records found</td>
             </tr>
         {% endfor %}
+
+
+
+        <a href="{{ path('DownloadProduitsData') }}" class="btn btn-dark waves-effect waves-light">Download PDF</a>
+
+
+
+        <tbody id="search">
+
         </tbody>
+
+
+        </tbody>
+
+
     </table>
+
+
     <a href="{{ path('newformation') }}">Creer une nouvelle formation</a>
     <div class="pagination">
         {{ knp_pagination_render(f) }}
     </div>
+
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("#myInput").on("keyup", function() {
+                    var value = $(this).val().toLowerCase();
+                    $("#myTable tr").filter(function() {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    });
+                });
+            });
+        </script>
+
+
+
+
+
+
+    </div>
+
+
 {% endblock %}

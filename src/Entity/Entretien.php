@@ -62,5 +62,70 @@ class Entretien
      */
     private $idstage;
 
+    public function getIdentretien(): ?int
+    {
+        return $this->identretien;
+    }
+
+    public function getDateentretien(): ?\DateTimeInterface
+    {
+        return $this->dateentretien;
+    }
+
+    public function setDateentretien(\DateTimeInterface $dateentretien): self
+    {
+        $this->dateentretien = $dateentretien;
+
+        return $this;
+    }
+
+    public function getHeureentretien(): ?string
+    {
+        return $this->heureentretien;
+    }
+
+    public function setHeureentretien(string $heureentretien): self
+    {
+        $this->heureentretien = $heureentretien;
+
+        return $this;
+    }
+
+    public function getLienentretien(): ?string
+    {
+        return $this->lienentretien;
+    }
+
+    public function setLienentretien(string $lienentretien): self
+    {
+        $this->lienentretien = $lienentretien;
+
+        return $this;
+    }
+
+    public function getIduser(): ?User
+    {
+        return $this->iduser;
+    }
+
+    public function setIduser(?User $iduser): self
+    {
+        $this->iduser = $iduser;
+
+        return $this;
+    }
+
+    public function getIdstage(): ?Stage
+    {
+        return $this->idstage;
+    }
+
+    public function setIdstage(?Stage $idstage): self
+    {
+        $this->idstage = $idstage;
+
+        return $this;
+    }
+
 
 }

@@ -1,0 +1,75 @@
+{% extends 'baseAdmin.html.twig' %}
+{% block body %}
+<html>
+
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+<br>
+<br>
+<br>
+<br>
+<div class="example-wrapper">
+    <table class="table table-striped">
+<h1 style="margin-top: 50px ; margin-bottom: 30px; margin-left: 30px;">Calendar Of Formations</h1>
+
+
+
+
+<style>
+    #calendar{
+        width: 75%;
+        margin: auto;
+    }
+</style>
+
+<div id="calendar">
+
+</div>
+
+<script>
+    window.onload = () => {
+        let calendarElt = document.querySelector("#calendar")
+        let calendar = new FullCalendar.Calendar(calendarElt , {
+
+            initialView: 'dayGridMonth',
+            locale: 'fr',
+            timeZone: 'Europe/Paris',
+            headerToolbar: {
+                start: 'prev,next today',
+                center: 'title',
+                end: 'dayGridMonth'
+            },
+
+            events: {{ data|raw }},
+            editable: true,
+            eventResizableFromStart: true
+        } )
+
+        calendar.on('eventChange', (e) => {
+            let url = `/api/${e.event.id}/edit`
+            let donnees = {
+                "title": e.event.title,
+                "description": e.event.extendedProps.description,
+                "start": e.event.start,
+                "end": e.event.end,
+                "backgroundColor": e.event.backgroundColor,
+                "borderColor": e.event.borderColor,
+                "textColor": e.event.textColor,
+                "allDay": e.event.allDay
+
+            }
+
+            let xhr = new XMLHttpRequest
+            xhr.open("PUT", url)
+            xhr.send(JSON.stringify(donnees))
+
+        })
+
+        calendar.render()
+    }
+</script>
+</html>
+
+{% endblock %}

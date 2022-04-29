@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Reservation
  *
  * @ORM\Table(name="reservation", indexes={@ORM\Index(name="fk_formation", columns={"idFormation"}), @ORM\Index(name="idUser", columns={"idUser"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\ReservationRepository")
  */
 class Reservation
 {
@@ -43,10 +43,13 @@ class Reservation
      */
     private $datereservation;
 
-    /**
-     * @var int
+ /**
+     * @var \Formation
      *
-     * @ORM\Column(name="idFormation", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Formation")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idformation", referencedColumnName="idformation")
+     * })
      */
     private $idformation;
 
@@ -60,21 +63,7 @@ class Reservation
      */
     private $iduser;
 
-    /**
-     * @return int
-     */
-    public function getIdreservation(): int
-    {
-        return $this->idreservation;
-    }
 
-    /**
-     * @param int $idreservation
-     */
-    public function setIdreservation(int $idreservation): void
-    {
-        $this->idreservation = $idreservation;
-    }
 
     /**
      * @return string
@@ -111,17 +100,17 @@ class Reservation
     /**
      * @return int
      */
-    public function getIdformation(): ?int
+    public function getIdreservation(): int
     {
-        return $this->idformation;
+        return $this->idreservation;
     }
 
     /**
-     * @param int $idformation
+     * @param int $idreservation
      */
-    public function setIdformation(int $idformation): void
+    public function setIdreservation(int $idreservation): void
     {
-        $this->idformation = $idformation;
+        $this->idreservation = $idreservation;
     }
 
     /**
@@ -135,30 +124,59 @@ class Reservation
     /**
      * @param \User $iduser
      */
-    public function setIdUser(\User $iduser): void
+    public function setIdUser(?User $iduser): void
     {
         $this->iduser = $iduser;
     }
 
 # zedtha jdida
 
-/*
+
      /**
      * @return \Formation
      */
-/*    public function getFormation(): ?int
+    public function getFormation(): ?int
     {
-        return $this->formation;
+        return $this->idformation;
     }
 
-    /*
+    /**
      * @param \Formation
      */
-/*   public function setFormation(int $formation): void
+  public function setFormation(int $idformation): void
     {
-        $this->formation = $formation;
+        $this->idformation = $idformation;
     }
-    */
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
+        /**
+         * @return int
+         */
+    /*   public function getIdformation(): ?int
+       {
+           return $this->idformation;
+       }
+
+       /**
+        * @param int $idformation
+        */
+    /*   public function setIdformation(int $idformation): void
+       {
+           $this->idformation = $idformation;
+       }
+   */
 
 
 

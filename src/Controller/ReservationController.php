@@ -3,9 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Reservation;
+use App\Entity\User;
 use App\Form\ReservationType;
 use App\Repository\FormationRepository;
 use App\Repository\ReservationRepository;
+use App\Repository\UserRepository;
+
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -41,25 +44,34 @@ class ReservationController extends AbstractController
         ]);
     }
 
-    ## Ajout reservation
+
     /**
-     * @Route("/newreservation", name="newreservation")
+     * @Route("/newreservation", name="newreservation", methods={"GET", "POST"})
      */
-    public function newreservation(Request $request): Response
+    public function newreservation(Request $request, EntityManagerInterface $entityManager,UserRepository $userRepository,ReservationRepository $reservationRepository): Response
     {
+
         $reservation = new Reservation();
 
-        $form= $this->createForm(Reservationtype::class,$reservation);
+        #$user=$userRepository->find(1);#
+        #$reservation->setIduser($user);#
+
+        $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid())
-        {
-            $em=$this->getDoctrine()->getManager();
-            $em->persist($reservation); // ajout reservation
-            $em->flush();
-            return $this->redirectToRoute('app_reservation');
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($reservation);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_reservation', [], Response::HTTP_SEE_OTHER);
         }
-        return $this->render('reservation/newreservation.html.twig',['f'=>$form->createView()]);
+        return $this->render('reservation/newreservation.html.twig', [
+            'formation' => $reservation,
+            'f' => $form->createView(),
+        ]);
     }
+
+
+
 
 
 
@@ -113,17 +125,17 @@ class ReservationController extends AbstractController
      * @Route("/sendmail")
      */
 
-    function mailing(MailerInterface $mailer, $idr)
+    function mailing(MailerInterface $mailer, $idreservation)
     {
         $repo = $this->getDoctrine()->getRepository(Reservation::class);
-        $reservation = $repo->findOneBy(['id' => $idr]);
+        $reservation = $repo->findOneBy(['id' => $idreservation]);
 
 
         $email = (new Email())
             ->from('pidevsymfonymail@gmail.com')
             ->to($reservation->getIduser()->getEmail())
-            ->subject('hello')
-            ->text('sending email');
+            ->subject('Reservation')
+            ->text('Votre reservation est confirme !');
 
 
         $mailer->send($email);

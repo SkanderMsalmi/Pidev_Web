@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * User
  *
  * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_8D93D649F85E0677", columns={"username"})}, indexes={@ORM\Index(name="IDX_8D93D649132E57FE", columns={"idFaculte"}), @ORM\Index(name="IDX_8D93D6499DC564F", columns={"idSociete"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
 class User
 {
@@ -138,6 +138,203 @@ class User
      * })
      */
     private $idfaculte;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    public function getRoles(): ?array
+    {
+        return $this->roles;
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(string $prenom): self
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    public function getTel(): ?int
+    {
+        return $this->tel;
+    }
+
+    public function setTel(int $tel): self
+    {
+        $this->tel = $tel;
+
+        return $this;
+    }
+
+    public function getCin(): ?int
+    {
+        return $this->cin;
+    }
+
+    public function setCin(int $cin): self
+    {
+        $this->cin = $cin;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getRole(): ?string
+    {
+        return $this->role;
+    }
+
+    public function setRole(string $role): self
+    {
+        $this->role = $role;
+
+        return $this;
+    }
+
+    public function getPdp(): ?string
+    {
+        return $this->pdp;
+    }
+
+    public function setPdp(?string $pdp): self
+    {
+        $this->pdp = $pdp;
+
+        return $this;
+    }
+
+    public function getDatenaissance(): ?\DateTimeInterface
+    {
+        return $this->datenaissance;
+    }
+
+    public function setDatenaissance(\DateTimeInterface $datenaissance): self
+    {
+        $this->datenaissance = $datenaissance;
+
+        return $this;
+    }
+
+    public function getProfil(): ?string
+    {
+        return $this->profil;
+    }
+
+    public function setProfil(string $profil): self
+    {
+        $this->profil = $profil;
+
+        return $this;
+    }
+
+    public function getInfos(): ?string
+    {
+        return $this->infos;
+    }
+
+    public function setInfos(?string $infos): self
+    {
+        $this->infos = $infos;
+
+        return $this;
+    }
+
+    public function getNote(): ?int
+    {
+        return $this->note;
+    }
+
+    public function setNote(?int $note): self
+    {
+        $this->note = $note;
+
+        return $this;
+    }
+
+    public function getIdsociete(): ?Societe
+    {
+        return $this->idsociete;
+    }
+
+    public function setIdsociete(?Societe $idsociete): self
+    {
+        $this->idsociete = $idsociete;
+
+        return $this;
+    }
+
+    public function getIdfaculte(): ?Faculte
+    {
+        return $this->idfaculte;
+    }
+
+    public function setIdfaculte(?Faculte $idfaculte): self
+    {
+        $this->idfaculte = $idfaculte;
+
+        return $this;
+    }
 
 
 }

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Tableau des formations</title>
+</head>
+<body >
+<h2 style="text-align: center">Tableau des formations</h2>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th >description</th>
+        <th >titre</th>
+        <th >type</th>
+        <th >domaine</th>
+        <th >prix</th>
+        <th >datedebut</th>
+        <th >datefin</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for p in produits %}
+        <tr>
+            <td>{{ p.description }}</td>
+            <td>{{ p.titre }}</td>
+            <td>{{ p.type }}</td>
+            <td>{{ p.domaine }}</td>
+            <td>{{ p.prix }}</td>
+            <td>{{ p.datedebut ? p.datedebut|date('Y-m-d') : '' }}</td>
+            <td>{{ p.datefin ? p.datefin|date('Y-m-d') : '' }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
+</body>
+</html>

@@ -4,15 +4,22 @@ namespace App\Controller;
 
 use App\Entity\Formation;
 use App\Entity\PropertySearch;
+use App\Entity\Reservation;
 use App\Form\FormationType;
 use App\Repository\FormationRepository;
+use App\Repository\UserRepository;
+use App\Repository\ReservationRepository;
+use MercurySeries\FlashyBundle\FlashyNotifier;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
-
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Dompdf\Dompdf;
+use Dompdf\Options;
+
 
 
 
@@ -36,12 +43,16 @@ class FormationController extends AbstractController
 
 
 
+
+
+
     ## Ajout formation
     /**
      * @Route("/newformation", name="newformation")
      */
     public function newformation(Request $request): Response
     {
+        #,FlashyNotifier $flashy
         $formation = new Formation();
         #$formation->setIduser($this->getUser());
         $form= $this->createForm(Formationtype::class,$formation);
@@ -51,6 +62,9 @@ class FormationController extends AbstractController
             $em=$this->getDoctrine()->getManager();
             $em->persist($formation); // ajout
             $em->flush();
+            #$flashy->success('Formation ajoutée');
+            #lehne zedt notification
+            $this->addFlash('success','Formation ajoutée avec sucées');
             return $this->redirectToRoute('app_formation');
         }
         return $this->render('formation/newformation.html.twig',['f'=>$form->createView()]);
@@ -72,6 +86,8 @@ class FormationController extends AbstractController
         {
             $em = $this->getDoctrine()->getManager();
             $em->flush();
+            #lehne zedt notification
+            $this->addFlash('success','Formation modifier avec sucées');
             return $this->redirectToRoute('app_formation');
             # kenet profile : app_reservation_index
         }
@@ -88,11 +104,11 @@ class FormationController extends AbstractController
         $em = $this ->getDoctrine()->getManager();
         $em->remove($formation);
         $em->fLush();
+        #lehne zedt notification
+        $this->addFlash('success','Formation supprimer avec sucées');
         return $this->redirectToRoute('app_formation');
 
     }
-
-
 
     /**
      * @Route("/formation/{idFormation}", name="app_formation_show", methods={"GET"})
@@ -107,5 +123,130 @@ class FormationController extends AbstractController
             'formation' => $formation,
         ]);
     }
+
+
+####
+
+    /**
+     * @Route("formation/searchFormationtx ", name="searchFormationtx")
+     */
+    public function searchFormation(Request $request,NormalizerInterface $Normalizer)
+    {
+        $repository = $this->getDoctrine()->getRepository(Formation::class);
+        $requestString=$request->get('searchValue');
+        //dd($requestString);
+        $formations = $repository->searchByNom($requestString);
+        //dd($formations);
+        $jsonContent = $Normalizer->normalize($formations, 'json',['groups'=>'post:read']);
+        //dd($jsonContent);
+        $retour = json_encode($jsonContent);
+        return new Response($retour);
+    }
+
+
+
+
+
+    /**
+     * @Route ("formation/filterByID" , name="formationByIdASC")
+     */
+    function filterById(FormationRepository $repository, Request $request)
+    {
+        $formation = $repository->FilterFormationByID();
+        return $this->render('formation/index.html.twig', [
+            'formation' => $formation,
+        ]);
+    }
+
+
+
+    /**
+     * @Route ("formation/filterByName" , name="formationByName")
+     */
+    function filterByName(FormationRepository $repository, Request $request)
+    {
+        $formation = $repository->FilterFormationByName();
+        return $this->render('formation/index.html.twig', [
+            'formation' => $formation,
+        ]);
+    }
+
+
+
+
+
+    /**
+     * @Route ("formation/filterByExpiredDate" , name="formationByExpiredDate")
+     */
+    function filterByExpiredDate(FormationRepository $repository, Request $request)
+    {
+        $formation = $repository->FilterFormationByExpiredDate();
+        return $this->render('formation/index.html.twig', [
+            'formation' => $formation,
+        ]);
+    }
+
+
+
+
+
+########
+
+
+    /**
+     * @Route("/DownloadProduitsData", name="DownloadProduitsData")
+     */
+    public function DownloadProduitsData(FormationRepository $repository)
+    {
+        $produits=$repository->findAll();
+
+        // On définit les options du PDF
+        $pdfOptions = new Options();
+        // Police par défaut
+        $pdfOptions->set('defaultFont', 'Arial');
+        $pdfOptions->setIsRemoteEnabled(true);
+
+        // On instancie Dompdf
+        $dompdf = new Dompdf($pdfOptions);
+        $context = stream_context_create([
+            'ssl' => [
+                'verify_peer' => FALSE,
+                'verify_peer_name' => FALSE,
+                'allow_self_signed' => TRUE
+            ]
+        ]);
+        $dompdf->setHttpContext($context);
+
+        // On génère le html
+        $html = $this->renderView('formation/download.html.twig',
+            ['produits'=>$produits ]);
+
+
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+
+        // On génère un nom de fichier
+        $fichier = 'Tableau des Produits.pdf';
+
+        // On envoie le PDF au navigateur
+        $dompdf->stream($fichier, [
+            'Attachment' => true
+        ]);
+
+        return new Response();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

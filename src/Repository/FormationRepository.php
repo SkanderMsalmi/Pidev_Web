@@ -73,4 +73,88 @@ class FormationRepository extends ServiceEntityRepository
         ;
     }
     */
+
+
+####
+
+    function searchByNom($titre)
+    {
+        return $this->createQueryBuilder('f')
+            ->where('f.titre =:titre')
+            ->setParameter('titre' , $titre)
+            ->getQuery()->getResult();
+    }
+
+    function FilterFormationByID(){
+        return $this->createQueryBuilder('f')
+            ->orderBy('f.titre' , 'ASC')
+            ->getQuery()->getResult();
+    }
+    function FilterFormationByName(){
+        return $this->createQueryBuilder('f')
+            ->orderBy('f.titre' , 'ASC')
+            ->getQuery()->getResult();
+    }
+    //expired date
+    function FilterFormationByExpiredDate(){
+        return $this->createQueryBuilder('f')
+            ->where('f.datefin < CURRENT_DATE() ')
+            ->getQuery()->getResult();
+    }
+    //Available date
+    function FilterFormationByAvailableDate(){
+        return $this->createQueryBuilder('f')
+            ->where('f.datefin > CURRENT_DATE() ')
+            ->getQuery()->getResult();
+    }
+
+    function Total_formations(){
+        $qb = $this->createQueryBuilder('f');
+        return $qb
+            ->select('count(f.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    function Expired_formations_count(){
+        $qb = $this->createQueryBuilder('f');
+        return $qb
+            ->select('count(f.id)')
+            ->where('f.datefin < CURRENT_DATE() ')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    function Available_formations_count(){
+        $qb = $this->createQueryBuilder('f');
+        return $qb
+            ->select('count(f.id)')
+            ->where('f.datefin > CURRENT_DATE() ')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    function findByAvailableDate(){
+        $qb = $this->createQueryBuilder('f');
+        return $qb
+            ->select('f')
+            ->where('f.datefin > CURRENT_DATE() ')
+            ->getQuery()
+            ->getResult();
+    }
+    //stat nombre de formations  par mois
+    function countByDate(){
+        $query = $this->createQueryBuilder('a');
+        $query
+            ->select('SUBSTRING(a.datedebut , 4 , 5) as dateFormations , COUNT(a) as count')
+            ->groupBy('dateFormations')
+        ;
+        return $query->getQuery()->getResult();
+    }
+
+
+
+
+
+
 }
