@@ -2,9 +2,7 @@
 
 {% block body %}
 
-<div id="test">
 
-</div>
 
 
     <form id="regForm" action="http://127.0.0.1:8000/score/" method="GET" >
@@ -13,6 +11,9 @@
 
 <!-- One "tab" for each step in the form: -->
 <div class="tab">
+    <div class="progress" style="height: 20px;">
+  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+</div>
     <h3> {{ quiz.idquestion1.enonce }} </h3>
     {% if quiz.idquestion1.propositions is empty %}
          <h1>IL N'EXISTE RIEN</h1>
@@ -24,6 +25,9 @@
 </div>
 
 <div class="tab">
+<div class="progress" style="height: 20px;"> 
+  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 20%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">20%</div>
+</div>
     <h3> {{ quiz.idquestion2.enonce }} </h3>
     {% if quiz.idquestion2.propositions is empty %}
          <h1>IL N'EXISTE RIEN</h1>
@@ -35,6 +39,9 @@
 </div>
 
 <div class="tab">
+<div class="progress" style="height: 20px;">
+  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 40%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">40%</div>
+</div>
     <h3> {{ quiz.idquestion3.enonce }} </h3>
     {% if quiz.idquestion3.propositions is empty %}
          <h1>IL N'EXISTE RIEN</h1>
@@ -46,6 +53,9 @@
 </div>
 
 <div class="tab">
+<div class="progress" style="height: 20px;">
+  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 60%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">60%</div>
+</div>
     <h3> {{ quiz.idquestion4.enonce }} </h3>
     {% if quiz.idquestion4.propositions is empty %}
         <h1>IL N'EXISTE RIEN</h1>
@@ -57,21 +67,15 @@
 </div>
 
 <div class="tab">
+<div class="progress" style="height: 20px;">
+  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 80%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">80%</div>
+</div>
     <h3> {{ quiz.idquestion5.enonce }} </h3>
     {% if quiz.idquestion5.propositions is empty %}
         <h1>IL N'EXISTE RIEN</h1>
     {% else %}
         <ul> <label>{{ quiz.idquestion5.propositions[0].proposition }}</label><input type="radio" name="question5" value="{{quiz.idquestion5.propositions[0].proposition }}~{{ quiz.idquestion5.idquestion }}**{{ quiz.idquiz }}" id="prop1" oninput="this.className = ''"></input></ul>
-        <ul> <input type="radio" style="  appearance: none;
-  background-color: #fff;
-  margin: 0;
-  font: inherit;
-  color: currentColor;
-  width: 1.15em;
-  height: 1.15em;
-  border: 0.15em solid currentColor;
-  border-radius: 50%;
-  transform: translateY(-0.075em);"name="question5" value="{{quiz.idquestion5.propositions[1].proposition }}~{{ quiz.idquestion5.idquestion }}**{{ quiz.idquiz }}" id="prop2" oninput="this.className = ''"> {{ quiz.idquestion5.propositions[1].proposition }}</input></ul>
+        <ul> <input type="radio" name="question5" value="{{quiz.idquestion5.propositions[1].proposition }}~{{ quiz.idquestion5.idquestion }}**{{ quiz.idquiz }}" id="prop2" oninput="this.className = ''"> {{ quiz.idquestion5.propositions[1].proposition }}</input></ul>
         <ul> <input type="radio" name="question5" value="{{quiz.idquestion5.propositions[2].proposition }}~{{ quiz.idquestion5.idquestion }}**{{ quiz.idquiz }}" id="prop3" oninput="this.className = ''"> {{ quiz.idquestion5.propositions[2].proposition }}</input></ul>
     {% endif %}
 </div>
@@ -136,8 +140,6 @@ function nextPrev(n) {
     return false;
   }
   // Otherwise, display the correct tab:
-  var te = document.getElementById("prop1")
-   document.getElementById("test").innerHTML = te.value;
   showTab(currentTab);
 }
 
@@ -155,7 +157,6 @@ function validateForm() {
       // and set the current valid status to false:
       valid = false;
     }
- 
     
   }
   // If the valid status is true, mark the step as finished and valid:
@@ -175,8 +176,5 @@ function fixStepIndicator(n) {
   x[n].className += " active";
 }
 
-function calculScore(){
-  
-}
 </script>
 {% endblock %} 

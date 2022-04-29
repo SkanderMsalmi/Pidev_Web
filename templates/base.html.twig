@@ -51,9 +51,12 @@
 			<script src="https://kit.fontawesome.com/cc2c1873c0.js" crossorigin="anonymous"></script>
 			<script src={{ asset("assets2/lib/owlcarousel/owl.carousel.min.js")}}></script>
 			<script src={{ asset("assets2/js/main.js")}}></script>
+		
 		{% endblock %}
 	</head>
+	
 	<body>
+	
 
 		{% block navbar %}
 			<!-- Spinner Start -->
@@ -86,7 +89,7 @@
 							</div>
 						</div>
 						<a href="courses.html" class="nav-item nav-link">Mes Formations</a>
-						<a href="courses.html" class="nav-item nav-link">Quiz</a>
+						<a href="{{ path('app_score_show',{'idscore': 10}) }}" class="nav-item nav-link">Quiz</a>
 						<a href="courses.html" class="nav-item nav-link">Bibliothèque</a>
 						<div class="nav-item dropdown">
 							<a href="#" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block" data-bs-toggle="dropdown">Mon Profile<i class="fa fa-user-circle ms-3"></i></a>
@@ -103,6 +106,11 @@
 			<!-- Navbar End -->
 
 		{% endblock %}
+		        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
 		{% block body %}{% endblock %}
 
 
