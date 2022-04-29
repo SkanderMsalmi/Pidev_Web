@@ -21,10 +21,10 @@
             </tr>
         </tbody>
     </table>
+<div align="center">
+   <span> <a class="btn btn-outline-info" href="{{ path('app_quiz_index') }}">back to list</a>
+{{ include('quiz/_delete_form.html.twig') }} 
 
-    <a href="{{ path('app_quiz_index') }}">back to list</a>
-
-    <a href="{{ path('app_quiz_edit', {'idquiz': quiz.idquiz}) }}">edit</a>
-
-    {{ include('quiz/_delete_form.html.twig') }}
+</span>
+</div>
 {% endblock %}

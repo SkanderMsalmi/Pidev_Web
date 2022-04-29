@@ -42,9 +42,10 @@ class Proposition
      * @var \Question
      *
      * @ORM\ManyToOne(targetEntity="Question")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idQuestion", referencedColumnName="idQuestion")
-     * })
+     *  @ORM\JoinColumn(name="idQuestion", referencedColumnName="idQuestion")
+     *  @ORM\JoinColumn(name="idQuestion", onDelete="CASCADE")
+     * 
+     * 
      */
     private $idquestion;
 
