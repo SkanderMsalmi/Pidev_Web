@@ -19,7 +19,7 @@
         <thead>
             <tr>
                 <th>Idstage</th>
-                <th>Duree</th>
+                <th>Duree En Mois</th>
                 <th>Type</th>
                 <th>Domaine</th>
                 <th>Description</th>
@@ -52,6 +52,9 @@
         {% endfor %}
         </tbody>
     </table>
+    <div class="pag">
+            {{ knp_pagination_render(stage,'pagination.html.twig') }}
+        </div>
 
     
 {% endblock %}

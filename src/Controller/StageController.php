@@ -12,6 +12,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\PersonneRepository;
 use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
 use Symfony\UX\Chartjs\Model\Chart;
+use App\Repository\StageRepository;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @Route("/stage")
@@ -21,14 +23,41 @@ class StageController extends AbstractController
     /**
      * @Route("/", name="app_stage_index", methods={"GET"})
      */
-    public function index(EntityManagerInterface $entityManager): Response
+    public function index(Request $request,EntityManagerInterface $entityManager,StageRepository $repository, PaginatorInterface $paginator): Response
     {
-        $stages = $entityManager
+        $stages = $paginator->paginate( $entityManager
             ->getRepository(Stage::class)
-            ->findAll();
+            ->findAll(),$request->query->getInt('page', 1),6 );
+        $Info = $repository
+        ->countByDomaine('Informatique'); 
+        $Elec =$repository
+        ->countByDomaine('Electronique'); 
+        $Meca = $repository
+        ->countByDomaine('Mécanique');
+        $Ges =$repository
+        ->countByDomaine('Gestion');
+        $Eco = $repository
+        ->countByDomaine('Economie'); 
+        $Spo = $repository
+        ->countByDomaine('Sport');
+       
+            $array[] = array('Informatique'=> $Info,
+            'Electronique'=> $Elec,
+            'Mecanique'=>$Meca,
+            'Gestion'=>$Ges,
+            'Economie'=>$Eco,
+            'Sport'=>$Spo);
 
         return $this->render('stage/index.html.twig', [
             'stages' => $stages,
+            'sport'=>$Spo,
+            'eco'=>$Eco,
+            'ges'=>$Ges,
+            'meca'=>$Meca,
+            'elec'=>$Elec,
+            'info'=>$Info,
+            //'array' => \json_encode($array),
+            
         ]);
     }
      /**
@@ -134,11 +163,13 @@ class StageController extends AbstractController
     /**
      * @Route("/mesStage/{idpersonne}", name="app_stage_mesStage", methods={"GET", "POST"})
      */
-   public function MesStages()
+   public function MesStages(Request $request,  PaginatorInterface $paginator)
    {
-       $stage = $this->getDoctrine()
+       
+       $stage = $paginator->paginate( $this->getDoctrine()
        ->getRepository(Stage::class)
-       ->ListStageByIdPersonne(107);
+       ->ListStageByIdPersonne(107),$request->query->getInt('page', 1),6 );
+
         return $this-> render('stage/mesStage.html.twig',
         ['stage' => $stage]);
    }

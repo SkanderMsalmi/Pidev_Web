@@ -13,6 +13,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use App\Repository\PersonneRepository;
 use App\Repository\StageRepository;
 use App\Entity\Stage;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
+
+use MessageBird\Objects\Message;
+use MessageBird\Objects\PartnerAccount\AccessKey;
+use MessageBird\Client;
+
 /**
  * @Route("/demandestage")
  */
@@ -67,7 +74,7 @@ class DemandestageController extends AbstractController
      * @Route("/{id}/new", name="app_demandestage_new", methods={"GET", "POST"})
      *
      */
-    public function new(Request $request, EntityManagerInterface $entityManager,Stage $stage,PersonneRepository $rep1,StageRepository $rep2): Response
+    public function new(Request $request, EntityManagerInterface $entityManager,Stage $stage,PersonneRepository $rep1,StageRepository $rep2,MailerInterface $mailer): Response
     {
         $demandestage = new Demandestage();
         $personne = $rep1->find(105);
@@ -78,7 +85,27 @@ class DemandestageController extends AbstractController
             $entityManager->persist($demandestage);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_demandestage_index', [], Response::HTTP_SEE_OTHER);
+            $email = (new Email())
+                ->from('chalouah.abdeladhim@esprit.tn')
+                ->to('Msalmiskander@gmail.com')
+
+
+                ->subject('🥳Vous Avez Recu Une Nouvelle Demande De Stage🥳')
+
+                ->text('sending ');
+
+            $mailer->send($email);
+
+
+            $client = new \MessageBird\Client('Mt3hSEnCfOlUksyYvmGxsRkzb');
+            $message = new \MessageBird\Objects\Message();;
+
+            $message->originator='Mon Stage';
+            $message->recipients=['+21650890060'];
+            $message->body ='🥳Vous Avez Recu Une Nouvelle Demande De Stage🥳';
+            $client->messages->create($message);
+
+            return $this->redirectToRoute('app_demandestage_indexx', ['idpersonne' => "105"], Response::HTTP_SEE_OTHER);
 
     }
 

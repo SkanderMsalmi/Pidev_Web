@@ -98,11 +98,14 @@ img.pull-left { margin-right: 10px; }
 	transition: 0.3s;
 }
 .stat {
-	background-color: #b7b7b7;
+	margin-left: 400px;
 	border: 1px solid rgb(8, 8, 8);
-	width: 100%;
-	height: 800px;
+	width: 50%;
+	height: 420px;
 	margin-top: 30px;
+}
+.pag{
+	margin-left: 650px;
 }
 /* Change background color of buttons on hover */
 .tab button:hover {

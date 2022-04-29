@@ -12,7 +12,7 @@
         <thead>
             <tr>
                 <th>Idstage</th>
-                <th>Duree</th>
+                <th>Duree En Mois</th>
                 <th>Type</th>
                 <th>Domaine</th>
                 <th>Description</th>
@@ -45,24 +45,32 @@
         {% endfor %}
         </tbody>
     </table>
+     <div class="pag">
+            {{ knp_pagination_render(stages,'pagination.html.twig') }}
+        </div>
     <div class="stat">
     <canvas id="my" ></canvas>
     </div>
 
     
 
+
     
+  
+   
 <script>
         let my = document.querySelector("#my")
         let myGraph = new Chart(my, {
             type: "pie",
             data: {
-                labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+                labels: ["Informatique", "Electronique", "Mécanique", "Gestion", "Economie", "Sport"],
+                
                 datasets: [{
-                    label: "hhhhhhhhhhhhh",
-                    data: [12, 19, 3, 5, 2, 3]
-                   
-                }]
+                    label: " #Statestique Selon Domaine ",
+                    data: [{{info}},{{elec}},{{meca}},{{ges}},{{eco}},{{sport}}],
+
+                    backgroundColor: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']
+                }],
             }
            
             }

@@ -7,6 +7,8 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityManagerInterface;
+
 
 /**
  * @method Stage|null find($id, $lockMode = null, $lockVersion = null)
@@ -86,9 +88,24 @@ class StageRepository extends ServiceEntityRepository
         ->getQuery()
         ->getResult()
     ;
-     //   $entityManager=$this->getEntityManger();
-     //   $query=$entityManager
-     //   ->createQuery("SELECT s FROM APP\Entity\Stage s JOIN s.Personne c Where c.id=:id")->setParamter('id',$id);
-     //   return $query->getResult();
+    
+    }
+       /**
+      *@return int 
+      */
+    public function countByDomaine($val)
+    {
+        $qb = $this->createQueryBuilder('s')->andWhere('s.domaine = :val')->setParameter('val', $val);
+         return $qb 
+        ->select('count(s)')
+        ->getQuery()
+        ->getSingleScalarResult();
+    ;
+        
+     /*    $query=$this->getEntityManger()
+         ->createQuery("SELECT count(s) FROM APP\Entity\Stage s  Where s.domaine=:val")
+         ->setParamter('val',$val);
+        return $query->getSingleScalarResult();
+*/
     }
 }
