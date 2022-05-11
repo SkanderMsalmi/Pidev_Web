@@ -9,6 +9,7 @@ use App\Repository\PropositionRepository;
 use App\Repository\QuestionRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Repository\RepositoryFactory;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -34,7 +35,6 @@ class QuestionController extends AbstractController
             $request->query->getInt('page', 1),
             10
         );
-
         return $this->render('question/index.html.twig', [
             'questions' => $questions,
         ]);
@@ -64,6 +64,7 @@ class QuestionController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($question);
             $entityManager->flush();
+            $this->addFlash("success","Ajout Question avec reussi !");
             $pr->addProposition($question, $qr);
             return $this->redirectToRoute('afficherQuestions', [], Response::HTTP_SEE_OTHER);
         }
@@ -77,10 +78,12 @@ class QuestionController extends AbstractController
     /**
      * @Route("listQuestions/{idquestion}", name="afficherQuestion", methods={"GET"})
      */
-    public function show(Question $question): Response
+    public function show($idquestion): Response
     {
         $pr = $this->getDoctrine()->getRepository(Proposition::class);
-        $props = $pr->find($question->getIdquestion());
+        $qr = $this->getDoctrine()->getRepository(Question::class);
+        $question = $qr->find($idquestion);
+        $props = $pr->findBy(["idquestion" => $idquestion]);
         return $this->render('question/show.html.twig', [
             'question' => $question,
             'props' => $props
@@ -90,12 +93,19 @@ class QuestionController extends AbstractController
     /**
      * @Route("editQuestion/{idquestion}", name="modifierQuestion", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Question $question, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, $idquestion, EntityManagerInterface $entityManager): Response
     {
+        $pr = $this->getDoctrine()->getRepository(Proposition::class);
+        $qr = $this->getDoctrine()->getRepository(Question::class);
+        $question=$qr->find($idquestion);
+        $props = $pr->findBy(["idquestion" => $idquestion]);
+        $question->setPropositions($props);
         $form = $this->createForm(QuestionType::class, $question);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            dd($question);
+            $entityManager->persist($question);
             $entityManager->flush();
 
             return $this->redirectToRoute('afficherQuestions', [], Response::HTTP_SEE_OTHER);
@@ -110,9 +120,20 @@ class QuestionController extends AbstractController
     /**
      * @Route("deleteQuestion/{idquestion}", name="supprimerQuestion", methods={"POST"})
      */
-    public function delete(Request $request, Question $question, EntityManagerInterface $entityManager): Response
+    public function delete(Request $request, $idquestion, EntityManagerInterface $entityManager): Response
     {
+        $qr = $this->getDoctrine()->getRepository(Question::class);
+        $pr = $this->getDoctrine()->getRepository(Proposition::class);
+        $question = $qr->find($idquestion);
+        $props = $pr->findBy(["idquestion" => $idquestion]);
+        foreach ($props as $p ) {
+            $ques = $qr->find($p->getIdquestion());
+            $p->setIdquestion($ques);
+            $question->addProposition($p);
+        }
+       // dd($question);
         if ($this->isCsrfTokenValid('delete'.$question->getIdquestion(), $request->request->get('_token'))) {
+            
             $entityManager->remove($question);
             $entityManager->flush();
         }
