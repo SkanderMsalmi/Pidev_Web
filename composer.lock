@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3a03d02997ca6fd46727b0ce9337f9d7",
+    "content-hash": "f27bd8afdd97f2d3160adbade68a712e",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1741,20 +1741,20 @@
         },
         {
             "name": "mercuryseries/flashy-bundle",
-            "version": "v3.0.2",
+            "version": "v3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mercuryseries/flashy-bundle.git",
-                "reference": "6ed47bd753f12b9ae41c2f3463e678490601db9d"
+                "reference": "a92dec77e2c62ae5c9a576b89d119354e5597eef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mercuryseries/flashy-bundle/zipball/6ed47bd753f12b9ae41c2f3463e678490601db9d",
-                "reference": "6ed47bd753f12b9ae41c2f3463e678490601db9d",
+                "url": "https://api.github.com/repos/mercuryseries/flashy-bundle/zipball/a92dec77e2c62ae5c9a576b89d119354e5597eef",
+                "reference": "a92dec77e2c62ae5c9a576b89d119354e5597eef",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1|^8.0",
+                "php": "^7.1.3",
                 "symfony/config": "^3.4 || ^4.0 || ^5.0",
                 "symfony/dependency-injection": "^3.4 || ^4.0 || ^5.0",
                 "symfony/http-kernel": "^3.4 || ^4.0 || ^5.0"
@@ -1781,9 +1781,9 @@
             "description": "Easy flash notifications in Symfony",
             "support": {
                 "issues": "https://github.com/mercuryseries/flashy-bundle/issues",
-                "source": "https://github.com/mercuryseries/flashy-bundle/tree/v3.0.2"
+                "source": "https://github.com/mercuryseries/flashy-bundle/tree/master"
             },
-            "time": "2020-12-04T18:23:40+00:00"
+            "time": "2019-11-28T01:07:50+00:00"
         },
         {
             "name": "monolog/monolog",

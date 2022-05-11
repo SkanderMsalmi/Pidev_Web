@@ -23,15 +23,8 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Users</h5>
-                            {{ form_start(form) }}
-                            {{ form_widget(form) }}
-                            <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-                            {{ form_end(form) }}
-                            <div class="search-bar">
-                                <form class="search-form d-flex align-items-center" method="POST" action="#">
-                                    <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-                                </form>
-                            </div>
+                            {{ form(form) }}
+
                             <!-- Table with stripped rows -->
                             <table class="table datatable">
                                 <thead>
@@ -44,6 +37,7 @@
                                     <th scope="col">cin</th>
                                     <th scope="col">email</th>
                                     <th scope="col">role</th>
+                                    <th scope="col">Departement</th>
                                     <th scope="col">Block</th>
                                 </tr>
                                 </thead>
@@ -58,7 +52,14 @@
                                         <td>{{ u.cin}}</td>
                                         <td>{{ u.email}}</td>
                                         <td>{{ u.role}}</td>
-                                        {% if u.etatBlock == false %}
+                                        {% if u.role == "Etudiant" %}
+                                        <td>{{ u.idFaculte.nomfaculte }}</td>
+                                        {% elseif u.role == "Recruteur" %}
+                                            <td>{{ u.idSociete.nomsociete }}</td>
+                                        {% else %}
+                                            <td> - </td>
+                                        {% endif %}
+                                            {% if u.etatBlock == false %}
                                         <td><a href="{{ path('blockUser',{'idUser':u.id}) }}" class="btn btn-outline-primary">Block</a></td>
                                         {% elseif u.etatBlock==true %}
                                             <td><a  href="{{ path('blockUser',{'idUser':u.id}) }}" class="btn btn-outline-danger">Deblock</a></td>

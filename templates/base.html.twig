@@ -1,207 +1,32 @@
 <!DOCTYPE html>
 <html>
-<<<<<<< HEAD
-	<head>
-		<meta charset="UTF-8">
-		<title>
-			{% block title %}Mon Stage
-			{% endblock %}
-		</title>
-		{# Run `composer require symfony/webpack-encore-bundle`
-				           and uncomment the following Encore helpers to start using Symfony UX #}
-		{% block stylesheets %}
 
-			<link
-			rel="stylesheet" href="{{ asset('assets/css/passerQuiz.css') }}">
-			<!-- Favicon -->
-			<link
-			href="img/favicon.ico" rel="icon">
-
-			<!-- Google Web Fonts -->
-			<link rel="preconnect" href="{{ asset('https://fonts.googleapis.com') }}">
-			<link rel="preconnect" href="{{ asset('https://fonts.gstatic.com') }}" crossorigin>
-			<link
-			href="{{ asset('https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap')}}" rel="stylesheet">
-
-			<!-- Icon Font Stylesheet -->
-			<link href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css') }}" rel="stylesheet">
-			<link
-			href='{{ asset("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css") }}' rel="stylesheet">
-
-			<!-- Libraries Stylesheet -->
-			<link href="{{ asset("lib/animate/animate.min.css") }}" rel="stylesheet">
-			<link
-			href="{{ asset("lib/owlcarousel/assets/owl.carousel.min.css") }}" rel="stylesheet">
-
-			<!-- Customized Bootstrap Stylesheet -->
-			<link
-			href="{{ asset("assets2/css/bootstrap.min.css") }}" rel="stylesheet">
-
-			<!-- Template Stylesheet -->
-			<link href="{{ asset("assets2/css/style.css") }}" rel="stylesheet">
-
-		{% endblock %}
-
-		{% block javascripts %}
-			<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
-			<script src="{{ asset('https://code.jquery.com/jquery-3.4.1.min.js') }}"></script>
-			<script src="{{ asset('https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js') }}"></script>
-			<script src="{{ asset('assets2/lib/wow/wow.min.js"') }}"></script>
-			<script src="{{ asset('assets2/lib/easing/easing.min.js') }}"></script>
-			<script src="{{ asset('assets2/lib/waypoints/waypoints.min.js') }}"></script>
-			<script src="https://kit.fontawesome.com/cc2c1873c0.js" crossorigin="anonymous"></script>
-			<script src={{ asset("assets2/lib/owlcarousel/owl.carousel.min.js")}}></script>
-			<script src={{ asset("assets2/js/main.js")}}></script>
-		{% endblock %}
-	</head>
-	<body>
-
-		{% block navbar %}
-			<!-- Spinner Start -->
-			<div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-				<div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-					<span class="sr-only">Loading...</span>
-				</div>
-			</div>
-			<!-- Spinner End -->
-
-
-			<!-- Navbar Start -->
-			<nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
-				<a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-					<h2 class="m-0 text-primary">
-						<i class="fa fa-diamond me-3"></i>MonStage</h2>
-				</a>
-				<button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarCollapse">
-					<div class="navbar-nav ms-auto p-4 p-lg-0">
-						<a href="{{ path('acceuil') }}" class="nav-item nav-link ">Accueil</a>
-						<div class="nav-item dropdown">
-							<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Mes Stages</a>
-							<div class="dropdown-menu fade-down m-0">
-								<a href="team.html" class="dropdown-item">Liste des stages</a>
-								<a href="testimonial.html" class="dropdown-item">Mes entretiens</a>
-								<a href="404.html" class="dropdown-item">Mes demandes de stages</a>
-							</div>
-						</div>
-						<a href="courses.html" class="nav-item nav-link">Mes Formations</a>
-						<a href="courses.html" class="nav-item nav-link">Quiz</a>
-						<a href="courses.html" class="nav-item nav-link">Bibliothèque</a>
-						<div class="nav-item dropdown">
-							<a href="#" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block" data-bs-toggle="dropdown">Mon Profile<i class="fa fa-user-circle ms-3"></i></a>
-							<div class="dropdown-menu fade-down m-0">
-								<a href="team.html" class="dropdown-item">Mon profile</a>
-								<a href="testimonial.html" class="dropdown-item">Paramètres</a>
-								<a href="404.html" class="btn btn-danger py-lg-4 px-lg-5 d-none d-lg-block">Déconnexion</a>
-							</div>
-
-					</div>
-					
-				</div>
-			</nav>
-			<!-- Navbar End -->
-
-		{% endblock %}
-		{% block body %}{% endblock %}
-
-
-		{% block footer %}
-			<div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
-				<div class="container py-5">
-					<div class="row g-5">
-						<div class="col-lg-4 col-md-6">
-							<h4 class="text-white mb-3">Quick Link</h4>
-							<a class="btn btn-link" href="">About Us</a>
-							<a class="btn btn-link" href="">Contact Us</a>
-							<a class="btn btn-link" href="">Privacy Policy</a>
-							<a class="btn btn-link" href="">Terms & Condition</a>
-							<a class="btn btn-link" href="">FAQs & Help</a>
-						</div>
-						<div class="col-lg-4 col-md-6">
-							<h4 class="text-white mb-3">Contact</h4>
-							<p class="mb-2">
-								<i class="fa fa-map-marker-alt me-3"></i>Esprit, Ariana, Tunisie</p>
-							<p class="mb-2">
-								<i class="fa fa-phone-alt me-3"></i>+216 87 115 000</p>
-							<p class="mb-2">
-								<i class="fa fa-envelope me-3"></i>monstage@theone.com</p>
-							<div class="d-flex pt-2">
-								<a class="btn btn-outline-light btn-social" href="">
-									<i class="fab fa-twitter"></i>
-								</a>
-								<a class="btn btn-outline-light btn-social" href="">
-									<i class="fab fa-facebook-f"></i>
-								</a>
-								<a class="btn btn-outline-light btn-social" href="">
-									<i class="fab fa-youtube"></i>
-								</a>
-								<a class="btn btn-outline-light btn-social" href="">
-									<i class="fab fa-linkedin-in"></i>
-								</a>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-6">
-							<h4 class="text-white mb-3">Newsletter</h4>
-							<p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
-							<div class="position-relative mx-auto" style="max-width: 400px;">
-								<input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
-								<button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="container">
-					<div class="copyright">
-						<div class="row">
-							<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-								&copy;
-								<a class="border-bottom" href="#">monstage.tn</a>, All Right Reserved.
-
-								<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-								Designed By
-								<a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a><br><br>
-								Distributed By
-								<a class="border-bottom" href="https://themewagon.com">ThemeWagon</a>
-							</div>
-							<div class="col-md-6 text-center text-md-end">
-								<div class="footer-menu">
-									<a href="">Home</a>
-									<a href="">Cookies</a>
-									<a href="">Help</a>
-									<a href="">FQAs</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Footer End -->
-
-
-			<!-- Back to Top -->
-			<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top">
-				<i class="bi bi-arrow-up"></i>
-			</a>
-		{% endblock %}
-	</body>
-=======
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Mon Stage{% endblock %}</title>
+    <title>
+        {% block title %}Mon Stage
+        {% endblock %}
+    </title>
     {# Run `composer require symfony/webpack-encore-bundle`
-           and uncomment the following Encore helpers to start using Symfony UX #}
+				           and uncomment the following Encore helpers to start using Symfony UX #}
     {% block stylesheets %}
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="" name="keywords">
+        <meta content="" name="description">
+
+
+        <!-- Favicon -->
+        <link href="img/favicon.ico" rel="icon">
+        <!-- Flushy Message Nice Rendrering -->
 
         <link rel="shortcut icon" href="{{ asset('assets/images/gt_favicon.png') }}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" media="screen" href="{{ asset('http://fonts.googleapis.com/css?family=Open+Sans:300,400,700') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
-<<<<<<< HEAD
+
         <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css" rel="stylesheet"/>
-=======
+
         <link rel="stylesheet" href="{{ asset('assets/css/passerQuiz.css') }}">
         <link rel="stylesheet" href={{ asset("assets/css/stylesheet.css")}}>
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
@@ -209,201 +34,212 @@
 
         
 
->>>>>>> khalil
+
 
         <!-- Custom styles for our template -->
         <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-theme.css') }}" media="screen" >
         <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/styleRole.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/rateStar.css') }}">
+
         <link rel="stylesheet" href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
-    {% endblock %}
+        <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet'>
+        <!-- Google Web Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
 
-    {% block javascripts %}
-        <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
-        <script src="{{ asset('http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js') }}"></script>
-        <script src="{{ asset('http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js') }}"></script>
-        <script src="{{ asset('assets/js/headroom.min.js') }}"></script>
-        <script src="{{ asset('assets/js/jQuery.headroom.min.js') }}"></script>
-        <script src="{{ asset('assets/js/template.js') }}"></script>
+        <!-- Icon Font Stylesheet -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- Libraries Stylesheet -->
+        <link href="{{ asset("assets2/lib/animate/animate.min.css") }}" rel="stylesheet">
+        <link href="{{ asset("assets2/lib/owlcarousel/assets/owl.carousel.min.css") }}" rel="stylesheet">
+
+        <!-- Customized Bootstrap Stylesheet -->
+        <link href="{{ asset("assets2/css/bootstrap.min.css") }}" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link href="{{ asset("assets2/css/style.css") }}" rel="stylesheet">
         <script src="https://kit.fontawesome.com/cc2c1873c0.js" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
-        <script src="//code.jquery.com/jquery.js"></script>
-        <!-- Load Flashy default JavaScript -->
-        <script src="{{ asset('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
-        <!-- Include Flashy default partial -->
 
-        <script>
-            $(document).ready(function() {
-                // you may need to change this code if you are not using Bootstrap Datepicker
-                $('.js-datepicker').datepicker({
-                    format: 'yyyy-mm-dd'
-                });
-            });
-        </script>
-        <script src={{ asset("https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js")}}></script>
-        <script src={{ asset("assets/js/script.js")}}></script>
+
+
+
+
+
+
     {% endblock %}
+
+
 </head>
 <body>
 
 {% block navbar %}
-    <!-- Fixed navbar -->
-    <div class="navbar navbar-inverse navbar-fixed-top headroom" >
-        <div class="container">
-            <div class="navbar-header">
-                <!-- Button for smallest screens -->
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                <a class="navbar-brand" href="index.html"><img src="{{ asset('assets/images/logo.png') }}" alt="Progressus HTML5 template"></a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav pull-right">
-                    <li class="active"><a href="{{ path('acceuil') }}">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">More Pages <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="sidebar-left.html">Left Sidebar</a></li>
-                            <li class="active"><a href="sidebar-right.html">Right Sidebar</a></li>
-                        </ul>
-                    </li>
-        {% if is_granted('ROLE_USER')  %}
-                             <li><a href="{{ path('profile') }}">{{ app.user.nom }} {{ app.user.prenom }}</a></li>
-                                    <li><a href="{{ path('app_logout') }}"> Log Out</a> </li>
-                                {% else %}
-                                        <li><a href="{{ path('inscription') }}">Inscription</a></li>
-                                       <li><a class="btn" href="{{ path('app_login') }}">Se Connecter</a></li>
-                                {% endif %}
-
-                            </ul>
-                        </div><!--/.nav-collapse -->
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
         </div>
     </div>
-    <!-- /.navbar -->
+    <!-- Spinner End -->
+
+
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
+        <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <h2 class="m-0 text-primary">
+                <i class="fa fa-diamond me-3"></i>MonStage</h2>
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="{{ path('acceuil') }}" class="nav-item nav-link ">Accueil</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Mes Stages</a>
+                    <div class="dropdown-menu fade-down m-0">
+                        <a href="team.html" class="dropdown-item">Liste des stages</a>
+                        <a href="testimonial.html" class="dropdown-item">Mes entretiens</a>
+                        <a href="404.html" class="dropdown-item">Mes demandes de stages</a>
+                    </div>
+                </div>
+                <a href="courses.html" class="nav-item nav-link">Mes Formations</a>
+                <a href="courses.html" class="nav-item nav-link">Quiz</a>
+                <a href="courses.html" class="nav-item nav-link">Bibliothèque</a>
+                <div class="nav-item dropdown">
+                    {% if is_granted('ROLE_USER')  %}
+                    <a href="#" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block" data-bs-toggle="dropdown">{{ app.user.nom }} {{ app.user.prenom }}<i class="fa fa-user-circle ms-3"></i></a>
+                    <div class="dropdown-menu fade-down m-0">
+                        <a href="{{ path('profile') }}" class="btn btn-primary py-lg-4 px-lg-5 d-none d-lg-block">Profile</a>
+                        <a href="#" class="btn btn-secondary py-4 px-lg-5 d-none d-lg-block" data-bs-toggle="dropdown">Parametres</a>
+                        <a href="{{ path('app_logout') }}" class="btn btn-danger py-lg-4 px-lg-5 d-none d-lg-block">Déconnexion</a>
+                    </div>
+                        {% else %}
+                            <a href="#" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block" data-bs-toggle="dropdown">Join Now<i class="fa fa-user-circle ms-3"></i></a>
+                            <div class="dropdown-menu fade-down m-0">
+                                <a href="{{ path('inscription') }}" class="py-lg-4 px-lg-5 d-none d-lg-block btn btn-secondary">Inscription</a>
+                                <a href="{{ path('app_login') }}" class="btn btn-primary py-lg-4 px-lg-5 d-none d-lg-block">Se Connecter</a>
+                            </div>
+
+                    {% endif %}
+
+
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- Navbar End -->
+
 {% endblock %}
-    {% block body %}
-
-    {% endblock %}
-{% block contact %}
-    <div style="width: 80%;margin: auto">
-        <header class="page-header">
-            <h1 class="page-title">Contact us</h1>
-        </header>
-
-        <p>
-            We’d love to hear from you. Interested in working together? Fill out the form below with some info about your project and I will get back to you as soon as I can. Please allow a couple days for me to respond.
-        </p>
-        <br>
-        <form>
-            <div class="row">
-                <div class="col-sm-4">
-                    <input class="form-control" type="text" placeholder="Name">
-                </div>
-                <div class="col-sm-4">
-                    <input class="form-control" type="text" placeholder="Email">
-                </div>
-                <div class="col-sm-4">
-                    <input class="form-control" type="text" placeholder="Phone">
-                </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-sm-12">
-                    <textarea placeholder="Type your message here..." class="form-control" rows="9"></textarea>
-                </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-sm-6">
-                    <label class="checkbox"><input type="checkbox"> Sign up for newsletter</label>
-                </div>
-                <div class="col-sm-6 text-right">
-                    <input class="btn btn-action" type="submit" value="Send message">
-                </div>
-            </div>
-        </form>
-
-    </div>
-{% endblock %}
+{% block body %}{% endblock %}
 
 
 {% block footer %}
-    <footer id="footer" class="top-space">
-
-        <div class="footer1">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-md-3 widget">
-                        <h3 class="widget-title">Contact</h3>
-                        <div class="widget-body">
-                            <p>+234 23 9873237<br>
-                                <a href="mailto:#">some.email@somewhere.com</a><br>
-                                <br>
-                                234 Hidden Pond Road, Ashland City, TN 37015
-                            </p>
-                        </div>
+    <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-4 col-md-6">
+                    <h4 class="text-white mb-3">Quick Link</h4>
+                    <a class="btn btn-link" href="">About Us</a>
+                    <a class="btn btn-link" href="">Contact Us</a>
+                    <a class="btn btn-link" href="">Privacy Policy</a>
+                    <a class="btn btn-link" href="">Terms & Condition</a>
+                    <a class="btn btn-link" href="">FAQs & Help</a>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <h4 class="text-white mb-3">Contact</h4>
+                    <p class="mb-2">
+                        <i class="fa fa-map-marker-alt me-3"></i>Esprit, Ariana, Tunisie</p>
+                    <p class="mb-2">
+                        <i class="fa fa-phone-alt me-3"></i>+216 87 115 000</p>
+                    <p class="mb-2">
+                        <i class="fa fa-envelope me-3"></i>monstage@theone.com</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-outline-light btn-social" href="">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a class="btn btn-outline-light btn-social" href="">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a class="btn btn-outline-light btn-social" href="">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a class="btn btn-outline-light btn-social" href="">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
                     </div>
-
-                    <div class="col-md-3 widget">
-                        <h3 class="widget-title">Follow me</h3>
-                        <div class="widget-body">
-                            <p class="follow-me-icons">
-                                <a href=""><i class="fa fa-twitter fa-2"></i></a>
-                                <a href=""><i class="fa fa-dribbble fa-2"></i></a>
-                                <a href=""><i class="fa fa-github fa-2"></i></a>
-                                <a href=""><i class="fa fa-facebook fa-2"></i></a>
-                            </p>
-                        </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <h4 class="text-white mb-3">Newsletter</h4>
+                    <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
+                    <div class="position-relative mx-auto" style="max-width: 400px;">
+                        <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
+                        <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
                     </div>
-
-                    <div class="col-md-6 widget">
-                        <h3 class="widget-title">Text widget</h3>
-                        <div class="widget-body">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, dolores, quibusdam architecto voluptatem amet fugiat nesciunt placeat provident cumque accusamus itaque voluptate modi quidem dolore optio velit hic iusto vero praesentium repellat commodi ad id expedita cupiditate repellendus possimus unde?</p>
-                            <p>Eius consequatur nihil quibusdam! Laborum, rerum, quis, inventore ipsa autem repellat provident assumenda labore soluta minima alias temporibus facere distinctio quas adipisci nam sunt explicabo officia tenetur at ea quos doloribus dolorum voluptate reprehenderit architecto sint libero illo et hic.</p>
-                        </div>
-                    </div>
-
-                </div> <!-- /row of widgets -->
+                </div>
             </div>
         </div>
-
-        <div class="footer2">
-            <div class="container">
+        <div class="container">
+            <div class="copyright">
                 <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        &copy;
+                        <a class="border-bottom" href="#">monstage.tn</a>, All Right Reserved.
 
-                    <div class="col-md-6 widget">
-                        <div class="widget-body">
-                            <p class="simplenav">
-                                <a href="#">Home</a> |
-                                <a href="about.html">About</a> |
-                                <a href="sidebar-right.html">Sidebar</a> |
-                                <a href="contact.html">Contact</a> |
-                               <b><a href="{{ path('choixRole') }}">Sign up</a></b>
-                            </p>
+                        <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                        Designed By
+                        <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a><br><br>
+                        Distributed By
+                        <a class="border-bottom" href="https://themewagon.com">ThemeWagon</a>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <div class="footer-menu">
+                            <a href="">Home</a>
+                            <a href="">Cookies</a>
+                            <a href="">Help</a>
+                            <a href="">FQAs</a>
                         </div>
                     </div>
-
-                    <div class="col-md-6 widget">
-                        <div class="widget-body">
-                            <p class="text-right">
-                                Copyright &copy; 2014, Your name. Designed by <a href="http://gettemplate.com/" rel="designer">gettemplate</a>
-                            </p>
-                        </div>
-                    </div>
-
-                </div> <!-- /row of widgets -->
+                </div>
             </div>
         </div>
-        <div style="margin-top: 300px">
-            {{ include('@MercurySeriesFlashy/flashy.html.twig') }}
+    </div>
+    <!-- Footer End -->
 
-        </div>
 
-    </footer>
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top">
+        <i class="bi bi-arrow-up"></i>
+    </a>
 {% endblock %}
+{% block javascripts %}
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('assets2/lib/wow/wow.min.js') }}"></script>
+    <script src="{{ asset('assets2/lib/easing/easing.min.js') }}"></script>
+    <script src="{{ asset('assets2/lib/waypoints/waypoints.min.js') }}"></script>
+    <script src="{{ asset('assets2/lib/owlcarousel/owl.carousel.min.js') }}"></script>
+    <!-- Flashy depends on jQuery -->
+    <script src="//code.jquery.com/jquery.js"></script>
+    <!-- Load Flashy default JavaScript -->
+    <script src="{{ asset('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
 
+    <!-- Template Javascript -->
+    <script src="{{ asset('assets2/js/main.js') }}"></script>
+
+
+{% endblock %}
+<!-- Include Flashy default partial -->
+{{ include('@MercurySeriesFlashy/flashy.html.twig') }}
 </body>
->>>>>>> 905852058027811a367f182e50ea4cdea997c440
+
+
 </html>
+

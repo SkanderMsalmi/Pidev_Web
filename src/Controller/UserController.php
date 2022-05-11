@@ -85,4 +85,21 @@ class UserController extends AbstractController
 
         return $this->redirectToRoute('app_admin', [], Response::HTTP_SEE_OTHER);
     }
+
+   /* public function searchUsers(Request $request,UserRepository $repository){
+        $requestString = $request->get('q');
+        $users = $repository->findUsersByString($requestString);
+        if(!$users){
+            $result['users']['error']="User n'existe pas";
+        }else{
+            $result['users']=$$this->getRealUsers($users);
+        }
+        return new Response(json_encode($result));
+    }
+
+    public function getRealUsers($users){
+        foreach ($users as $user){
+            $realUsers[$users->getId()]= [$users->]
+        }
+    }*/
 }

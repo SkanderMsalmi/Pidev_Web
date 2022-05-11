@@ -17,7 +17,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * fields = {"username"},
  * message = "Username déjà utilisé"
  * )
- * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_8D93D649F85E0677", columns={"username"})}, indexes={@ORM\Index(name="IDX_8D93D6499DC564F", columns={"idSociete"}), @ORM\Index(name="IDX_8D93D649132E57FE", columns={"idFaculte"})})
+ *
+ * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_8D93D649F85E0677", columns={"username"})}, indexes={@ORM\Index(name="IDX_8D93D6499DC564F", columns={"idSociete"}),@ORM\Index(columns={"username","email","nom","prenom"},flags={"fulltext"}), @ORM\Index(name="IDX_8D93D649132E57FE", columns={"idFaculte"})})
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
 class User implements UserInterface
@@ -344,12 +345,12 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getPdp(): ?string
+    public function getPdp()
     {
         return $this->pdp;
     }
 
-    public function setPdp(string $pdp): self
+    public function setPdp($pdp)
     {
         $this->pdp = $pdp;
 
