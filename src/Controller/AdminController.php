@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\User;
+
 use App\Form\SearchUserType;
+
 use App\Repository\CompetanceRepository;
 use App\Repository\ExperienceRepository;
 use App\Repository\FaculteRepository;
@@ -12,7 +14,9 @@ use App\Repository\UserRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,6 +31,7 @@ class AdminController extends AbstractController
     public function listUsers(PaginatorInterface $paginator,Request $request,UserRepository $repository): Response
     {
         $users = new User();
+
         $allUsers = $repository->findAll();
         $form = $this->createForm(SearchUserType::class);
         $search = $form->handleRequest($request);
@@ -36,6 +41,7 @@ class AdminController extends AbstractController
                 $search->get('idfaculte')->getData(),
                 $search->get('role')->getData()
             );
+
         }
         //$donnes = $repository->findAll();
         $users = $paginator->paginate(
@@ -113,6 +119,7 @@ class AdminController extends AbstractController
         ]);
     }
 
+
     /**
      * @param Request $request
      * @param UserRepository $repository
@@ -137,5 +144,6 @@ class AdminController extends AbstractController
         }
         return $realEntities;
     }
+
 
 }

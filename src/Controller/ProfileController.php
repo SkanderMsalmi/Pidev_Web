@@ -7,12 +7,15 @@ use App\Form\UserType;
 use App\Repository\CompetanceRepository;
 use App\Repository\ExperienceRepository;
 use App\Repository\UserRepository;
+
+
 use Doctrine\ORM\EntityManagerInterface;
 use MercurySeries\FlashyBundle\FlashyNotifier;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -51,6 +54,7 @@ class ProfileController extends AbstractController
             'f'=>$userForm->createView()
         ]);
     }
+
     /**
      * @Route("/editprofilepict/{idUser}", name="edit_photo_profil")
      */
@@ -83,5 +87,6 @@ class ProfileController extends AbstractController
             'form'=>$photoForm->createView()
         ]);
     }
+
 
 }
