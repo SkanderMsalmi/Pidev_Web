@@ -9,20 +9,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class AcceuilController extends AbstractController
 {
     /**
-     * @Route("/", name="acceuil")
+     * @Route("/", name="home")
      */
     public function index(): Response
     {
         return $this->render('acceuil/acceuil.html.twig', [
             'controller_name' => 'AcceuilController',
         ]);
-    }
-    
-    /**
-     * @Route("/404", name="erreur")
-     */
-    public function FunctionName(): Response
-    {
-        return $this->render('pages-error-404.html.twig', []);
     }
 }
