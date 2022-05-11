@@ -47,6 +47,7 @@ class ScoreController extends AbstractController
         $scoreFinal = new Score();
         $scoreFinal->setIdquiz($quiz);
         $scoreFinal->setScore($score);
+        $scoreFinal->setIduser($this->getUser());
         $manager = $this->getDoctrine()->getManager();
         $this->addFlash("success","Score sauvegardé avec succés");
         $manager->persist($scoreFinal);
@@ -125,9 +126,10 @@ class ScoreController extends AbstractController
         Request $request
 
     ): Response {
+        $user = $this->getUser();
         $sr = $this->getDoctrine()->getRepository(Score::class);
         $qr = $this->getDoctrine()->getRepository(Quiz::class);
-        $data = $sr->findBy(["iduser" => NULL]);
+        $data = $sr->findBy(["iduser" => $user->getId()]);
         $quizz = [];
         // dd($score);
         foreach ($data as $s) {
