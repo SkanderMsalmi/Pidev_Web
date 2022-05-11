@@ -109,7 +109,7 @@
                     </div>
                 </div>
                 <a href="courses.html" class="nav-item nav-link">Mes Formations</a>
-                <a href="courses.html" class="nav-item nav-link">Quiz</a>
+                <a href="{{ path('app_quiz_new') }}" class="nav-item nav-link">Quiz</a>
                 <a href="courses.html" class="nav-item nav-link">Bibliothèque</a>
                 <div class="nav-item dropdown">
                     {% if is_granted('ROLE_USER')  %}
