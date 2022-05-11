@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+  <style>
+    img {
+      border-radius: 50%;
+    }
+  </style>    <div class="jumbotron top-space">
+  <div class="container">
+
+    <h3 class="text-center thin">Les bibliotheques </h3>
+
+    <div class="row">
+      {% for c in lv %}
+        <div class="col-md-3 col-sm-6 highlight">
+          <div class="h-caption"><h4><img src="{{asset('uploads/' ~ c.image) }}" alt="Profile" class="rounded-circle" width="50" height="50"> <br><br> <a href ="{{ path ('infoLivre',{'id':c.idl })}}">{{ c.titrel }}</a></h4></div>
+          <div class="h-caption"><h4> auteur :{{c.auteurl}}</h4></div>
+          <div class="h-body text-center">
+            <p> <h8>  </h8></p>
+          </div>
+
+        </div>
+      {% endfor %}
+
+
+    </div> <!-- /row  -->
+
+  </div>
+</div>
+
+
+{% endblock %}
+

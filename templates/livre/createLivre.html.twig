@@ -1,0 +1,103 @@
+{% extends 'baseAdmin.html.twig' %}
+
+
+{% block body %}
+
+
+
+    <main>
+        <div class="container">
+
+            <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+
+                            <div class="d-flex justify-content-center py-4">
+                                <a href="index.html" class="logo d-flex align-items-center w-auto">
+                                    <img src="assets/img/logo.png" alt="">
+                                    <span class="d-none d-lg-block">Mon Stage</span>
+                                </a>
+                            </div><!-- End Logo -->
+
+                            <div class="card mb-3">
+
+
+
+
+
+                                <div class="card-body">
+
+                                    <div class="pt-4 pb-2">
+                                        <h5 class="card-title text-center pb-0 fs-4">Les livres</h5>
+                                        <p class="text-center small">Ajouter un livre </p>
+                                    </div>
+
+                                    {{ form_start(form,{'attr':{novalidate:'novalidate'}}) }}
+
+
+                                    <div class="col-12">
+                                        <label for="yourUsername" class="form-label">Titre du livre</label>
+                                        <div class="input-group has-validation">
+
+                                            {{ form_widget (form.titrel,{'attr':{'class':'form-control'}}) }}
+                                            {{ form_errors (form.titrel,{'attr':{'class':'text-danger'}}) }}
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <label for="yourPassword" class="form-label">Description du livre</label>
+                                        {{ form_widget (form.descriptionl,{'attr':{'class':'form-control'}}) }}
+                                        {{ form_errors (form.descriptionl,{'attr':{'class':'text-danger'}}) }}
+                                    </div>
+
+                                    <div class="col-12">
+                                        <label for="yourPassword" class="form-label">Auteur du livre</label>
+                                        {{ form_widget (form.auteurl,{'attr':{'class':'form-control'}}) }}
+                                        {{ form_errors (form.auteurl,{'attr':{'class':'text-danger'}}) }}
+                                    </div>
+
+                                    <div class="col-12">
+                                        <label for="yourPassword" class="form-label">lien de l'image du livre</label>
+                                        {{ form_widget (form.imagestring,{'attr':{'class':'form-control'}}) }}
+                                        {{ form_errors (form.imagestring,{'attr':{'class':'text-danger'}}) }}
+                                    </div>
+
+                                    <div class="col-12">
+                                        <label for="yourPassword" class="form-label">la bibliotheque</label>
+                                        {{ form_widget (form.intc,{'attr':{'class':'form-control'}}) }}
+                                        {{ form_errors (form.intc,{'attr':{'class':'text-danger'}}) }}
+                                    </div>
+                                    <div class="col-12">
+                                        <center>  {{ form_widget (form.ajouter,{'attr':{'class':'btn btn-primary'}}) }} </center>
+                                    </div>
+
+                                </div>
+                                {{ form_end (form) }}
+                                <div class="col-12">
+                                    <center>  {{ form_widget (form.ajouter,{'attr':{'class':'btn btn-primary'}}) }} </center>
+                                </div>
+
+
+
+
+
+                            </div></div>
+                        </center>
+
+
+
+                    </div>
+                </div>
+
+
+        </div>
+
+        </section>
+
+        </div>
+    </main>
+
+
+
+{% endblock %}

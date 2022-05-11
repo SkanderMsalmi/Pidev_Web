@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert ;
 
 /**
  * Bibliotheque
@@ -23,21 +24,22 @@ class Bibliotheque
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Nom est vide ")
      * @ORM\Column(name="nomC", type="string", length=20, nullable=false)
      */
     private $nomc;
 
     /**
      * @var string
-     *
+     *@Assert\NotBlank(message="Description est vide ")
      * @ORM\Column(name="descriptionC", type="string", length=20, nullable=false)
      */
     private $descriptionc;
 
     /**
-     * @var string
      *
+     * @var string
+     *@Assert\NotBlank(message="Domaine est vide ")
      * @ORM\Column(name="domaineC", type="string", length=20, nullable=false)
      */
     private $domainec;
@@ -82,6 +84,12 @@ class Bibliotheque
 
         return $this;
     }
+    public function __toString(): string
+    {
+        return $this->getIntc();
+    }
+
+
 
 
 }
