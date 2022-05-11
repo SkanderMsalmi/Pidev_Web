@@ -15,7 +15,10 @@
 
         <!-- Favicon -->
         <link href="img/favicon.ico" rel="icon">
-
+        <!-- Flushy Message Nice Rendrering -->
+        <link rel="stylesheet" href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
+        <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700' rel='stylesheet'>
         <!-- Google Web Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,6 +38,7 @@
         <!-- Template Stylesheet -->
         <link href="{{ asset("assets2/css/style.css") }}" rel="stylesheet">
         <script src="https://kit.fontawesome.com/cc2c1873c0.js" crossorigin="anonymous"></script>
+
 
 
 
@@ -194,9 +198,17 @@
     <script src="{{ asset('assets2/lib/easing/easing.min.js') }}"></script>
     <script src="{{ asset('assets2/lib/waypoints/waypoints.min.js') }}"></script>
     <script src="{{ asset('assets2/lib/owlcarousel/owl.carousel.min.js') }}"></script>
+    <!-- Flashy depends on jQuery -->
+    <script src="//code.jquery.com/jquery.js"></script>
+    <!-- Load Flashy default JavaScript -->
+    <script src="{{ asset('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
 
     <!-- Template Javascript -->
     <script src="{{ asset('assets2/js/main.js') }}"></script>
+
+
 {% endblock %}
+<!-- Include Flashy default partial -->
+{{ include('@MercurySeriesFlashy/flashy.html.twig') }}
 </body>
 </html>

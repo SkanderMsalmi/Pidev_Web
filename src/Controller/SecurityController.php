@@ -239,11 +239,9 @@ class SecurityController extends AbstractController
         $mes = "vous avez debloque ".$user->getNom();
 
         $em->flush();
-        if($flashyNotifier->success($mes)){
             return $this->redirectToRoute('app_admin_users');
 
 
-        }
     }
 
 
