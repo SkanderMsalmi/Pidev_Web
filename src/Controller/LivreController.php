@@ -161,6 +161,7 @@ class LivreController extends AbstractController
     {
 
         $rates = $this->getDoctrine()->getRepository(Rate::class)->findByIdLivre($id);
+        $moyenne=0;
         $total = 0;
         for ($i = 0; $i < count($rates); $i++) {
             $total = $total + $rates[$i]->getRate();
