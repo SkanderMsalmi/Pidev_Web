@@ -51,6 +51,8 @@ class UserType extends AbstractType
                 'attr'=>['class'=>'js-datepicker']
             ])
 
+            ->add('pdp',FileType::class,['label'=>'Image De Profil'])
+
             ->add('profil')
             ->add('infos',TextareaType::class)
             ->add('Inscip',SubmitType::class)

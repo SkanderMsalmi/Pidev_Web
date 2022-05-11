@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\Entity\Score" table="score">
+    <indexes>
+      <index name="fk_scorePersonne" columns="idPersonne"/>
+      <index name="fk_scoreQuiz" columns="idQuiz"/>
+    </indexes>
+    <id name="idscore" type="integer" column="idScore">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="score" type="integer" column="score" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <many-to-one field="idpersonne" target-entity="Personne" fetch="LAZY">
+      <join-columns>
+        <join-column name="idPersonne" referenced-column-name="idPersonne"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idquiz" target-entity="Quiz" fetch="LAZY">
+      <join-columns>
+        <join-column name="idQuiz" referenced-column-name="idQuiz"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

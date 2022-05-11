@@ -7,8 +7,15 @@ use App\Form\UserType;
 use App\Repository\CompetanceRepository;
 use App\Repository\ExperienceRepository;
 use App\Repository\UserRepository;
+
+
+use Doctrine\ORM\EntityManagerInterface;
+use MercurySeries\FlashyBundle\FlashyNotifier;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -47,4 +54,39 @@ class ProfileController extends AbstractController
             'f'=>$userForm->createView()
         ]);
     }
+
+    /**
+     * @Route("/editprofilepict/{idUser}", name="edit_photo_profil")
+     */
+
+    public function editPhotoProfil(EntityManagerInterface $em,$idUser,Request $request,UserRepository $repository,FlashyNotifier $flashyNotifier){
+        $user = $repository->find($idUser);
+        $photoForm = $this->createFormBuilder()
+            ->add('pdp',FileType::class,['label'=>'Image De Profil'])->getForm();
+        $photoForm->handleRequest($request);
+        if($photoForm->isSubmitted() && $photoForm->isValid()){
+            $file = $photoForm->get('pdp')->getData();
+            if($file){
+                $fileName = md5(uniqid()).'.'.$file->guessExtension();
+                try{
+                    $file->move(
+                        $this->getParameter('profiles_directory'),
+                        $fileName
+                    );
+                }catch(FileException $e){
+
+                }
+            }else{
+                $fileName="download.png";
+            }
+            $user->setPdp($fileName);
+            $em->flush();
+            return $this->redirectToRoute('profile');
+        }
+        return $this->render('security/changePhoto.html.twig',[
+            'form'=>$photoForm->createView()
+        ]);
+    }
+
+
 }

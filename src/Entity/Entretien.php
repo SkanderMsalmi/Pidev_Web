@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Entretien
  *
- * @ORM\Table(name="entretien", indexes={@ORM\Index(name="idUser", columns={"idUser"}), @ORM\Index(name="fk_entretienStage", columns={"idStage"})})
+ * @ORM\Table(name="entretien", indexes={@ORM\Index(name="fk_entretienStage", columns={"idStage"}), @ORM\Index(name="idUser", columns={"idUser"})})
  * @ORM\Entity
  */
 class Entretien
@@ -43,16 +43,6 @@ class Entretien
     private $lienentretien;
 
     /**
-     * @var \Stage
-     *
-     * @ORM\ManyToOne(targetEntity="Stage")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idStage", referencedColumnName="idStage")
-     * })
-     */
-    private $idstage;
-
-    /**
      * @var \User
      *
      * @ORM\ManyToOne(targetEntity="User")
@@ -61,6 +51,16 @@ class Entretien
      * })
      */
     private $iduser;
+
+    /**
+     * @var \Stage
+     *
+     * @ORM\ManyToOne(targetEntity="Stage")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idStage", referencedColumnName="idStage")
+     * })
+     */
+    private $idstage;
 
     public function getIdentretien(): ?int
     {
@@ -103,18 +103,6 @@ class Entretien
         return $this;
     }
 
-    public function getIdstage(): ?Stage
-    {
-        return $this->idstage;
-    }
-
-    public function setIdstage(?Stage $idstage): self
-    {
-        $this->idstage = $idstage;
-
-        return $this;
-    }
-
     public function getIduser(): ?User
     {
         return $this->iduser;
@@ -123,6 +111,18 @@ class Entretien
     public function setIduser(?User $iduser): self
     {
         $this->iduser = $iduser;
+
+        return $this;
+    }
+
+    public function getIdstage(): ?Stage
+    {
+        return $this->idstage;
+    }
+
+    public function setIdstage(?Stage $idstage): self
+    {
+        $this->idstage = $idstage;
 
         return $this;
     }

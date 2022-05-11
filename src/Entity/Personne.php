@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Personne
  *
- * @ORM\Table(name="personne", indexes={@ORM\Index(name="fk_facultePersonne", columns={"idFaculte"}), @ORM\Index(name="fk_societePersonne", columns={"idSociete"})})
+ * @ORM\Table(name="personne", indexes={@ORM\Index(name="fk_societePersonne", columns={"idSociete"}), @ORM\Index(name="fk_facultePersonne", columns={"idFaculte"})})
  * @ORM\Entity
  */
 class Personne
@@ -92,16 +92,6 @@ class Personne
     private $pdp;
 
     /**
-     * @var \Faculte
-     *
-     * @ORM\ManyToOne(targetEntity="Faculte")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idFaculte", referencedColumnName="idFaculte")
-     * })
-     */
-    private $idfaculte;
-
-    /**
      * @var \Societe
      *
      * @ORM\ManyToOne(targetEntity="Societe")
@@ -110,6 +100,16 @@ class Personne
      * })
      */
     private $idsociete;
+
+    /**
+     * @var \Faculte
+     *
+     * @ORM\ManyToOne(targetEntity="Faculte")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idFaculte", referencedColumnName="idFaculte")
+     * })
+     */
+    private $idfaculte;
 
     public function getIdpersonne(): ?int
     {
@@ -236,18 +236,6 @@ class Personne
         return $this;
     }
 
-    public function getIdfaculte(): ?Faculte
-    {
-        return $this->idfaculte;
-    }
-
-    public function setIdfaculte(?Faculte $idfaculte): self
-    {
-        $this->idfaculte = $idfaculte;
-
-        return $this;
-    }
-
     public function getIdsociete(): ?Societe
     {
         return $this->idsociete;
@@ -256,6 +244,18 @@ class Personne
     public function setIdsociete(?Societe $idsociete): self
     {
         $this->idsociete = $idsociete;
+
+        return $this;
+    }
+
+    public function getIdfaculte(): ?Faculte
+    {
+        return $this->idfaculte;
+    }
+
+    public function setIdfaculte(?Faculte $idfaculte): self
+    {
+        $this->idfaculte = $idfaculte;
 
         return $this;
     }
