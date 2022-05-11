@@ -12,20 +12,22 @@
         <table class="table">
 			<thead>
 				<tr>
+					<th>#</th>
 					<th>Enonce</th>
 					<th>Domaine</th>
-					<th>Reponsecorrecte</th>
-					<th>actions</th>
+					<th>Reponse correcte</th>
 				</tr>
 			</thead>
 			<tbody>
 				{% for question in questions %}
 					<tr>
+						<td>{{ question.idquestion }}</td>
 						<td>{{ question.enonce }}</td>
 						<td>{{ question.domaine }}</td>
 						<td>{{ question.reponsecorrecte }}</td>
 						<td>
-							<a class="btn btn-outline-primary" href="{{ path('afficherQuestion', {'idquestion': question.idquestion}) }}">Afficher</a>
+							<a class="btn btn-outline-primary" href="{{ path('afficherQuestion', {'idquestion': question.idquestion}) }}">Afficher</a></td>
+							<td>
 							<a class="btn btn-outline-secondary" href="{{ path('modifierQuestion', {'idquestion': question.idquestion}) }}">Modifier</a>
 						</td>
 					</tr>
