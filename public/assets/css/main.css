@@ -116,7 +116,9 @@ img.pull-left { margin-right: 10px; }
 	border-top: none;
 }
 
-
+.mt{
+	margin-top: 120px;
+}
 /* Profil PAGE */
 	.page-profil{
 		margin: auto;
@@ -139,3 +141,20 @@ img.pull-left { margin-right: 10px; }
 		width: 75%;
 	}
 /* End Profil PAGE */
+
+
+.body-center{
+	margin-top: 120px;
+}
+
+.formulaire-design{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+#experience{
+	display: flex;
+	flex-direction: column;
+
+}

@@ -1,0 +1,65 @@
+{% extends 'baseAdmin.html.twig' %}
+
+
+{% block body %}
+    <main id="main" class="main">
+
+        <div class="pagetitle">
+            <h1>Data Tables</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item">Tables</li>
+                    <li class="breadcrumb-item active">Data</li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
+
+        <section class="section">
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Users</h5>
+                            <div class="search-bar">
+                                <form class="search-form d-flex align-items-center" method="POST" action="#">
+                                    <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+                                    <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+                                </form>
+                            </div>
+                            <!-- Table with stripped rows -->
+                            <table class="table datatable">
+                                <thead>
+                                <tr>
+                                    <th scope="col">id Faculte</th>
+                                    <th scope="col">Faculte</th>
+                                    <th scope="col">Acronym</th>
+
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for u in facultes %}
+                                    <tr>
+                                        <th scope="row">{{ u.idFaculte }}</th>
+                                        <td>{{ u.nomFaculte}}</td>
+                                        <td>{{ u.acronyme}}</td>
+
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            <!-- End Table with stripped rows -->
+                            <div class="navigation" >
+                                {{ knp_pagination_render(facultes,'pagination.html.twig') }}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+{% endblock %}

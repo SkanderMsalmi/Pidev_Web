@@ -1,0 +1,11 @@
+<form method="post"  onsubmit="return confirm('Are you sure you want to delete this item?');">
+    <input type="hidden" name="_token" >
+    <button class="btn">Delete</button>
+</form>
+
+
+
+{# action="{{ path('app_score_delete', {'idscore': score.idscore}) }}" bin method w onsubmite fil balise form !! na7itha 3la 5atr 
+7keya manich fehmha tw ama bech nefhmha ki narja3 hne !! sa7it khalil #}
+
+{# value="{{ csrf_token('delete' ~ score.idscore) }}" w hedhi ba3d name fil input #}

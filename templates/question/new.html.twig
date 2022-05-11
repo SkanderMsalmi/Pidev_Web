@@ -1,0 +1,15 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}New Question{% endblock %}
+
+{% block body %}
+<div style="display: flex;align-items: center;justify-content: center;padding:150px">
+		<div class="panel-body">
+			<h3 class="thin text-center">Ajouter une question</h3>
+			
+            {{ include('question/_form.html.twig') }}
+
+        </div>
+        </div>
+
+{% endblock %}

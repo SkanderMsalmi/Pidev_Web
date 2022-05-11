@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\Entity\Demandestage" table="demandestage">
+    <indexes>
+      <index name="fk_demandePersonne" columns="idPersonne"/>
+      <index name="fk_demandeStage" columns="idStage"/>
+    </indexes>
+    <id name="iddemande" type="integer" column="idDemande">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="etat" type="string" column="etat" length="0" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <many-to-one field="idpersonne" target-entity="Personne" fetch="LAZY">
+      <join-columns>
+        <join-column name="idPersonne" referenced-column-name="idPersonne"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idstage" target-entity="Stage" fetch="LAZY">
+      <join-columns>
+        <join-column name="idStage" referenced-column-name="idStage"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>
