@@ -65,6 +65,8 @@ class BibliothequeController extends AbstractController
     {
         $bibliothequeCRepository = $this->getDoctrine()->getManager()->getRepository(Bibliotheque::class)->findAll();
 
+return $this->render('bibliotheque/biblioClient.html.twig', ['bibC' => $bibliothequeCRepository,]
+);
     }
 
 
