@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reinitialisation du mot de passe {% endblock %}
+
+{% block body %}
+
+    <div class="block" style="display: flex;justify-content: center;align-items: center;margin-top: 120px; padding: 20px">
+        {{ form_start(form,{attr: {novalidate: 'novalidate'}}) }}
+        {{ form_rest(form) }}
+        <button class="btn btn-primary" style="margin-top:50px;margin-left: 20%">Envoyer</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
