@@ -86,6 +86,7 @@ class UserController extends AbstractController
         return $this->redirectToRoute('app_admin', [], Response::HTTP_SEE_OTHER);
     }
 
+
    /* public function searchUsers(Request $request,UserRepository $repository){
         $requestString = $request->get('q');
         $users = $repository->findUsersByString($requestString);
@@ -102,4 +103,5 @@ class UserController extends AbstractController
             $realUsers[$users->getId()]= [$users->]
         }
     }*/
+
 }

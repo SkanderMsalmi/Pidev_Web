@@ -72,10 +72,15 @@ class Question
     }
 
 
-    public function getPropositions(): Collection
+ /*   public function getPropositions(): Collection
     {
        $props = new ArrayCollection($this->propositions);
         return $props;
+    }*/
+
+    public function getPropositions()
+    {
+        return $this->propositions;
     }
 
     public function setPropositions($propositionsP)
@@ -139,7 +144,7 @@ class Question
 
     public function removeProposition(Proposition $proposition): void
     {
-        # code...
+        $this->propositions->removeElement($proposition);
     }
 
     public function __toString(){
@@ -149,3 +154,4 @@ class Question
         // return $this->id;
     }
 }
+

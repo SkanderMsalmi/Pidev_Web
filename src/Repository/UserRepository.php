@@ -91,6 +91,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     }
     */
 
+
     public function search($mots=null,$faculte=null,$role=null){
         $query= $this->createQueryBuilder('u');
         if($mots != null){
