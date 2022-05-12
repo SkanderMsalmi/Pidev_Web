@@ -1,0 +1,133 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello FormationController!{% endblock %}
+
+{% block body %}
+
+
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="example-wrapper">
+
+    <!-- Jobs Container -->
+    <div class="row">
+
+        </form>
+
+        {# for filter buttons #}
+        </form>
+        </form>
+    </div>
+    <!-- Jobs Container / End -->
+
+
+
+    <div>
+        <p style="80px" > <input  id="myInput"  type="text" placeholder="search">
+{#            <img src="https://img.icons8.com/nolan/344/google-web-search.png" style="width:50px;height:50px;"/></p>#}
+
+    </div>
+
+    <div class="example-wrapper">
+
+
+        {% for message in app.flashes('success')%}
+            <div class="alert alert-success">
+
+                {{ message }}
+            </div>
+        {% endfor %}
+
+
+        <table class="table table-striped" id="t">
+            </thead>
+
+
+
+
+            <tr>
+                <th>Description</th>
+                <th>Titre</th>
+                <th>Type</th>
+                <th>Domaine</th>
+                <!--<th>Prix</th>
+                <th>Datedebut</th>
+                <th>Datefin</th>-->
+
+            </tr>
+
+
+
+            <tbody id="all">
+            <tbody>
+            <tbody>
+            <tbody id="myTable">
+            {% for formation in f %}
+                <tr>
+                    <td>{{ formation.description }}</td>
+                    <td>{{ formation.titre }}</td>
+                    <td>{{ formation.type }}</td>
+                    <td>{{ formation.domaine }}</td>
+
+                    <td>
+                        <a class="btn btn-success" href="{{ path('newreservation', {'idFormation': formation.idFormation}) }}">Ajouter une Reservation</a>
+                    </td>
+
+
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="9">no records found</td>
+                </tr>
+            {% endfor %}
+
+
+
+            <tbody id="search">
+
+            </tbody>
+
+
+            </tbody>
+
+
+        </table>
+
+
+{#        <a href="{{ path('newformation') }}">Creer une nouvelle formation</a>#}
+
+
+
+        <div class="pagination">
+            {{ knp_pagination_render(f) }}
+        </div>
+
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("#myInput").on("keyup", function() {
+                    var value = $(this).val().toLowerCase();
+                    $("#myTable tr").filter(function() {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    });
+                });
+            });
+        </script>
+
+
+
+
+
+
+    </div>
+
+
+{% endblock %}
