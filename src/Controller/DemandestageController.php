@@ -15,7 +15,7 @@ use App\Repository\StageRepository;
 use App\Entity\Stage;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
-
+use App\Repository\DemandeStageRepository;
 use MessageBird\Objects\Message;
 use MessageBird\Objects\PartnerAccount\AccessKey;
 use MessageBird\Client;
@@ -42,11 +42,12 @@ class DemandestageController extends AbstractController
     /**
      * @Route("/indexx/{idpersonne}", name="app_demandestage_indexx", methods={"GET"})
      */
-    public function indexx(EntityManagerInterface $entityManager): Response
+    public function indexx(EntityManagerInterface $entityManager,$idpersonne,UserRepository $rep1): Response
     {
+        $p=$rep1->find($idpersonne);
         $demandestages = $entityManager
             ->getRepository(Demandestage::class)
-            ->findByIduser(1);
+            ->findByIduser($p);
 
         return $this->render('demandestage/indexetudiant.html.twig', [
             'demandestages' => $demandestages,
@@ -56,9 +57,11 @@ class DemandestageController extends AbstractController
         /**
      * @Route("/indexxR/{idpersonne}", name="app_demandestage_indexxR", methods={"GET"})
      */
-    public function indexxR(EntityManagerInterface $entityManager): Response
+    public function indexxR(EntityManagerInterface $entityManager,$idpersonne,UserRepository $rep1): Response
     {   
-        $stages=$entityManager->getRepository(Stage::class)->ListStageByIdPersonne(1);
+
+        $p=$rep1->find($idpersonne);
+        $stages=$entityManager->getRepository(Stage::class)->ListStageByIdPersonne($p);
         $demandestage1=[];
         foreach ($stages as $s) {
             $demandestages = $entityManager
@@ -83,10 +86,11 @@ class DemandestageController extends AbstractController
      * @Route("/{id}/new", name="app_demandestage_new", methods={"GET", "POST"})
      *
      */
-    public function new(Request $request, EntityManagerInterface $entityManager,Stage $stage,UserRepository $rep1,StageRepository $rep2,MailerInterface $mailer): Response
+    public function new(Request $request, EntityManagerInterface $entityManager,$id,UserRepository $rep1,StageRepository $rep2,MailerInterface $mailer): Response
     {
         $demandestage = new Demandestage();
         $personne = $rep1->find(1);
+        $stage= $rep2->find($id);
         $demandestage->setIdstage($stage);
         $demandestage->setIduser($personne);
         $demandestage->setEtat("En_attente");
@@ -114,15 +118,16 @@ class DemandestageController extends AbstractController
          //   $message->body ='🥳Vous Avez Recu Une Nouvelle Demande De Stage🥳';
          //   $client->messages->create($message);
 
-            return $this->redirectToRoute('app_demandestage_indexx', ['idpersonne' => "105"], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_demandestage_indexx', ['idpersonne' => "1"], Response::HTTP_SEE_OTHER);
 
     }
 
     /**
      * @Route("/{iddemande}", name="app_demandestage_show", methods={"GET"})
      */
-    public function show(Demandestage $demandestage): Response
+    public function show(DemandeStageRepository $rep1,$iddemande): Response
     {
+        $demandestage=$rep1->find($iddemande);
         return $this->render('demandestage/show.html.twig', [
             'demandestage' => $demandestage,
         ]);
@@ -130,8 +135,9 @@ class DemandestageController extends AbstractController
       /**
      * @Route("/{iddemande}/showe", name="app_demandestage_showe", methods={"GET"})
      */
-    public function showe(Demandestage $demandestage): Response
+    public function showe(DemandeStageRepository $rep1,$iddemande): Response
     {
+        $demandestage=$rep1->find($iddemande);
         return $this->render('demandestage/showe.html.twig', [
             'demandestage' => $demandestage,
         ]);
@@ -139,8 +145,9 @@ class DemandestageController extends AbstractController
     /**
      * @Route("/{iddemande}/edit", name="app_demandestage_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Demandestage $demandestage, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request,DemandeStageRepository $rep1,$iddemande, EntityManagerInterface $entityManager): Response
     {
+        $demandestage=$rep1->find($iddemande);
         $form = $this->createForm(DemandestageType::class, $demandestage);
         $form->handleRequest($request);
 
@@ -162,8 +169,9 @@ class DemandestageController extends AbstractController
     /**
      * @Route("/{iddemande}", name="app_demandestage_delete", methods={"POST"})
      */
-    public function delete(Request $request, Demandestage $demandestage, EntityManagerInterface $entityManager): Response
+    public function delete(Request $request,DemandeStageRepository $rep1,$iddemande, EntityManagerInterface $entityManager): Response
     {
+        $demandestage=$rep1->find($iddemande);
         if ($this->isCsrfTokenValid('delete'.$demandestage->getIddemande(), $request->request->get('_token'))) {
             $entityManager->remove($demandestage);
             $entityManager->flush();
@@ -175,8 +183,9 @@ class DemandestageController extends AbstractController
       /**
      * @Route("/{iddemande}/deletee", name="app_demandestage_deletee", methods={"POST"})
      */
-    public function deletee(Request $request, Demandestage $demandestage, EntityManagerInterface $entityManager): Response
+    public function deletee(Request $request,DemandeStageRepository $rep1,$iddemande, EntityManagerInterface $entityManager): Response
     {
+        $demandestage=$rep1->find($iddemande);
         if ($this->isCsrfTokenValid('delete'.$demandestage->getIddemande(), $request->request->get('_token'))) {
             $entityManager->remove($demandestage);
             $entityManager->flush();
