@@ -31,6 +31,7 @@
                             {% if app.user.cv %}
                             <a class="btn btn-primary" href="#" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Download CV</a>
                             <a class="btn btn-primary" href="{{ path('upload_cv') }}" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Upload new CV</a>  <a  class="btn btn-primary" href="{{ path('edit_photo_profil',{'idUser':app.user.id}) }}" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">  Edit Photo</a>
+                            {% elseif app.user.role == "Formateur" or app.user.role =="Recruteur"  %}
                             {% else %}
                             <a class="btn btn-primary" href="{{ path('upload_cv') }}" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Upload new CV</a>  <a  class="btn btn-primary" href="{{ path('edit_photo_profil',{'idUser':app.user.id}) }}" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">  Edit Photo</a>
                             {% endif %}
@@ -48,8 +49,17 @@
                             <div class="card-body">
                                 <div class="h4 mt-0 text-info">About</div>
                                 <p>{{ app.user.infos }}</p>
+                                {% if app.user.role == "Etudiant" %}
                                 <div class="h4 mt-0 text-info">Faculte</div>
+
                                 <p >{{ app.user.idfaculte.nomfaculte }}</p>
+                                {% elseif app.user.role == "Recruteur"%}
+                                    <div class="h4 mt-0 text-info">Societe</div>
+
+                                    <p >{{ app.user.idsociete.nomsociete }}</p>
+                                {% else %}
+
+                                {% endif %}
                             </div>
 
                         </div>
@@ -82,6 +92,10 @@
                 </div>
             </div>
         </div>
+    {% if app.user.role == "Etudiant" %}
+    <div>
+
+    </div>
     <div class="section" id="skill">
         <div class="container">
             <div class="h4 text-center mb-4 title">Professional Skills</div>
@@ -155,6 +169,9 @@
             <a class="btn btn-secondary  w-100 p-3  " href="{{ path('add_experience') }}">Ajouter nouvelle experience</a>
     </div>
     </div>
+
+   
+    {% endif %}
 
     <script src="{{ asset('assets3/js/core/jquery.3.2.1.min.js?ver=1.1.0') }}"></script>
     <script src="{{ asset('assets3/js/core/popper.min.js?ver=1.1.0') }}"></script>
