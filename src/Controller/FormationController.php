@@ -39,9 +39,9 @@ class FormationController extends AbstractController
     }
 
 
-    ## liste formation lele etudiant
+    ## liste formation lel etudiant
     /**
-     * @Route("/ListFormationEtudiant", name="app_formation_etudiant", methods={"GET"})
+     * @Route("/ListFormationEtudiant", name="ListFormationEtudiant", methods={"GET"})
      */
 
     public function ListFormationEtudiant(FormationRepository $repository,\Symfony\Component\HttpFoundation\Request $request, PaginatorInterface $paginator): Response
@@ -51,10 +51,47 @@ class FormationController extends AbstractController
             $request->query->getInt('page', 1),3
         );
 
-        return $this->render('formation/FormationEtudiant.html.twig', [
+        return $this->render('formation/ListFormationEtudiant.html.twig', [
             'f' => $formation,
         ]);
     }
+
+
+    ## liste formation lel admin
+    /**
+     * @Route("/ListFormationAdmin", name="ListFormationAdmin", methods={"GET"})
+     */
+
+    public function ListFormationAdmin(FormationRepository $repository,\Symfony\Component\HttpFoundation\Request $request, PaginatorInterface $paginator): Response
+    {
+        $formation = $paginator->paginate(
+            $formation = $repository->findAll(),
+            $request->query->getInt('page', 1),3
+        );
+
+        return $this->render('formation/ListFormationAdmin.html.twig', [
+            'f' => $formation,
+        ]);
+    }
+
+
+    ## liste formation lel formateur
+    /**
+     * @Route("/ListFormationFormateur", name="ListFormationFormateur", methods={"GET"})
+     */
+
+    public function ListFormationFormateur(FormationRepository $repository,\Symfony\Component\HttpFoundation\Request $request, PaginatorInterface $paginator): Response
+    {
+        $formation = $paginator->paginate(
+            $formation = $repository->findAll(),
+            $request->query->getInt('page', 1),3
+        );
+
+        return $this->render('formation/ListFormationFormateur.html.twig', [
+            'f' => $formation,
+        ]);
+    }
+
 
 
 
