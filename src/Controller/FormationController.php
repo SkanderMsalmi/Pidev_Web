@@ -115,7 +115,8 @@ class FormationController extends AbstractController
             #$flashy->success('Formation ajoutée');
             #lehne zedt notification
             $this->addFlash('success','Formation ajoutée avec sucées');
-            return $this->redirectToRoute('app_formation');
+//            eli thezni lel liste mte3i
+            return $this->redirectToRoute('ListFormationFormateur');
         }
         return $this->render('formation/newformation.html.twig',['f'=>$form->createView()]);
     }
@@ -135,7 +136,7 @@ class FormationController extends AbstractController
             $em->flush();
             #lehne zedt notification
             $this->addFlash('success','Formation modifier avec sucées');
-            return $this->redirectToRoute('app_formation');
+            return $this->redirectToRoute('ListFormationFormateur');
             # kenet profile : app_reservation_index
         }
         return $this->render('formation/editformation.html.twig',['ff'=>$form->createView()]);
