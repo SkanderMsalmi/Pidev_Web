@@ -11,7 +11,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Idstage</th>
+                
                 <th>Duree En Mois</th>
                 <th>Type</th>
                 <th>Domaine</th>
@@ -25,7 +25,7 @@
         <tbody>
         {% for stage in stages %}
             <tr>
-                <td>{{ stage.idstage }}</td>
+                
                 <td>{{ stage.duree }}</td>
                 <td>{{ stage.type }}</td>
                 <td>{{ stage.domaine }}</td>
@@ -56,9 +56,15 @@
 
 
     
-  
+<script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js') }}" 
+            integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" 
+            crossorigin="anonymous" 
+            referrerpolicy="no-referrer"></script>  
    
 <script>
+
+
+
         let my = document.querySelector("#my")
         let myGraph = new Chart(my, {
             type: "pie",
