@@ -1,5 +1,9 @@
-{% extends 'base.html.twig' %}
-
+{% extends 'baseTest.html.twig' %}
+{% block stylesheet %}
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/jquery.rateyo.css') }}"/>
+{% endblock %}
 {% block body %}
     <style>
         img {
@@ -46,8 +50,17 @@
                 </form>
             </div>
         </div>
+
+       <br>
+            Vous pouvez telecharger ce livre
+    <a href ="{{ path ('telecharger',{'id':infoL.idl })}}">    <button  class="btn btn-success"
+        type="button"> telecharger <i class="fa fa-file"></i> </button> </a>
         <script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js') }}"></script>
         <script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js') }}"></script>
+
+        <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+        <script src="{{ asset('assets/js/jquery.rateyo.js')}}"></script>
+
 
         <script>
 
@@ -62,12 +75,6 @@
             });
 
         </script>
-       <br>
-            Vous pouvez telecharger ce livre
-    <a href ="{{ path ('telecharger',{'id':infoL.idl })}}">    <button  class="btn btn-success"
-        type="button"> telecharger <i class="fa fa-file"></i> </button> </a>
-
-
 
     </center>
 
