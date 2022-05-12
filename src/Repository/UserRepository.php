@@ -90,4 +90,25 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         ;
     }
     */
+
+
+    public function search($mots=null,$faculte=null,$role=null){
+        $query= $this->createQueryBuilder('u');
+        if($mots != null){
+            $query->where('MATCH_AGAINST(u.username, u.nom,u.username,u.prenom) AGAINST (:mots boolean)>0')
+                ->setParameter('mots',$mots);
+        }
+        if($faculte != null){
+            $query->leftJoin('u.idfaculte','f');
+            $query->andWhere('f.idfaculte = :id')
+                ->setParameter('id',$faculte);
+        }
+        if($role != null){
+            $query->andWhere('u.role = :ro')->setParameter('ro',$role);
+
+        }
+        return $query->getQuery()->getResult();
+    }
+
+
 }

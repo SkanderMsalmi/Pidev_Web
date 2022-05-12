@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use App\Repository\PersonneRepository;
+use App\Repository\UserRepository;
 use App\Repository\StageRepository;
 use App\Entity\Stage;
 use Symfony\Component\Mailer\MailerInterface;
@@ -46,7 +46,7 @@ class DemandestageController extends AbstractController
     {
         $demandestages = $entityManager
             ->getRepository(Demandestage::class)
-            ->findByIdpersonne(105);
+            ->findByIduser(1);
 
         return $this->render('demandestage/indexetudiant.html.twig', [
             'demandestages' => $demandestages,
@@ -57,13 +57,22 @@ class DemandestageController extends AbstractController
      * @Route("/indexxR/{idpersonne}", name="app_demandestage_indexxR", methods={"GET"})
      */
     public function indexxR(EntityManagerInterface $entityManager): Response
-    {
-        $demandestages = $entityManager
+    {   
+        $stages=$entityManager->getRepository(Stage::class)->ListStageByIdPersonne(1);
+        $demandestage1=[];
+        foreach ($stages as $s) {
+            $demandestages = $entityManager
             ->getRepository(Demandestage::class)
-            ->findByIdpersoneeRec(107);
+            ->findByidstage($s->getIdstage());
+            foreach ($demandestages as $ds ) {
+                array_push($demandestage1,$ds);
+            }
+        }
+
+        
 
         return $this->render('demandestage/index.html.twig', [
-            'demandestages' => $demandestages,
+            'demandestages' => $demandestage1,
         ]);
     }
 
@@ -74,12 +83,12 @@ class DemandestageController extends AbstractController
      * @Route("/{id}/new", name="app_demandestage_new", methods={"GET", "POST"})
      *
      */
-    public function new(Request $request, EntityManagerInterface $entityManager,Stage $stage,PersonneRepository $rep1,StageRepository $rep2,MailerInterface $mailer): Response
+    public function new(Request $request, EntityManagerInterface $entityManager,Stage $stage,UserRepository $rep1,StageRepository $rep2,MailerInterface $mailer): Response
     {
         $demandestage = new Demandestage();
-        $personne = $rep1->find(105);
+        $personne = $rep1->find(1);
         $demandestage->setIdstage($stage);
-        $demandestage->setIdpersonne($personne);
+        $demandestage->setIduser($personne);
         $demandestage->setEtat("En_attente");
 
             $entityManager->persist($demandestage);
@@ -87,7 +96,7 @@ class DemandestageController extends AbstractController
 
             $email = (new Email())
                 ->from('chalouah.abdeladhim@esprit.tn')
-                ->to('Msalmiskander@gmail.com')
+                ->to('chalouah.abdeladhim@esprit.tn')
 
 
                 ->subject('🥳Vous Avez Recu Une Nouvelle Demande De Stage🥳')
@@ -97,13 +106,13 @@ class DemandestageController extends AbstractController
             $mailer->send($email);
 
 
-            $client = new \MessageBird\Client('Mt3hSEnCfOlUksyYvmGxsRkzb');
-            $message = new \MessageBird\Objects\Message();;
+      //      $client = new \MessageBird\Client('Gznfm7aYkJr3V7hyvRq2n34sz');
+        //    $message = new \MessageBird\Objects\Message();;
 
-            $message->originator='Mon Stage';
-            $message->recipients=['+21650890060'];
-            $message->body ='🥳Vous Avez Recu Une Nouvelle Demande De Stage🥳';
-            $client->messages->create($message);
+        //    $message->originator='Mon Stage';
+         //   $message->recipients=['+21650890060'];
+         //   $message->body ='🥳Vous Avez Recu Une Nouvelle Demande De Stage🥳';
+         //   $client->messages->create($message);
 
             return $this->redirectToRoute('app_demandestage_indexx', ['idpersonne' => "105"], Response::HTTP_SEE_OTHER);
 
@@ -138,7 +147,7 @@ class DemandestageController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_demandestage_indexxR', ['idpersonne'=> "105"], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_demandestage_indexxR', ['idpersonne'=> "1"], Response::HTTP_SEE_OTHER);
 
           
             
@@ -160,7 +169,7 @@ class DemandestageController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_demandestage_indexxR', ['idpersonne'=> "105"], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_demandestage_indexxR', ['idpersonne'=> "1"], Response::HTTP_SEE_OTHER);
     }
 
       /**

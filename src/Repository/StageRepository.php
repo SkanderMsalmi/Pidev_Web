@@ -81,7 +81,7 @@ class StageRepository extends ServiceEntityRepository
     public function ListStageByIdPersonne($idpersonne)
     {
         return $this->createQueryBuilder('s')
-        ->andWhere('s.idpersonne = :val')
+        ->andWhere('s.iduser = :val')
         ->setParameter('val', $idpersonne)
         ->orderBy('s.idstage', 'ASC')
         //->setMaxResults(10)

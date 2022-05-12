@@ -49,10 +49,10 @@ class DemandeStageRepository extends ServiceEntityRepository
       * @return Demandestage[] Returns an array of Demandestage objects
       */
     
-    public function findByIdpersonee($value)
+    public function findByIduser($value)
     {
         return $this->createQueryBuilder('d')
-            ->andWhere('d.idpersonne = :val')
+            ->andWhere('d.iduser = :val')
             ->setParameter('val', $value)
             ->orderBy('d.iddemande', 'ASC')
             //->setMaxResults(10)
@@ -60,29 +60,51 @@ class DemandeStageRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-         /**
-      * @return Demandestage[] Returns an array of Demandestage objects
-      */
+      
     
-      public function findByIdpersoneeRec($id)
-      {   
-          $em=$this->getEntityManager();
-          $query=$em->createQuery("SELECT d, x, h FROM APP\ENTITY\Demandestage d JOIN d.idstage x JOIN x.idpersonne h WHERE h.idpersonne=:id")
-          ->setParameter('id', $id);
-          return $query->getResult();
-         
-      }
+    
     
 
+    // /**
+    //  * @return DemandeStage[] Returns an array of Stage objects
+    //  */
     /*
-    public function findOneBySomeField($value): ?Demandestage
+    public function findByExampleField($value)
     {
-        return $this->createQueryBuilder('d')
-            ->andWhere('d.exampleField = :val')
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.exampleField = :val')
+            ->setParameter('val', $value)
+            ->orderBy('s.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    */
+
+    /*
+    public function findOneBySomeField($value): ?Stage
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.exampleField = :val')
             ->setParameter('val', $value)
             ->getQuery()
             ->getOneOrNullResult()
         ;
     }
     */
+
+
+    
+    /**
+     *@return DemandeStage[] Returns an array of Stage objects
+     */
+    public function findByIdstage($id)
+    {   
+        $em=$this->getEntityManager();
+        $query=$em->createQuery("SELECT d FROM APP\ENTITY\Demandestage d  WHERE h.idstage=:id")
+        ->setParameter('id', $id);
+        return $query->getResult();
+       
+    }
 }

@@ -46,13 +46,13 @@ class EntretienRepository extends ServiceEntityRepository
     }
 
          /**
-      * @return Demandestage[] Returns an array of Demandestage objects
+      * @return Entretien[] Returns an array of Entretien objects
       */
     
-      public function findByIdpersonee($value)
+      public function findByIduser($value)
       {
           return $this->createQueryBuilder('d')
-              ->andWhere('d.idpersonne = :val')
+              ->andWhere('d.iduser = :val')
               ->setParameter('val', $value)
               ->orderBy('d.iddemande', 'ASC')
               //->setMaxResults(10)
@@ -62,13 +62,13 @@ class EntretienRepository extends ServiceEntityRepository
       }
 
                /**
-      * @return Demandestage[] Returns an array of Demandestage objects
+      * @return Entretien[] Returns an array of Entretien objects
       */
     
-      public function findByIdpersonne($id)
+      public function findByIdstage($id)
       {   
           $em=$this->getEntityManager();
-          $query=$em->createQuery("SELECT d,  h FROM APP\ENTITY\Entrtien d JOIN d.idstage WHERE h.idpersonne=:id")
+          $query=$em->createQuery("SELECT d,  h FROM APP\ENTITY\Entrtien d   WHERE h.iduser=:id")
           ->setParameter('id', $id);
           return $query->getResult();
          

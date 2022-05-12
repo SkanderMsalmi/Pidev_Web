@@ -7,8 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Demandestage
  *
- * @ORM\Table(name="demandestage", indexes={@ORM\Index(name="fk_demandePersonne", columns={"idPersonne"}), @ORM\Index(name="fk_demandeStage", columns={"idStage"})})
- * @ORM\Entity(repositoryClass="App\Repository\DemandeStageRepository")
+ * @ORM\Table(name="demandestage", indexes={@ORM\Index(name="fk_demandePersonne", columns={"idUser"}), @ORM\Index(name="fk_demandeStage", columns={"idStage"})})
+ * @ORM\Entity
  */
 class Demandestage
 {
@@ -29,16 +29,6 @@ class Demandestage
     private $etat;
 
     /**
-     * @var \Personne
-     *
-     * @ORM\ManyToOne(targetEntity="Personne")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idPersonne", referencedColumnName="idPersonne")
-     * })
-     */
-    private $idpersonne;
-
-    /**
      * @var \Stage
      *
      * @ORM\ManyToOne(targetEntity="Stage")
@@ -47,6 +37,16 @@ class Demandestage
      * })
      */
     private $idstage;
+
+    /**
+     * @var \User
+     *
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idUser", referencedColumnName="id")
+     * })
+     */
+    private $iduser;
 
     public function getIddemande(): ?int
     {
@@ -65,18 +65,6 @@ class Demandestage
         return $this;
     }
 
-    public function getIdpersonne(): ?Personne
-    {
-        return $this->idpersonne;
-    }
-
-    public function setIdpersonne(?Personne $idpersonne): self
-    {
-        $this->idpersonne = $idpersonne;
-
-        return $this;
-    }
-
     public function getIdstage(): ?Stage
     {
         return $this->idstage;
@@ -85,6 +73,18 @@ class Demandestage
     public function setIdstage(?Stage $idstage): self
     {
         $this->idstage = $idstage;
+
+        return $this;
+    }
+
+    public function getIduser(): ?User
+    {
+        return $this->iduser;
+    }
+
+    public function setIduser(?User $iduser): self
+    {
+        $this->iduser = $iduser;
 
         return $this;
     }

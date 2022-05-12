@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Repository\PersonneRepository;
+use App\Repository\UserRepository;
 use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
 use Symfony\UX\Chartjs\Model\Chart;
 use App\Repository\StageRepository;
@@ -79,11 +79,11 @@ class StageController extends AbstractController
     /**
      * @Route("/new", name="app_stage_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, EntityManagerInterface $entityManager, PersonneRepository $repository): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, UserRepository $repository): Response
     {
         $stage = new Stage();
-        $personne = $repository->find(107);
-        $stage->setIdpersonne($personne);
+        $personne = $repository->find(1);
+        $stage->setIduser($personne);
         $stage->setDatefin(new \DateTime("2023-10-10"));
         $form = $this->createForm(StageType::class, $stage);
         $form->handleRequest($request);
@@ -97,7 +97,7 @@ class StageController extends AbstractController
 
             );
 
-            return $this->redirectToRoute('app_stage_mesStage', ['idpersonne' => "107"], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_stage_mesStage', ['idpersonne' => "1"], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('stage/new.html.twig', [
@@ -134,7 +134,7 @@ class StageController extends AbstractController
 
             );
 
-            return $this->redirectToRoute('app_stage_mesStage', ['idpersonne' => "107"], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_stage_mesStage', ['idpersonne' => "1"], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('stage/edit.html.twig', [
@@ -158,7 +158,7 @@ class StageController extends AbstractController
             );
         }
 
-        return $this->redirectToRoute('app_stage_mesStage', ['idpersonne' => "107"], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_stage_mesStage', ['idpersonne' => "1"], Response::HTTP_SEE_OTHER);
     }
     /**
      * @Route("/mesStage/{idpersonne}", name="app_stage_mesStage", methods={"GET", "POST"})
@@ -168,7 +168,7 @@ class StageController extends AbstractController
        
        $stage = $paginator->paginate( $this->getDoctrine()
        ->getRepository(Stage::class)
-       ->ListStageByIdPersonne(107),$request->query->getInt('page', 1),6 );
+       ->ListStageByIdPersonne(1),$request->query->getInt('page', 1),6 );
 
         return $this-> render('stage/mesStage.html.twig',
         ['stage' => $stage]);

@@ -5,10 +5,11 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
+
 /**
  * Entretien
  *
- * @ORM\Table(name="entretien", indexes={@ORM\Index(name="fk_entretienStage", columns={"idStage"}), @ORM\Index(name="idPersonne", columns={"idPersonne"})})
+ * @ORM\Table(name="entretien", indexes={@ORM\Index(name="fk_entretienStage", columns={"idStage"}), @ORM\Index(name="idUser", columns={"idUser"})})
  * @ORM\Entity
  */
 class Entretien
@@ -24,35 +25,35 @@ class Entretien
 
     /**
      * @var \DateTime
-     * @Assert\Range(
+     *
+     * 
+     * @ORM\Column(name="dateEntretien", type="datetime", nullable=false)
+     *  * @Assert\Range(
      *      min = "now",
      *      max = "+15 days",
      *      notInRangeMessage = "Entre {{ min }} et {{ max }}",
      * )
-     * @ORM\Column(name="dateEntretien", type="datetime", nullable=false)
      */
     private $dateentretien;
 
-    
-
     /**
      * @var string
-     * 
-     * @Assert\NotBlank(message="Lien Entretien Doit ètre Non Vide")
-     * @Assert\Url(relativeProtocol = false , protocols = {"http", "https", "ftp"}, checkDNS = "ANY")
+     *
      * @ORM\Column(name="lienEntretien", type="string", length=255, nullable=false)
+      * @Assert\NotBlank(message="Lien Entretien Doit ètre Non Vide")
+     * @Assert\Url(relativeProtocol = false , protocols = {"http", "https", "ftp"}, checkDNS = "ANY")
      */
     private $lienentretien;
 
     /**
-     * @var \Personne
+     * @var \User
      *
-     * @ORM\ManyToOne(targetEntity="Personne")
+     * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idPersonne", referencedColumnName="idPersonne")
+     *   @ORM\JoinColumn(name="idUser", referencedColumnName="id")
      * })
      */
-    private $idpersonne;
+    private $iduser;
 
     /**
      * @var \Stage
@@ -69,19 +70,29 @@ class Entretien
         return $this->identretien;
     }
 
-    public function getDateentretien(): ?\DateTime
+    public function getDateentretien(): ?\DateTimeInterface
     {
         return $this->dateentretien;
     }
 
-    public function setDateentretien(\DateTime $dateentretien): self
+    public function setDateentretien(\DateTimeInterface $dateentretien): self
     {
         $this->dateentretien = $dateentretien;
 
         return $this;
     }
 
-    
+    public function getHeureentretien(): ?string
+    {
+        return $this->heureentretien;
+    }
+
+    public function setHeureentretien(string $heureentretien): self
+    {
+        $this->heureentretien = $heureentretien;
+
+        return $this;
+    }
 
     public function getLienentretien(): ?string
     {
@@ -95,14 +106,14 @@ class Entretien
         return $this;
     }
 
-    public function getIdpersonne(): ?Personne
+    public function getIduser(): ?User
     {
-        return $this->idpersonne;
+        return $this->iduser;
     }
 
-    public function setIdpersonne(?Personne $idpersonne): self
+    public function setIduser(?User $iduser): self
     {
-        $this->idpersonne = $idpersonne;
+        $this->iduser = $iduser;
 
         return $this;
     }

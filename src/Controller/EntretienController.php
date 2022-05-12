@@ -3,13 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Entretien;
+use App\Entity\Stage;
 use App\Form\Entretien1Type;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Repository\PersonneRepository;
+use App\Repository\UserRepository;
 
 /**
  * @Route("/entretien")
@@ -36,7 +37,7 @@ class EntretienController extends AbstractController
     {
         $entretiens = $entityManager
             ->getRepository(Entretien::class)
-            ->findByIdpersonne(105);
+            ->findByIduser(1);
 
         return $this->render('entretien/indexetudiant.html.twig', [
             'entretiens' => $entretiens,
@@ -48,12 +49,23 @@ class EntretienController extends AbstractController
      */
     public function indexxR(EntityManagerInterface $entityManager): Response
     {
-        $entretiens = $entityManager
+        
+
+         $stages=$entityManager->getRepository(Stage::class)->ListStageByIdPersonne(1);
+        $entretiens1=[];
+        foreach ($stages as $s) {
+            $entretiens = $entityManager
             ->getRepository(Entretien::class)
-            ->findByIdpersonne(107);
+            ->findByidstage($s->getIdstage());
+            foreach ($entretiens as $e ) {
+                array_push($entretiens1,$e);
+            }
+        } 
+
+
 
         return $this->render('entretien/index.html.twig', [
-            'entretiens' => $entretiens,
+            'entretiens' => $entretiens1,
         ]);
     }
 
@@ -61,11 +73,11 @@ class EntretienController extends AbstractController
     /**
      * @Route("/new", name="app_entretien_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, EntityManagerInterface $entityManager, PersonneRepository $repository): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, UserRepository $repository): Response
     {
         $entretien = new Entretien();
-        $personne = $repository->find(107);
-        $entretien->setIdpersonne($personne);
+        $personne = $repository->find(1);
+        $entretien->setIduser($personne);
         $form = $this->createForm(Entretien1Type::class, $entretien);
         $form->handleRequest($request);
 
@@ -113,7 +125,7 @@ class EntretienController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_entretien_indexxR', ['idpersonne'=> "107"], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_entretien_indexxR', ['idpersonne'=> "1"], Response::HTTP_SEE_OTHER);
         }
         
         return $this->render('entretien/editForm.html.twig', [
@@ -132,7 +144,7 @@ class EntretienController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_entretien_indexxR', ['idpersonne'=> "107"], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_entretien_indexxR', ['idpersonne'=> "1"], Response::HTTP_SEE_OTHER);
     }
    
 }

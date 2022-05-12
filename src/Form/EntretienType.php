@@ -15,7 +15,7 @@ class EntretienType extends AbstractType
             ->add('dateentretien')
             ->add('heureentretien')
             ->add('lienentretien')
-            ->add('idpersonne')
+            ->add('iduser')
             ->add('idstage')
         ;
     }

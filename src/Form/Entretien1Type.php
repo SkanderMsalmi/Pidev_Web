@@ -17,7 +17,7 @@ class Entretien1Type extends AbstractType
         $builder
             ->add('dateentretien', DateTimeType::class)
             ->add('lienentretien')
-            ->add('idpersonne')
+            ->add('iduser')
             ->add('idstage')
             //->add('Confirmer', SubmitType::class) 
         ;

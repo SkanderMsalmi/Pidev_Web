@@ -20,9 +20,9 @@
         {% for entretien in entretiens %}
             <tr>
                 <td>{{ entretien.identretien }}</td>
-                <td>{{ entretien.dateentretien | date }}</td>
+                <td>{{ entretien.dateentretien | date ('Y-m-d H:i:s') }}</td>
                 <td>{{ entretien.idstage }}</td>
-                <td>{{ entretien.idpersonne }}</td>
+                <td>{{ entretien.iduser }}</td>
                 <td>{{ entretien.lienentretien }}</td>
                 <td>
                     <a href="{{ path('app_entretien_show', {'identretien': entretien.identretien}) }}">show</a>
