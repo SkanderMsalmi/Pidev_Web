@@ -107,6 +107,7 @@
 				<div class="collapse navbar-collapse" id="navbarCollapse">
 					<div class="navbar-nav ms-auto p-4 p-lg-0">
 						<a href="{{ path('acceuil') }}" class="nav-item nav-link ">Accueil</a>
+						
 						{% if is_granted('ROLE_USER') %}
 							{% if app.user.role == "Etudiant" %}
 						<div class="nav-item dropdown">
