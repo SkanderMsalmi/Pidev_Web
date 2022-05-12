@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\UserRepository;
+use App\Repository\EntretienRepository;
 
 /**
  * @Route("/entretien")
@@ -26,18 +27,20 @@ class EntretienController extends AbstractController
             ->getRepository(Entretien::class)
             ->findAll();
 
-        return $this->render('entretien/index.html.twig', [
+        return $this->render('entretien/entretienAdmin.html.twig', [
             'entretiens' => $entretiens,
         ]);
     }
        /**
      * @Route("/indexx/{idpersonne}", name="app_entretien_indexx", methods={"GET"})
      */
-    public function indexx(EntityManagerInterface $entityManager): Response
+    public function indexx(EntityManagerInterface $entityManager,$idpersonne,UserRepository $rep1): Response
     {
+        $p=$rep1->find($idpersonne);
+
         $entretiens = $entityManager
             ->getRepository(Entretien::class)
-            ->findByIduser(1);
+            ->findByIduser($p);
 
         return $this->render('entretien/indexetudiant.html.twig', [
             'entretiens' => $entretiens,
@@ -47,11 +50,12 @@ class EntretienController extends AbstractController
             /**
      * @Route("/indexxR/{idpersonne}", name="app_entretien_indexxR", methods={"GET"})
      */
-    public function indexxR(EntityManagerInterface $entityManager): Response
+    public function indexxR(EntityManagerInterface $entityManager,$idpersonne,UserRepository $rep1): Response
     {
         
+        $p=$rep1->find($idpersonne);
 
-         $stages=$entityManager->getRepository(Stage::class)->ListStageByIdPersonne(1);
+        $stages=$entityManager->getRepository(Stage::class)->ListStageByIdPersonne($p);
         $entretiens1=[];
         foreach ($stages as $s) {
             $entretiens = $entityManager
@@ -62,7 +66,7 @@ class EntretienController extends AbstractController
             }
         } 
 
-
+        
 
         return $this->render('entretien/index.html.twig', [
             'entretiens' => $entretiens1,
@@ -97,8 +101,9 @@ class EntretienController extends AbstractController
     /**
      * @Route("/{identretien}", name="app_entretien_show", methods={"GET"})
      */
-    public function show(Entretien $entretien): Response
+    public function show(EntretienRepository $rep1,$identretien): Response
     {
+        $entretien=$rep1->find($identretien);
         return $this->render('entretien/show.html.twig', [
             'entretien' => $entretien,
         ]);
@@ -107,8 +112,10 @@ class EntretienController extends AbstractController
         /**
      * @Route("/{identretien}/showetud", name="app_entretien_show_etudiant", methods={"GET"})
      */
-    public function showetud(Entretien $entretien): Response
+    public function showetud(EntretienRepository $rep1,$identretien): Response
     {
+        $entretien=$rep1->find($identretien);
+
         return $this->render('entretien/showetudiant.html.twig', [
             'entretien' => $entretien,
         ]);
@@ -117,8 +124,11 @@ class EntretienController extends AbstractController
     /**
      * @Route("/{identretien}/edit", name="app_entretien_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Entretien $entretien, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request,EntretienRepository $rep1,$identretien, EntityManagerInterface $entityManager): Response
     {
+
+        $entretien=$rep1->find($identretien);
+
         $form = $this->createForm(Entretien1Type::class, $entretien);
         $form->handleRequest($request);
 
@@ -137,8 +147,10 @@ class EntretienController extends AbstractController
     /**
      * @Route("/{identretien}", name="app_entretien_delete", methods={"POST"})
      */
-    public function delete(Request $request, Entretien $entretien, EntityManagerInterface $entityManager): Response
+    public function delete(Request $request,EntretienRepository $rep1,$identretien, EntityManagerInterface $entityManager): Response
     {
+        $entretien=$rep1->find($identretien);
+
         if ($this->isCsrfTokenValid('delete'.$entretien->getIdentretien(), $request->request->get('_token'))) {
             $entityManager->remove($entretien);
             $entityManager->flush();

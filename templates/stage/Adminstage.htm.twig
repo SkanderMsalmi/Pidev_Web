@@ -1,7 +1,76 @@
 {% extends 'baseAdmin.html.twig' %}
 
+{% block title %}  Stages {% endblock %}
+
+{% block body %}
+
+    <h1 style="padding:80px">Stages</h1>
+     
+    
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Idstage</th>
+                <th>Duree En Mois</th>
+                <th>Type</th>
+                <th>Domaine</th>
+                <th>Description</th>
+                <th>Sujet</th>
+                <th>Datedebut</th>
+                
+                
+            </tr>
+        </thead>
+        <tbody>
+        {% for stage in stages %}
+            <tr>
+                <td>{{ stage.idstage }}</td>
+                <td>{{ stage.duree }}</td>
+                <td>{{ stage.type }}</td>
+                <td>{{ stage.domaine }}</td>
+                <td>{{ stage.description }}</td>
+                <td>{{ stage.sujet }}</td>
+                <td>{{ stage.datedebut | date}}</td>
+               
+               
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+     <div class="pag">
+            {{ knp_pagination_render(stages,'pagination.html.twig') }}
+        </div>
+    <div class="stat">
+    <canvas id="my" ></canvas>
+    </div>
+
+    
 
 
-{% block title %} List Stage  {% endblock %}
+    
+  
+   
+<script>
+        let my = document.querySelector("#my")
+        let myGraph = new Chart(my, {
+            type: "pie",
+            data: {
+                labels: ["Informatique", "Electronique", "Mécanique", "Gestion", "Economie", "Sport"],
+                
+                datasets: [{
+                    label: " #Statestique Selon Domaine ",
+                    data: [{{info}},{{elec}},{{meca}},{{ges}},{{eco}},{{sport}}],
 
-
+                    backgroundColor: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']
+                }],
+            }
+           
+            }
+        )
+</script>        
+{% endblock %}
