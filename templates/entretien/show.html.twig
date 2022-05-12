@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Entretien{% endblock %}
+
+{% block body %}
+<div style="display: flex;align-items: center;justify-content: center;padding:70px ">
+  <div class="top-margin" >
+    <h1>Entretien</h1>
+
+    <table class="table">
+        <tbody>
+            
+            <tr>
+                <th>Dateentretien</th>
+                <td>{{ entretien.dateentretien ? entretien.dateentretien| date}}</td>
+            </tr>
+            
+            <tr>
+                <th>Lienentretien</th>
+                <td>{{ entretien.lienentretien }}</td>
+            </tr>
+            <tr>
+                <th>Stage</th>
+                <td>{{ entretien.idstage }}</td>
+            </tr>
+            <tr>
+                <th>Etudiant</th>
+                <td>{{ entretien.iduser }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn" href="{{ path('app_entretien_indexxR', {'idpersonne': "1"}) }}">back to list</a>
+
+    
+
+    {{ include('entretien/_delete_form.html.twig') }}
+</div>
+</div>
+    
+{% endblock %}

@@ -461,6 +461,10 @@ class User implements UserInterface
     {
         $this->cv = $cv;
     }
+    public function __toString(): string
+    {
+        return $this->getNom();
+    }
 
 
 }

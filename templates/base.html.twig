@@ -77,6 +77,11 @@
 			<link href="{{asset("assets/css/passerQuiz.css") }}" rel="stylesheet">
 
 
+
+			<link rel="stylesheet" href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css') }}"
+                               integrity="sha512-/zs32ZEJh+/EO2N1b0PEdoA10JkdC3zJ8L5FTiQu82LR9S/rOQNfQN7U59U9BC12swNeRAz3HSzIL2vpp4fv3w==" 
+                               crossorigin="anonymous" referrerpolicy="no-referrer">
+
 		{% endblock %}
 
 
@@ -98,51 +103,71 @@
 				<a href="{{path('acceuil')}}" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
 					<h2 class="m-0 text-primary">
 						<i class="fa fa-diamond me-3"></i>MonStage</h2>
+					</h2>
 				</a>
-				<button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-					<span class="navbar-toggler-icon"></span>
-				</button>
+
 				<div class="collapse navbar-collapse" id="navbarCollapse">
 					<div class="navbar-nav ms-auto p-4 p-lg-0">
 						<a href="{{ path('acceuil') }}" class="nav-item nav-link ">Accueil</a>
+						
+						{% if is_granted('ROLE_USER') %}
+							{% if app.user.role == "Etudiant" %}
 						<div class="nav-item dropdown">
-							<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Mes Stages</a>
+							<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Stage</a>
 							<div class="dropdown-menu fade-down m-0">
-								<a href="team.html" class="dropdown-item">Liste des stages</a>
-								<a href="404.html" class="dropdown-item">Mes demandes de stages</a>
+
+							<a href="team.html" class="dropdown-item">Stages</a>
+						<a href="404.html" class="dropdown-item">Mes Demandes de stages</a>
 							</div>
 						</div>
-						<div class="nav-item dropdown">
-							<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Mes Formations</a>
-							<div class="dropdown-menu fade-down m-0">
-								<a href="{{path('app_formation_etudiant')}}" class="dropdown-item">Liste des formations</a>
-								<a href="{{path('app_reservation_Etudiant')}}" class="dropdown-item">Mes reservations</a>
-							</div>
-						</div>
-						<a href="{{ path('app_quiz_new') }}" class="nav-item nav-link">Quiz</a>
-						<a href="{{path('app_bibliothequeClient')}}" class="nav-item nav-link">Bibliothèque</a>
-						<div class="nav-item dropdown">
-							{% if is_granted('ROLE_USER')  %}
-								<a href="#" class="btn btn-info py-4 px-lg-5 d-none d-lg-block" data-bs-toggle="dropdown">{{ app.user.nom }}
-									{{ app.user.prenom }}<i class="fa fa-user-circle ms-3"></i>
-								</a>
-								<div class="dropdown-menu fade-down m-0">
-									<a href="{{ path('profile') }}" class="btn btn-info py-lg-4 px-lg-5 d-none d-lg-block">Profile</a>
-									<a href="#" class="btn btn-secondary py-4 px-lg-5 d-none d-lg-block" data-bs-toggle="dropdown">Parametres</a>
-									<a href="{{ path('app_logout') }}" class="btn btn-danger py-lg-4 px-lg-5 d-none d-lg-block">Déconnexion</a>
+
+								<div class="nav-item dropdown">
+									<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Mes Formations</a>
+									<div class="dropdown-menu fade-down m-0">
+										<a href="{{path('ListFormationEtudiant')}}" class="dropdown-item">Liste des formations</a>
+										<a href="{{path('app_reservation_Etudiant')}}" class="dropdown-item">Mes reservations</a>
+									</div>
 								</div>
+								<a href="{{ path('app_quiz_new') }}" class="nav-item nav-link">Quiz</a>
+								<a href="{{path('app_bibliothequeClient')}}" class="nav-item nav-link">Bibliothèque</a>
+							{% elseif app.user.role == "Formateur" %}
+								<a href="{{path('ListFormationEtudiant')}}" class="nav-item nav-link ">Liste des formations</a>
+								<a href="{{path('app_reservation_Etudiant')}}" class="nav-item nav-link ">Mes reservations</a>
 							{% else %}
-								<a href="#" class="btn btn-info py-4 px-lg-5 d-none d-lg-block" data-bs-toggle="dropdown">Join Now<i class="fa fa-user-circle ms-3"></i>
-								</a>
-								<div class="dropdown-menu fade-down m-0">
-									<a href="{{ path('inscription') }}" class="py-lg-4 px-lg-5 d-none d-lg-block btn btn-info">Inscription</a>
-									<a href="{{ path('app_login') }}" class="btn btn-success py-lg-4 px-lg-5 d-none d-lg-block">Se Connecter</a>
-								</div>
+									<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Mes Stages</a>
+								<a href="404.html" class="dropdown-item">Mes Demandes de stages</a>
 
 							{% endif %}
-
-
+						<div class="nav-item dropdown">
+							<a href="#" class="btn btn-info py-4 px-lg-5 d-none d-lg-block" data-bs-toggle="dropdown">{{ app.user.nom }}
+								{{ app.user.prenom }}<i class="fa fa-user-circle ms-3"></i>
+							</a>
+							<div class="dropdown-menu fade-down m-0">
+								<a href="{{ path('profile') }}" class="btn btn-info py-lg-4 px-lg-5 d-none d-lg-block">Profile</a>
+								<a href="#" class="btn btn-secondary py-4 px-lg-5 d-none d-lg-block" data-bs-toggle="dropdown">Parametres</a>
+								<a href="{{ path('app_logout') }}" class="btn btn-danger py-lg-4 px-lg-5 d-none d-lg-block">Déconnexion</a>
+							</div>
 						</div>
+
+						{% else %}
+						<div class="nav-item dropdown">
+
+						<a href="#" class="btn btn-info py-4 px-lg-5 d-none d-lg-block" data-bs-toggle="dropdown">Join Now<i class="fa fa-user-circle ms-3"></i>
+						</a>
+						<div class="dropdown-menu fade-down m-0">
+							<a href="{{ path('inscription') }}" class="py-lg-4 px-lg-5 d-none d-lg-block btn btn-info">Inscription</a>
+							<a href="{{ path('app_login') }}" class="btn btn-success py-lg-4 px-lg-5 d-none d-lg-block">Se Connecter</a>
+						</div>
+						</div>
+
+						{% endif %}
+
+
+
+
+
+
+
 
 					</div>
 				</div>
@@ -228,7 +253,7 @@
 
 
 			<!-- Back to Top -->
-			<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top">
+			<a href="#" class="btn btn-lg btn-info btn-lg-square back-to-top">
 				<i class="bi bi-arrow-up"></i>
 			</a>
 		{% endblock %}
@@ -253,6 +278,11 @@
 			<!-- Template Javascript -->
 			<script src="{{ asset('assets2/js/main.js') }}"></script>
 
+			<!-- Abdou -->
+			<script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js') }}" 
+					integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" 
+					crossorigin="anonymous" 
+					referrerpolicy="no-referrer"></script>
 
 		{% endblock %}
 		<!-- Include Flashy default partial -->

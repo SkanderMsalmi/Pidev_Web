@@ -1,9 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseAdmin.html.twig' %}
 
-{% block title %}Hello FormationController!{% endblock %}
 
 {% block body %}
 
+    <main id="main" class="main">
 
     <style>
         .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
@@ -76,12 +76,7 @@
 {#                <td>{{ formation.prix }}</td>#}
 {#                <td>{{ formation.datedebut ? formation.datedebut|date('Y-m-d') : '' }}</td>#}
 {#                <td>{{ formation.datefin ? formation.datefin|date('Y-m-d') : '' }}</td>#}
-                <td>
-                    <a class="btn btn-success" href="{{ path('editformation', {'idFormation': formation.idformation}) }}">Modifier</a>
-                </td>
-                <td>
-                    <a class="btn btn-danger" href="{{ path('deleteformation', {'idFormation': formation.idformation}) }}">Supprimer</a>
-                </td>
+
             </tr>
         {% else %}
             <tr>
@@ -107,9 +102,10 @@
 
 
     <a href="{{ path('newformation') }}">Creer une nouvelle formation</a>
-    <div class="pagination">
-        {{ knp_pagination_render(f) }}
-    </div>
+			 <main class="d-flex justify-content-center">
+		 {% do f.setPageRange(2) %}
+		 {{ knp_pagination_render (f ,'pagination.html.twig') }}
+		 </main>
 
 
 
@@ -130,7 +126,7 @@
 
 
 
-    </div>
+    </main>
 
 
 {% endblock %}

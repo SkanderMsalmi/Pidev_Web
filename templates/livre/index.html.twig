@@ -1,46 +1,81 @@
 {% extends 'baseAdmin.html.twig' %}
 
-{% block title %}Hello BibliothequeController!{% endblock %}
+{% block title %}Hello BibliothequeController!
+{% endblock %}
 
 {% block body %}
 
 
-    <center>
-
-        <div class="card-body">
-
-            <h5 class="card-title">Bibliotheques</h5>
-            <p>liste des bibliotheques <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable</p>
+	<main id="main" class="main">
 
 
+		<div class="card-body">
+
+			<h5 class="card-title">Bibliotheques</h5>
 
 
+			<div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+				<div class="dataTable-top"></div>
+				<div class="dataTable-search">
+					{{ form_start (form) }}
+					{{ form_widget (form.titrel) }}
+					{{ form_widget (form.ajouter)}}
+					{{ form_end (form) }}
+				</div>
+			</div>
+			<div class="dataTable-container">
+				<table class="table datatable dataTable-table">
+					<thead>
+						<tr>
 
-            <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns"><div class="dataTable-top"></div><div class="dataTable-search">
-             {{ form_start (form) }}
-             {{ form_widget (form.titrel) }}
-             {{ form_widget (form.ajouter)}}
-             {{ form_end (form) }}
-                </div></div><div class="dataTable-container"><table class="table datatable dataTable-table">
-                        <thead>
-                        <tr>
+							<th scope="col" data-sortable="" style="width: 7.61421%;">
+								<a href="#" class="dataTable-sorter">#</a>
+							</th>
+							<th scope="col" data-sortable="" style="width: 27.1574%;">
+								<a href="#" class="dataTable-sorter">
+									Titre</a>
+							</th>
+							<th scope="col" data-sortable="" style="width: 33.5025%;" class="desc">
+								<a href="#" class="dataTable-sorter">auteur
+								</a>
+							</th>
+							<th scope="col" data-sortable="" style="width: 12.6904%;">
+								<a href="#" class="dataTable-sorter">description</a>
+							</th>
+							<th scope="col" data-sortable="" style="width: 19.0355%;">
+								<a href="#" class="dataTable-sorter">suppression</a>
+							</th>
+							<th scope="col" data-sortable="" style="width: 19.0355%;">
+								<a href="#" class="dataTable-sorter">modification</a>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for c in Liv %}
+							<tr>
+								<th scope="row">4</th>
+								<td>{{ c.titrel }}</td>
+								<td>{{c.auteurl}}</td>
+								<td>{{ c.descriptionl }}</td>
+								<td>
+									<a href="{{ path ('removeLivre',{'id': c.idl}) }}">
+										supprimer
+									</a>
+								</td>
+								<td>
+									<a href="{{ path ('updateLivre',{'id': c.idl}) }}">
+										modifier
+									</a>
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
 
-                            <th scope="col" data-sortable="" style="width: 7.61421%;"><a href="#" class="dataTable-sorter">#</a></th><th scope="col" data-sortable="" style="width: 27.1574%;"><a href="#" class="dataTable-sorter"> Titre</a></th><th scope="col" data-sortable="" style="width: 33.5025%;" class="desc"><a href="#" class="dataTable-sorter">auteur </a></th><th scope="col" data-sortable="" style="width: 12.6904%;"><a href="#" class="dataTable-sorter">description</a></th><th scope="col" data-sortable="" style="width: 19.0355%;"><a href="#" class="dataTable-sorter">suppression</a></th><th scope="col" data-sortable="" style="width: 19.0355%;"><a href="#" class="dataTable-sorter">modification</a></th></tr>
-                        </thead>
-                        <tbody>
-                        {% for c in Liv %}
-                            <tr><th scope="row">4</th><td>{{ c.titrel }}</td><td>{{c.auteurl}}</td><td>{{ c.descriptionl }}</td><td> <a href ="<a href ="{{ path ('removeLivre',{'id': c.idl}) }}">
-                                    supprimer
-                                    </a> </td><td> <a href ="{{ path ('updateLivre',{'id': c.idl}) }}"> modifier
-                                    </a></td>
-                            </tr> {% endfor %}
-                    </table>
+
+			</div>
 
 
+		</main>
 
-                </div>
-
-
-    </center>
-
-{% endblock %}
+	{% endblock %}
