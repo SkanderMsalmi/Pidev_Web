@@ -4,47 +4,50 @@
 {% endblock %}
 
 {% block body %}
-    <main id="main" class="main">
+	<main id="main" class="main">
 
-   <div>
-       <h1 class="card-title">Liste des Questions</h1>
-        <div style="display: flex;align-items: right;justify-content: right;">       
-		<a class="btn btn-outline-success" href="{{ path('ajouterQuestion') }}">Ajouter Question </a></div>
-        <table class="table">
-			<thead>
-				<tr>
-					<th>#</th>
-					<th>Enonce</th>
-					<th>Domaine</th>
-					<th>Reponse correcte</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for question in questions %}
+		<div>
+			<h1 class="card-title">Liste des Questions</h1>
+			<div style="display: flex;align-items: right;justify-content: right;">
+				<a class="btn btn-outline-success" href="{{ path('ajouterQuestion') }}">Ajouter Question
+				</a>
+			</div>
+			<table class="table">
+				<thead>
 					<tr>
-						<td>{{ question.idquestion }}</td>
-						<td>{{ question.enonce }}</td>
-						<td>{{ question.domaine }}</td>
-						<td>{{ question.reponsecorrecte }}</td>
-						<td>
-							<a class="btn btn-outline-primary" href="{{ path('afficherQuestion', {'idquestion': question.idquestion}) }}">Afficher</a></td>
+						<th>#</th>
+						<th>Enonce</th>
+						<th>Domaine</th>
+						<th>Reponse correcte</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for question in questions %}
+						<tr>
+							<td>{{ question.idquestion }}</td>
+							<td>{{ question.enonce }}</td>
+							<td>{{ question.domaine }}</td>
+							<td>{{ question.reponsecorrecte }}</td>
 							<td>
-							<a class="btn btn-outline-secondary" href="{{ path('modifierQuestion', {'idquestion': question.idquestion}) }}">Modifier</a>
-						</td>
-					</tr>
-				{% else %}
-					<tr>
-						<td colspan="5">no records found</td>
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-         </div>
+								<a class="btn btn-outline-primary" href="{{ path('afficherQuestion', {'idquestion': question.idquestion}) }}">Afficher</a>
+							</td>
+							<td>
+								<a class="btn btn-outline-secondary" href="{{ path('modifierQuestion', {'idquestion': question.idquestion}) }}">Modifier</a>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="5">no records found</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
 
 
-    </div>
-			 <main class="d-flex justify-content-center">
-		 {% do questions.setPageRange(2) %}
-		 {{ knp_pagination_render (questions ,'pagination.html.twig') }}
-		 </main>
+	</div>
+	<main class="d-flex justify-content-center">
+		{% do questions.setPageRange(2) %}
+		{{ knp_pagination_render (questions ,'pagination.html.twig') }}
+	</main>
 {% endblock %}
