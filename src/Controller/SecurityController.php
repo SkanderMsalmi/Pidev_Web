@@ -68,7 +68,13 @@ class SecurityController extends AbstractController
             $user->setPassword($user->getPassword());
             $user->setPdp($fileName);
             $user->setEtatBlock(0);
-
+            if($user->getRole() == "Etudiant"){
+                $user->setRoles(['ROLE_ETUDIANT']);
+            }else if($user->getRole() == "Formateur"){
+                $user->setRoles(['ROLE_FORMATEUR']);
+            }else{
+                $user->setRoles(['ROLE_RECRUTEUR']);
+            }
             $em->persist($user);
             $em->flush();
             $email = new TemplatedEmail();
