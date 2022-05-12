@@ -28,7 +28,7 @@ class StageController extends AbstractController
     {
         $stages = $paginator->paginate( $entityManager
             ->getRepository(Stage::class)
-            ->findAll(),$request->query->getInt('page', 1),6 );
+            ->findAll(),$request->query->getInt('page', 1),4 );
         $Info = $repository
         ->countByDomaine('Informatique'); 
         $Elec =$repository
