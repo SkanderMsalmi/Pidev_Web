@@ -24,7 +24,7 @@ class ReservationController extends AbstractController
 
 
     /**
-     * @Route("/reservation", name="app_reservation", methods={"GET"})
+     * @Route("/admin/reservation", name="app_reservation", methods={"GET"})
      */
     public function index(ReservationRepository $repository,\Symfony\Component\HttpFoundation\Request $request, PaginatorInterface $paginator): Response
     {
@@ -74,7 +74,7 @@ class ReservationController extends AbstractController
 
     ### lel admin
     /**
-     * @Route("/reservationAdmin", name="app_reservation_Admin", methods={"GET"})
+     * @Route("/admin/reservationAdmin", name="app_reservation_Admin", methods={"GET"})
      */
     public function reservationAdmin(ReservationRepository $repository,\Symfony\Component\HttpFoundation\Request $request, PaginatorInterface $paginator): Response
     {
