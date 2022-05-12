@@ -31,6 +31,7 @@ class ExperienceType extends AbstractType
                 'attr'=>['class'=>'js-datepicker'],
 
             ])
+            ->add('description')
             ->add('Enregistrer',SubmitType::class)
         ;
     }

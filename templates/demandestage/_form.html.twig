@@ -1,0 +1,38 @@
+
+<div class="top-margin">
+<article class="col-xs-12 maincontent">
+<div style="display: flex;align-items: center;justify-content: center;padding:70px ">
+	<div class="panel panel-default"style="padding:30px">
+        <div class="panel-body">
+							<h2 class="thin text-center">Edit Demande </h2>
+							<hr>
+							
+							{{ form_start(form) }}
+								<div class="top-margin" >
+									<label>Etat<span class="text-danger">*</span></label>
+									{{ form_widget(form.etat,{attr:{'class':'form-control'}}) }} 
+                                    
+								</div>
+								<div class="top-margin">  
+                                <label>Type <span class='text-danger'>*</span></label>
+                                    {{ form_widget(form.idstage,{attr:{'class':'form-control'}}) }} 
+                                   
+                                </div>
+                                <div class="top-margin">  
+                                <label>Domaine <span class='text-danger'>*</span></label>
+                                {{ form_widget(form.idpersonne,{attr:{'class':'form-control'}}) }} 
+                                
+                                </div>
+
+                           
+								<hr>
+                                <button class="btn">{{ button_label|default('Save') }}</button>
+								
+							{{ form_end(form) }}
+						</div>
+        </div>
+    </div>
+</div>
+</article>
+</div>
+

@@ -2,14 +2,18 @@
 
 namespace App\Entity;
 
+namespace App\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Stage
- *
  * @ORM\Table(name="stage", indexes={@ORM\Index(name="fk_stagePersonne", columns={"idUser"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\StageRepository")
+ * 
  */
+
 class Stage
 {
     /**
@@ -25,6 +29,13 @@ class Stage
      * @var int
      *
      * @ORM\Column(name="duree", type="integer", nullable=false)
+     * *@Assert\NotBlank(message="Durèe Doit ètre Non Vide")
+     *@Assert\Positive(message="Durèe Doit ètre Positive")
+      * @Assert\Range(
+     *      min = 1,
+     *      max = 6,
+     *      notInRangeMessage = "Durèe Doit ètre Entre {{ min }} et {{ max }}",
+     * )
      */
     private $duree;
 
@@ -32,6 +43,10 @@ class Stage
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=255, nullable=false)
+     * *@Assert\NotBlank(message="Type Doit ètre Non Vide")
+    *@Assert\Length(
+     *     min=5,
+     *     minMessage="Entrer Un Type Au Moins De 5 Caractère") 
      */
     private $type;
 
@@ -39,6 +54,8 @@ class Stage
      * @var string
      *
      * @ORM\Column(name="domaine", type="string", length=255, nullable=false)
+     *@Assert\NotBlank(message="Domaine Doit ètre Non Vide")
+
      */
     private $domaine;
 
@@ -46,6 +63,10 @@ class Stage
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=255, nullable=false)
+     * *@Assert\NotBlank(message="Description Doit ètre Non Vide")
+     *@Assert\Length(
+     *     min=20,
+     *     minMessage="Il Faut Bien Dècrire Votre Stage")
      */
     private $description;
 
@@ -53,6 +74,10 @@ class Stage
      * @var string
      *
      * @ORM\Column(name="sujet", type="string", length=255, nullable=false)
+     *  *@Assert\NotBlank(message="Sujet Doit ètre Non Vide")
+     *@Assert\Length(
+     *     min=20,
+     *     minMessage="Entrer Un Sujet Au Moins De 20 Caractère")
      */
     private $sujet;
 
@@ -60,6 +85,11 @@ class Stage
      * @var \DateTime
      *
      * @ORM\Column(name="dateDebut", type="date", nullable=false)
+     * * @Assert\Range(
+     *      min = "now",
+     *      max = "+7 months",
+     *      notInRangeMessage = "Entre {{ min }} et {{ max }}",
+     * )
      */
     private $datedebut;
 
@@ -180,6 +210,12 @@ class Stage
 
         return $this;
     }
+
+    public function __toString(): string
+    {
+        return $this->getSujet();
+    }
+
 
 
 }

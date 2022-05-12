@@ -39,7 +39,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/inscription", name="inscription")
      */
-    public function index(MailerInterface $mailer,EntityManagerInterface $em,Request $request,UserPasswordEncoderInterface $passwordEncoder): Response
+    public function index(MailerInterface $mailer,EntityManagerInterface $em,Request $request): Response
     {
 
         $user = new User();
@@ -65,8 +65,7 @@ class SecurityController extends AbstractController
                $fileName="download.png";
            }
 
-            $hash = $passwordEncoder->encodePassword($user,$user->getPassword());
-            $user->setPassword($hash);
+            $user->setPassword($user->getPassword());
             $user->setPdp($fileName);
             $user->setEtatBlock(0);
 
