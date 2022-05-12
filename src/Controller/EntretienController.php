@@ -19,7 +19,7 @@ use App\Repository\EntretienRepository;
 class EntretienController extends AbstractController
 {
     /**
-     * @Route("/", name="app_entretien_index", methods={"GET"})
+     * @Route("/admin", name="app_entretien_index", methods={"GET"})
      */
     public function index(EntityManagerInterface $entityManager): Response
     {

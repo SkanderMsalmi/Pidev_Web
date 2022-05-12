@@ -20,12 +20,12 @@ class StageType extends AbstractType
             ->add('type')
             ->add('domaine',ChoiceType::class, array(
                 'choices'=>array(
-                    'Informatique'=>1,
-                    'Electronique'=>2 , 
-                    'Mécanique'=>3, 
-                    'Gestion'=>4,
-                    'Economie'=>5,
-                    'Sport'=>6
+                    'Informatique'=>'Informatique',
+                    'Electronique'=>'Electronique' , 
+                    'Mécanique'=>'Mécanique', 
+                    'Gestion'=>'Gestion',
+                    'Economie'=>'Economie',
+                    'Sport'=>'Sport'
                        )))
             ->add('description')
             ->add('sujet')

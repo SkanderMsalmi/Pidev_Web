@@ -19,7 +19,7 @@ return;
 
 // user is deleted, show a generic Account Not Found message.
 if ($user->getEtatBlock() == true) {
-    throw new CustomUserMessageAuthenticationException('Vouss etes Bloqué !');
+    throw new CustomUserMessageAuthenticationException('ACCES REFUSEE !! VOUS ÊTES BLOQUE !!');
 }
 }
 

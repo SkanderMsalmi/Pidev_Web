@@ -22,7 +22,7 @@ use Symfony\Component\Serializer\Serializer;
 class BibliothequeController extends AbstractController
 {
     /**
-     * @Route("/bibliotheque", name="app_bibliotheque")
+     * @Route("/admin/bibliotheque", name="app_bibliotheque")
      */
     public function index(PaginatorInterface $paginator,BibliothequeRepository $repository, Request $request): Response
     {
@@ -85,7 +85,7 @@ return $this->render('bibliotheque/biblioClient.html.twig', ['bibC' => $biblioth
     }
 
     /**
-     * @Route("/addBibliotheque", name="addBibliotheque")
+     * @Route("/admin/addBibliotheque", name="addBibliotheque")
      */
     public function addBibliotheque(Request $req ,FlashyNotifier $flashy): Response
     {
@@ -108,7 +108,7 @@ return $this->render('bibliotheque/biblioClient.html.twig', ['bibC' => $biblioth
 
 
     /**
-     * @Route("/removeBibliotheque{id}", name="removeBibliotheque")
+     * @Route("/admin/removeBibliotheque{id}", name="removeBibliotheque")
      */
     public function removeBibliotheque(Bibliotheque $bib,FlashyNotifier $flashy): Response
     {
@@ -122,7 +122,7 @@ return $this->render('bibliotheque/biblioClient.html.twig', ['bibC' => $biblioth
 
 
     /**
-     * @Route("/updateBibliotheque{id}", name="updateBibliotheque")
+     * @Route("/admin/updateBibliotheque{id}", name="updateBibliotheque")
      */
     public function updateBibliotheque(Request $req,$id,FlashyNotifier $flashy): Response
     {
