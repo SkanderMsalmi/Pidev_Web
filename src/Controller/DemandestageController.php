@@ -20,6 +20,10 @@ use MessageBird\Objects\Message;
 use MessageBird\Objects\PartnerAccount\AccessKey;
 use MessageBird\Client;
 
+//use Symfony\Component\HttpKernel\Client;
+//use Symfony\Component\BrowserKit\Client;
+//use Symfony\Bundle\FrameworkBundle\Client;
+
 /**
  * @Route("/demandestage")
  */
@@ -103,21 +107,21 @@ class DemandestageController extends AbstractController
                 ->to('chalouah.abdeladhim@esprit.tn')
 
 
-                ->subject('🥳Vous Avez Recu Une Nouvelle Demande De Stage🥳')
+                ->subject(' Demande De Stage ')
 
-                ->text('sending ');
+                ->text('🥳 Vous Avez Recu Nouvelle Demande De Stage 🥳');
 
             $mailer->send($email);
 
 
-      //      $client = new \MessageBird\Client('Gznfm7aYkJr3V7hyvRq2n34sz');
-        //    $message = new \MessageBird\Objects\Message();;
+        //    $client = new \MessageBird\Client('PYQDgLTrjUo26qnw6QPakZyl6');
+          //  $message = new \MessageBird\Objects\Message();;
 
-        //    $message->originator='Mon Stage';
-         //   $message->recipients=['+21650890060'];
-         //   $message->body ='🥳Vous Avez Recu Une Nouvelle Demande De Stage🥳';
-         //   $client->messages->create($message);
-
+            /*$message->originator='Mon Stage';
+            $message->recipients=['+21650890060'];
+            $message->body ='🥳Vous Avez Recu Une Nouvelle Demande De Stage🥳';
+            $client->messages->create($message);
+*/
             return $this->redirectToRoute('app_demandestage_indexx', ['idpersonne' => "1"], Response::HTTP_SEE_OTHER);
 
     }
