@@ -30,15 +30,20 @@
 						<tr>
 							<th>Propositions:</th>
 							{% for prop in props %}
-                               <tr> <td> <li>{{ prop.proposition }} </li></td> </tr>
-                            {% endfor %}
+								<tr>
+									<td>
+										<li>{{ prop.proposition }}
+										</li>
+									</td>
+								</tr>
+							{% endfor %}
 						</tr>
 					</tbody>
 				</table>
 				<div align="center">
-				<a class="btn btn-outline-primary" href="{{ path('afficherQuestions') }}">Retour à la liste</a>
+					<a class="btn btn-outline-primary" href="{{ path('afficherQuestions') }}">Retour à la liste</a>
 
-				<a class="btn btn-outline-secondary" href="{{ path('modifierQuestion', {'idquestion': question.idquestion}) }}">edit</a>
+					<a class="btn btn-outline-secondary" href="{{ path('modifierQuestion', {'idquestion': question.idquestion}) }}">edit</a>
 
-				{{ include('question/_delete_form.html.twig') }}</div>
+					{{ include('question/_delete_form.html.twig') }}</div>
 			{% endblock %}

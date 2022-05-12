@@ -162,8 +162,7 @@ class SecurityController extends AbstractController
         if($passwordForm->isSubmitted() && $passwordForm->isValid()){
             $password = $passwordForm->get('password')->getData();
             $user = $resetPasswod->getUser();
-            $hash = $passwordEncoder->encodePassword($user,$password);
-            $user->setPassword($hash);
+            $user->setPassword($password);
             $em->remove($resetPasswod);
             $em->flush();
             $flashyNotifier->success('success','votre mot de passe a été modifié.');

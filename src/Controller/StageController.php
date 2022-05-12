@@ -62,7 +62,7 @@ class StageController extends AbstractController
         ]);
     }
      /**
-     * @Route("/adminstage", name="app_stage_admin", methods={"GET"})
+     * @Route("/admin/stage", name="app_stage_admin", methods={"GET"})
      */
     public function showAdmin(EntityManagerInterface $entityManager, Request $request,PaginatorInterface $paginator): Response
     {

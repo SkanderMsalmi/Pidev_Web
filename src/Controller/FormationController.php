@@ -23,7 +23,7 @@ use Dompdf\Options;
 class FormationController extends AbstractController
 {
     /**
-     * @Route("/formation", name="app_formation", methods={"GET"})
+     * @Route("/admin/formation", name="app_formation", methods={"GET"})
      */
 
     public function index(FormationRepository $repository,\Symfony\Component\HttpFoundation\Request $request, PaginatorInterface $paginator): Response
@@ -59,7 +59,7 @@ class FormationController extends AbstractController
 
     ## liste formation lel admin
     /**
-     * @Route("/ListFormationAdmin", name="ListFormationAdmin", methods={"GET"})
+     * @Route("/admin/ListFormationAdmin", name="ListFormationAdmin", methods={"GET"})
      */
 
     public function ListFormationAdmin(FormationRepository $repository,\Symfony\Component\HttpFoundation\Request $request, PaginatorInterface $paginator): Response
