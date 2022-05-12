@@ -24,7 +24,6 @@ class EditUserType extends AbstractType
             ->add('tel')
             ->add('cin')
             ->add('email')
-            ->add('pdp')
             ->add('datenaissance')
             ->add('profil')
             ->add('infos')

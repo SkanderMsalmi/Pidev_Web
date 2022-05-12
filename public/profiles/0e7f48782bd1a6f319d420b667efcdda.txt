@@ -1,0 +1,69 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1:3306
+-- Generation Time: May 10, 2022 at 10:31 PM
+-- Server version: 5.7.36
+-- PHP Version: 7.4.26
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `bdfinal`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `competance`
+--
+
+DROP TABLE IF EXISTS `competance`;
+CREATE TABLE IF NOT EXISTS `competance` (
+  `idCompetance` int(10) NOT NULL AUTO_INCREMENT,
+  `nomCompetance` varchar(30) NOT NULL,
+  `niveau` enum('Debutant','Intermediare','Expert','') NOT NULL,
+  `verifie` varchar(255) NOT NULL,
+  `idUser` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idCompetance`),
+  KEY `fk_competencePersonne` (`idUser`)
+) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `competance`
+--
+
+INSERT INTO `competance` (`idCompetance`, `nomCompetance`, `niveau`, `verifie`, `idUser`) VALUES
+(67, 'JAVA17', 'Expert', 'Non', 15),
+(68, 'Php', 'Intermediare', 'Non', 15),
+(83, 'Java18', 'Debutant', 'Non', 106),
+(87, 'Java', 'Intermediare', 'Non', 96),
+(88, 'JQuery', 'Debutant', 'Non', 6),
+(89, 'JQuery', 'Debutant', 'Non', 6),
+(90, 'JQuery', 'Expert', 'Non', 6),
+(91, 'JQuery', 'Expert', 'Non', NULL),
+(92, 'JQuery', 'Expert', 'Non', 21);
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `competance`
+--
+ALTER TABLE `competance`
+  ADD CONSTRAINT `FK_1BB6FF285C6DE3B4` FOREIGN KEY (`idUser`) REFERENCES `user` (`id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

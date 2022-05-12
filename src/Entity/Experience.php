@@ -42,6 +42,19 @@ class Experience
     private $competanmiseenouvre;
 
     /**
+     * @Assert\NotBlank(message="Inserer des informatiques a propos votre stage")
+     * @Assert\Length(
+     *  min=20,
+     *     max=50,
+     *     minMessage = " username doit etre au moins 20 caractères",
+     *     maxMessage = "username doit etre au max 50 caractères",
+     *
+     * )
+     * @ORM\Column(name="description",type="string",   nullable=true)
+     */
+    private $description;
+
+    /**
      * @var \Date
      * @Assert\LessThan("today")
      * @Assert\Expression (
@@ -155,6 +168,22 @@ class Experience
         $this->iduser = $iduser;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param mixed $description
+     */
+    public function setDescription($description): void
+    {
+        $this->description = $description;
     }
 
 
