@@ -116,8 +116,10 @@
 							<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Stage</a>
 							<div class="dropdown-menu fade-down m-0">
 
-							<a href="team.html" class="dropdown-item">Stages</a>
-						<a href="404.html" class="dropdown-item">Mes Demandes de stages</a>
+							<a href="{{path('app_stage_index')}}" class="dropdown-item">Stages</a>
+						<a href="{{path('app_demandestage_indexx',{'idpersonne':app.user.id})}}" class="dropdown-item">Mes Demandes de stages</a>
+						<a href="{{path('app_entretien_indexx',{'idpersonne':app.user.id})}}" class="dropdown-item">Mes Entretiens</a>
+
 							</div>
 						</div>
 
