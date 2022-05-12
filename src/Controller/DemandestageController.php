@@ -166,8 +166,9 @@ class DemandestageController extends AbstractController
     /**
      * @Route("/{iddemande}", name="app_demandestage_delete", methods={"POST"})
      */
-    public function delete(Request $request, Demandestage $demandestage, EntityManagerInterface $entityManager): Response
+    public function delete(Request $request,DemandeStageRepository $rep1,$iddemande, EntityManagerInterface $entityManager): Response
     {
+        $demandestage=$rep1->find($iddemande);
         if ($this->isCsrfTokenValid('delete'.$demandestage->getIddemande(), $request->request->get('_token'))) {
             $entityManager->remove($demandestage);
             $entityManager->flush();
@@ -179,8 +180,9 @@ class DemandestageController extends AbstractController
       /**
      * @Route("/{iddemande}/deletee", name="app_demandestage_deletee", methods={"POST"})
      */
-    public function deletee(Request $request, Demandestage $demandestage, EntityManagerInterface $entityManager): Response
+    public function deletee(Request $request,DemandeStageRepository $rep1,$iddemande, EntityManagerInterface $entityManager): Response
     {
+        $demandestage=$rep1->find($iddemande);
         if ($this->isCsrfTokenValid('delete'.$demandestage->getIddemande(), $request->request->get('_token'))) {
             $entityManager->remove($demandestage);
             $entityManager->flush();
