@@ -4,6 +4,7 @@
 
 {% block body %}
 
+	<main id="main" class="main">
 
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
@@ -82,10 +83,9 @@
 
 
 
-            <div class="pagination">
-        {{ knp_pagination_render(reservation) }}
-    </div>
-
+		 {% do reservation.setPageRange(2) %}
+		 {{ knp_pagination_render (reservation ,'pagination.html.twig') }}
+		 </main>
 
 
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -103,6 +103,9 @@
 
 
         </div>
+
+
+        </main>
 
 
 {% endblock %}
