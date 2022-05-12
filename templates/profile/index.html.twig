@@ -90,7 +90,7 @@
                     <div class="row">
                         {%  for c in competenes %}
                             <div class="col-md-6">
-                                <div class="progress-container progress-primary"><span class="progress-badge">{{ c.nomcompetance }}</span>
+                                <div class="progress-container progress-primary"><span class="progress-badge">{{ c.nomcompetance }} <a href="{{ path('edit_competance', {'idCompetance': c.idcompetance}) }}"><i class="fa-solid fa-pen-to-square" style="font-size: 15px;color: deepskyblue"></i></a><a href="{{ path('supp_competance',{'idCompetance': c.idcompetance}) }}">   <i class="fa-solid fa-xmark" style="font-size: 20px;color: red"></i></a></span>
                                     <div class="progress">
                                         <div class="progress-bar progress-bar-primary" data-aos="progress-full" data-aos-offset="10" data-aos-duration="2000" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
                                              style="width:
@@ -116,6 +116,7 @@
                                 </div>
                             </div>
                         {% endfor %}
+                        <a class="btn btn-secondary w-50 m-auto" href="{{ path('add_competance') }}">Ajouter Nouvelle Competance</a>
 
                     </div>
                 </div>
@@ -142,12 +143,16 @@
                                 <p class="text-info">Competences Mise En Oeuvre :</p>
                                 <p>{{ e.competanMiseEnOuvre}}</p>
                             </div>
+                            <div class="Manipulation" style="float:right">
+                                <a class="btn btn-primary" href="{{ path('edit_experience', {'idExperience': e.idexperience}) }}">Modifier</a>
+                                <a class="btn btn-danger" href="{{ path('supp_experience',{'idExperience': e.idexperience}) }}">Supprimer</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             {% endfor %}
-
+            <a class="btn btn-secondary  w-100 p-3  " href="{{ path('add_experience') }}">Ajouter nouvelle experience</a>
     </div>
     </div>
 
