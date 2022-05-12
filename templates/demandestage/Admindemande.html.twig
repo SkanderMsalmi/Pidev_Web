@@ -1,0 +1,35 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Demandestages{% endblock %}
+
+{% block body %}
+    <h1 style="padding:80px">Demandes Stages </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Iddemande</th>
+                <th>Etat</th>
+                <th>Sujet Stage</th>
+                <th>Nom&Prènom Etudiant</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+        {% for demandestage in demandestages %}
+            <tr>
+                <td>{{ demandestage.iddemande }}</td>
+                <td>{{ demandestage.etat }}</td>
+                <td> {{ demandestage.idstage}}</td>
+                <td>{{ demandestage.iduser }}</td>
+                
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

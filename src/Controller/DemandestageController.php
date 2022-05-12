@@ -42,11 +42,12 @@ class DemandestageController extends AbstractController
     /**
      * @Route("/indexx/{idpersonne}", name="app_demandestage_indexx", methods={"GET"})
      */
-    public function indexx(EntityManagerInterface $entityManager): Response
+    public function indexx(EntityManagerInterface $entityManager,$idpersonne,UserRepository $rep1): Response
     {
+        $p=$rep1->find($idpersonne);
         $demandestages = $entityManager
             ->getRepository(Demandestage::class)
-            ->findByIduser(1);
+            ->findByIduser($p);
 
         return $this->render('demandestage/indexetudiant.html.twig', [
             'demandestages' => $demandestages,
@@ -56,9 +57,11 @@ class DemandestageController extends AbstractController
         /**
      * @Route("/indexxR/{idpersonne}", name="app_demandestage_indexxR", methods={"GET"})
      */
-    public function indexxR(EntityManagerInterface $entityManager): Response
+    public function indexxR(EntityManagerInterface $entityManager,$idpersonne,UserRepository $rep1): Response
     {   
-        $stages=$entityManager->getRepository(Stage::class)->ListStageByIdPersonne(1);
+
+        $p=$rep1->find($idpersonne);
+        $stages=$entityManager->getRepository(Stage::class)->ListStageByIdPersonne($p);
         $demandestage1=[];
         foreach ($stages as $s) {
             $demandestages = $entityManager
@@ -115,7 +118,7 @@ class DemandestageController extends AbstractController
          //   $message->body ='🥳Vous Avez Recu Une Nouvelle Demande De Stage🥳';
          //   $client->messages->create($message);
 
-            return $this->redirectToRoute('app_demandestage_indexx', ['idpersonne' => "105"], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_demandestage_indexx', ['idpersonne' => "1"], Response::HTTP_SEE_OTHER);
 
     }
 
