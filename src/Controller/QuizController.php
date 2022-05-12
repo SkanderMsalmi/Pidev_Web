@@ -25,7 +25,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 class QuizController extends AbstractController
 {
     /**
-     * @Route("/", name="app_quiz_index", methods={"GET"})
+     * @Route("/admin", name="app_quiz_index", methods={"GET"})
      */
     public function index(
         EntityManagerInterface $entityManager,

@@ -23,7 +23,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 class LivreController extends AbstractController
 {
     /**
-     * @Route("/livre", name="app_livre",methods={"GET","POST"})
+     * @Route("/admin/livre", name="app_livre",methods={"GET","POST"})
      */
     public function index(PaginatorInterface $paginator, LivreRepository $repository, Request $request): Response
     {
@@ -85,7 +85,7 @@ class LivreController extends AbstractController
 
 
     /**
-     * @Route("/addLivre", name="addLivre")
+     * @Route("/admin/addLivre", name="addLivre")
      */
     public function addLivre(Request $req, FlashyNotifier $flashy): Response
     {
@@ -125,7 +125,7 @@ class LivreController extends AbstractController
     }
 
     /**
-     * @Route("/removeLivre{id}", name="removeLivre")
+     * @Route("/admin/removeLivre{id}", name="removeLivre")
      */
     public function removeBibliotheque(Livre $liv, FlashyNotifier $flashy): Response
     {
@@ -138,7 +138,7 @@ class LivreController extends AbstractController
     }
 
     /**
-     * @Route("/updateLivre{id}", name="updateLivre")
+     * @Route("/admin/updateLivre{id}", name="updateLivre")
      */
     public function updateBibliotheque(Request $req, $id, FlashyNotifier $flashy): Response
     {
