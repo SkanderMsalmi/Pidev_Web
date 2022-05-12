@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Stage{% endblock %}
+
+{% block body %}
+<div style="display: flex;align-items: center;justify-content: center;padding:70px ">
+  <div class="top-margin" >
+    <h1>Stage</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Idstage</th>
+                <td>{{ stage.idstage }}</td>
+            </tr>
+            <tr>
+                <th>Duree En Mois</th>
+                <td>{{ stage.duree }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ stage.type }}</td>
+            </tr>
+            <tr>
+                <th>Domaine</th>
+                <td>{{ stage.domaine }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ stage.description }}</td>
+            </tr>
+            <tr>
+                <th>Sujet</th>
+                <td>{{ stage.sujet }}</td>
+            </tr>
+            <tr>
+                <th>Datedebut</th>
+                <td>{{ stage.datedebut | date }}</td>
+            </tr>
+           
+        </tbody>
+    </table>
+   <a class="btn" href="{{ path('app_stage_mesStage', {'idpersonne': "107"}) }}">back to list</a>
+
+    <a class="btn" href="{{ path('app_stage_edit', {'idstage': stage.idstage}) }}">edit</a>
+
+   
+
+    
+
+</div>
+</div>
+ 
+{% endblock %}

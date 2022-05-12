@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Entretien
@@ -24,21 +26,22 @@ class Entretien
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateEntretien", type="date", nullable=false)
+     * 
+     * @ORM\Column(name="dateEntretien", type="datetime", nullable=false)
+     *  * @Assert\Range(
+     *      min = "now",
+     *      max = "+15 days",
+     *      notInRangeMessage = "Entre {{ min }} et {{ max }}",
+     * )
      */
     private $dateentretien;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="heureEntretien", type="string", length=30, nullable=false)
-     */
-    private $heureentretien;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="lienEntretien", type="string", length=255, nullable=false)
+      * @Assert\NotBlank(message="Lien Entretien Doit ètre Non Vide")
+     * @Assert\Url(relativeProtocol = false , protocols = {"http", "https", "ftp"}, checkDNS = "ANY")
      */
     private $lienentretien;
 
