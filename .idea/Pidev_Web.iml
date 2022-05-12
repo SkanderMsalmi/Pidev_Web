@@ -78,7 +78,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/monolog-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/css-selector" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/cache" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/security-core" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-php80" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/inflector" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/property-info" />
@@ -116,7 +115,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/twig-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/config" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/twig/twig" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/security-http" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/twig/extra-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/mailer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/mime" />
@@ -146,6 +144,8 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/phenx/php-font-lib" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/sabberworm/php-css-parser" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/ux-chartjs" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/security-http" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/security-core" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
