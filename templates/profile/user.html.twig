@@ -27,7 +27,9 @@
                     <div class="content-center">
                         <div class="cc-profile-image"><a href="#"><img src="{{ asset('profiles/' ~ user.pdp) }}" alt="Image"/></a></div>
                         <div class=" ">{{ user.nom }}{{ user.prenom }}</div>
+                        {% if user.role == "Etudiant" %}
                         <p class="category text-white">{{ user.profil }}</p><a class="btn btn-primary" href="#" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Download CV</a></p>
+                        {% endif %}
                     </div>
                     </div>
                 </div>
@@ -42,8 +44,13 @@
                         <div class="card-body">
                             <div class="h4 mt-0 text-info">About</div>
                             <p>{{ user.infos }}</p>
+                            {% if user.role == "Etudiant" %}
                             <div class="h4 mt-0 text-info">Faculte</div>
                             <p >{{ user.idfaculte.nomfaculte }}</p>
+                            {% elseif user.role == "Recruteur" %}
+                            <div class="h4 mt-0 text-info">Societe</div>
+                            <p >{{ user.idsociete.nomsociete }}</p>
+                            {% endif %}
                         </div>
 
                     </div>
@@ -71,6 +78,7 @@
             </div>
         </div>
     </div>
+    {% if user.role == "Etudiant" %}
     <div class="section" id="skill">
         <div class="container">
             <div class="h4 text-center mb-4 title">Professional Skills</div>
@@ -147,6 +155,7 @@
             {% endif %}
         </div>
     </div>
+    {% endif %}
 
     <script src="{{ asset('assets3/js/core/jquery.3.2.1.min.js?ver=1.1.0') }}"></script>
     <script src="{{ asset('assets3/js/core/popper.min.js?ver=1.1.0') }}"></script>
