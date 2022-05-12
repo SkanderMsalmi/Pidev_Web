@@ -1,0 +1,132 @@
+{% extends 'baseAdmin.html.twig' %}
+
+
+{% block body %}
+
+    <main id="main" class="main">
+
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="example-wrapper">
+
+        <!-- Jobs Container -->
+        <div class="row">
+
+            </form>
+
+            {# for filter buttons #}
+            </form>
+            </form>
+        </div>
+        <!-- Jobs Container / End -->
+
+
+
+    <div>
+        <p style="" > <input  id="myInput"  type="text" placeholder="search">
+
+    </div>
+
+    <div class="example-wrapper">
+
+
+        {% for message in app.flashes('success')%}
+            <div class="alert alert-success">
+
+                {{ message }}
+            </div>
+        {% endfor %}
+
+
+        <table class="table table-striped" id="t">
+        </thead>
+
+
+
+
+    <tr>
+            <th>Description</th>
+            <th>Titre</th>
+            <th>Type</th>
+            <th>Domaine</th>
+            <!--<th>Prix</th>
+            <th>Datedebut</th>
+            <th>Datefin</th>-->
+
+         </tr>
+
+
+
+        <tbody id="all">
+        <tbody>
+        <tbody>
+        <tbody id="myTable">
+        {% for formation in f %}
+            <tr>
+                <td>{{ formation.description }}</td>
+                <td>{{ formation.titre }}</td>
+                <td>{{ formation.type }}</td>
+                <td>{{ formation.domaine }}</td>
+{#                <td>{{ formation.prix }}</td>#}
+{#                <td>{{ formation.datedebut ? formation.datedebut|date('Y-m-d') : '' }}</td>#}
+{#                <td>{{ formation.datefin ? formation.datefin|date('Y-m-d') : '' }}</td>#}
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+
+
+
+        <a href="{{ path('DownloadProduitsDataFormation') }}" class="btn btn-dark waves-effect waves-light">Download PDF</a>
+
+
+
+        <tbody id="search">
+
+        </tbody>
+
+
+        </tbody>
+
+
+    </table>
+
+
+    <a href="{{ path('newformation') }}">Creer une nouvelle formation</a>
+			 <main class="d-flex justify-content-center">
+		 {% do f.setPageRange(2) %}
+		 {{ knp_pagination_render (f ,'pagination.html.twig') }}
+		 </main>
+
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("#myInput").on("keyup", function() {
+                    var value = $(this).val().toLowerCase();
+                    $("#myTable tr").filter(function() {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    });
+                });
+            });
+        </script>
+
+
+
+
+
+
+    </main>
+
+
+{% endblock %}

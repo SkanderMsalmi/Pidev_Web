@@ -4,8 +4,14 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Repository\CompetanceRepository;
+use App\Repository\ExperienceRepository;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use MercurySeries\FlashyBundle\FlashyNotifier;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -45,15 +51,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="app_user_show", methods={"GET"})
-     */
-    public function show(User $user): Response
-    {
-        return $this->render('user/show.html.twig', [
-            'user' => $user,
-        ]);
-    }
+
 
     /**
      * @Route("/{id}/edit", name="app_user_edit", methods={"GET", "POST"})
@@ -74,18 +72,58 @@ class UserController extends AbstractController
         ]);
     }
 
+
+
     /**
-     * @Route("/{id}", name="app_user_delete", methods={"POST"})
+     * @Route("/profile/{id}", name="user_profile")
      */
-    public function delete(Request $request, User $user, UserRepository $userRepository): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
-            $userRepository->remove($user);
+    public function userProfile(CompetanceRepository $competanceRepository,ExperienceRepository $experienceRepository,UserRepository $userRepository,$id):Response{
+        $user = $userRepository->find($id);
+        $current = $this->getUser();
+        $competances = $competanceRepository->findBy(['idUser'=>$user->getId()]);
+        $experiences = $experienceRepository->findBy(['iduser'=>$user->getId()]);
+        if($current == $user){
+            return $this->redirectToRoute('profile');
         }
 
-        return $this->redirectToRoute('app_admin', [], Response::HTTP_SEE_OTHER);
+
+        return $this->render('profile/user.html.twig', [
+            'user' => $user,
+            'competenes'=>$competances,
+            'experiences'=>$experiences
+        ]);
     }
 
+    /**
+     * @Route("/uploadcv",name="upload_cv")
+     */
+
+    public function uploadCv(EntityManagerInterface $em,Request $request,UserRepository $repository,FlashyNotifier $flashyNotifier){
+        $user =$repository->find($this->getUser()->getId()) ;
+        $cvForm = $this->createFormBuilder()
+            ->add('cv',FileType::class,['label'=>'CV'])->getForm();
+        $cvForm->handleRequest($request);
+        if($cvForm->isSubmitted() && $cvForm->isValid()){
+            $file = $cvForm->get('cv')->getData();
+            if($file){
+                $fileName = md5(uniqid()).'.pdf';
+                try{
+                    $file->move(
+                        $this->getParameter('uploads_directory'),
+                        $fileName
+                    );
+                }catch(FileException $e){
+
+                }
+            }
+            $user->setCv($fileName);
+            $em->flush();
+            return $this->redirectToRoute('profile');
+        }
+        return $this->render('security/uploadCV.html.twig',[
+            'form'=>$cvForm->createView()
+        ]);
+    }
 
    /* public function searchUsers(Request $request,UserRepository $repository){
         $requestString = $request->get('q');

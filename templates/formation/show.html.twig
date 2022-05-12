@@ -1,0 +1,30 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Formation{% endblock %}
+
+{% block body %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1>Formation</h1>
+
+    <table class="table">
+        <tbody>
+        {% for formation in formation %}
+            <tr>
+                <td>{{ formation.description }}</td>
+                <td>{{ formation.titre }}</td>
+                <td>{{ formation.type }}</td>
+                <td>{{ formation.domaine }}</td>
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

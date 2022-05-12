@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Stage{% endblock %}
+
+{% block body %}
+
+    
+
+    {{ include('stage/_form.html.twig') }}
+
+    <a href="{{ path('app_stage_index') }}">back to list</a>
+{% endblock %}
