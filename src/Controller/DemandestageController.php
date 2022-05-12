@@ -15,7 +15,7 @@ use App\Repository\StageRepository;
 use App\Entity\Stage;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
-
+use App\Repository\DemandeStageRepository;
 use MessageBird\Objects\Message;
 use MessageBird\Objects\PartnerAccount\AccessKey;
 use MessageBird\Client;
@@ -83,10 +83,11 @@ class DemandestageController extends AbstractController
      * @Route("/{id}/new", name="app_demandestage_new", methods={"GET", "POST"})
      *
      */
-    public function new(Request $request, EntityManagerInterface $entityManager,Stage $stage,UserRepository $rep1,StageRepository $rep2,MailerInterface $mailer): Response
+    public function new(Request $request, EntityManagerInterface $entityManager,$id,UserRepository $rep1,StageRepository $rep2,MailerInterface $mailer): Response
     {
         $demandestage = new Demandestage();
         $personne = $rep1->find(1);
+        $stage= $rep2->find($id);
         $demandestage->setIdstage($stage);
         $demandestage->setIduser($personne);
         $demandestage->setEtat("En_attente");
@@ -121,8 +122,9 @@ class DemandestageController extends AbstractController
     /**
      * @Route("/{iddemande}", name="app_demandestage_show", methods={"GET"})
      */
-    public function show(Demandestage $demandestage): Response
+    public function show(DemandeStageRepository $rep1,$iddemande): Response
     {
+        $demandestage=$rep1->find($iddemande);
         return $this->render('demandestage/show.html.twig', [
             'demandestage' => $demandestage,
         ]);
@@ -130,8 +132,9 @@ class DemandestageController extends AbstractController
       /**
      * @Route("/{iddemande}/showe", name="app_demandestage_showe", methods={"GET"})
      */
-    public function showe(Demandestage $demandestage): Response
+    public function showe(DemandeStageRepository $rep1,$iddemande): Response
     {
+        $demandestage=$rep1->find($iddemande);
         return $this->render('demandestage/showe.html.twig', [
             'demandestage' => $demandestage,
         ]);
@@ -139,8 +142,9 @@ class DemandestageController extends AbstractController
     /**
      * @Route("/{iddemande}/edit", name="app_demandestage_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Demandestage $demandestage, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request,DemandeStageRepository $rep1,$iddemande, EntityManagerInterface $entityManager): Response
     {
+        $demandestage=$rep1->find($iddemande);
         $form = $this->createForm(DemandestageType::class, $demandestage);
         $form->handleRequest($request);
 

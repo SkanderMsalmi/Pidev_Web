@@ -109,9 +109,9 @@ class StageController extends AbstractController
     /**
      * @Route("/{idstage}/show", name="app_stage_show", methods={"GET","POST"})
      */
-    public function show(Stage $stage): Response
+    public function show(StageRepository $repository,$idstage): Response
     {
-        
+        $stage=$repository->find($idstage);
         return $this->render('stage/show.html.twig', [
             'stage' => $stage,
         ]);
