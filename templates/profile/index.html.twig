@@ -33,7 +33,7 @@
                             <a class="btn btn-primary" href="{{ path('upload_cv') }}" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Upload new CV</a>  <a  class="btn btn-primary" href="{{ path('edit_photo_profil',{'idUser':app.user.id}) }}" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">  Edit Photo</a>
                             {% elseif app.user.role == "Formateur" or app.user.role =="Recruteur"  %}
                             {% else %}
-                            <a class="btn btn-primary" href="{{ path('upload_cv') }}" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Upload new CV</a>  <a  class="btn btn-primary" href="{{ path('edit_photo_profil',{'idUser':app.user.id}) }}" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">  Edit Photo</a>
+                            <a class="btn btn-secondary" href="{{ path('upload_cv') }}" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Upload new CV</a>  <a  class="btn btn-secondary" href="{{ path('edit_photo_profil',{'idUser':app.user.id}) }}" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">  Edit Photo</a>
                             {% endif %}
                         </div>
                     </div>
@@ -84,7 +84,7 @@
                                     <div class="col-sm-8">English, German, French</div>
                                 </div>
                                 <div class="row mt-5" style="text-align: right">
-                                    <a  class="btn btn-secondary" href="{{ path('edit_profile',{'idUser': app.user.id}) }}">Edit Profile</a>
+                                    <a  class="btn btn-success" href="{{ path('edit_profile',{'idUser': app.user.id}) }}">Edit Profile</a>
                                 </div>
                             </div>
                         </div>
@@ -130,7 +130,7 @@
                                 </div>
                             </div>
                         {% endfor %}
-                        <a class="btn btn-secondary w-50 m-auto" href="{{ path('add_competance') }}">Ajouter Nouvelle Competance</a>
+                        <a class="btn btn-success w-50 m-auto" href="{{ path('add_competance') }}">Ajouter Nouvelle Competance</a>
 
                     </div>
                 </div>
@@ -158,7 +158,7 @@
                                 <p>{{ e.competanMiseEnOuvre}}</p>
                             </div>
                             <div class="Manipulation" style="float:right">
-                                <a class="btn btn-primary" href="{{ path('edit_experience', {'idExperience': e.idexperience}) }}">Modifier</a>
+                                <a class="btn btn-secondary" href="{{ path('edit_experience', {'idExperience': e.idexperience}) }}">Modifier</a>
                                 <a class="btn btn-danger" href="{{ path('supp_experience',{'idExperience': e.idexperience}) }}">Supprimer</a>
                             </div>
                         </div>
@@ -166,7 +166,7 @@
                 </div>
             </div>
             {% endfor %}
-            <a class="btn btn-secondary  w-100 p-3  " href="{{ path('add_experience') }}">Ajouter nouvelle experience</a>
+            <a class="btn btn-success  w-100 p-3  " href="{{ path('add_experience') }}">Ajouter nouvelle experience</a>
     </div>
     </div>
 
