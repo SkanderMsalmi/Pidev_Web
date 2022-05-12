@@ -14,6 +14,7 @@ use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
 use Symfony\UX\Chartjs\Model\Chart;
 use App\Repository\StageRepository;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\BrowserKit\Request as BrowserKitRequest;
 
 /**
  * @Route("/stage")
@@ -61,18 +62,24 @@ class StageController extends AbstractController
         ]);
     }
      /**
-     * @Route("/adminstage", name="app_stage_indexx", methods={"GET"})
+     * @Route("/adminstage", name="app_stage_admin", methods={"GET"})
      */
-    public function indexx(EntityManagerInterface $entityManager): Response
+    public function showAdmin(EntityManagerInterface $entityManager, Request $request,PaginatorInterface $paginator): Response
     {
         
-        $stages = $entityManager
+        $data = $entityManager
         ->getRepository(Stage::class)
         ->findAll();
 
-        return $this->render('stage/Adminstage.html.twig',
+        $stages = $paginator->paginate(
+            $data,
+            $request->query->getInt('page', 1),
+            10
+        );
+
+        return $this->render('stage/admin.html.twig',
          [
-             'stages' => $stages,
+             'stages' => $stages
         ]);
     }
 
