@@ -1,0 +1,79 @@
+{% extends 'baseAdmin.html.twig' %}
+
+
+{% block title %}Modifier Formation{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div  style="display: flex;align-items: center;justify-content: center;margin-top: 150px; padding: 10px;">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Modifier une formation</h5>
+
+                    <!-- General Form Elements -->
+                    {{ form_start(ff,{attr:{novalidate:'novalidate'}}) }}
+                    <label for="inputText" class="col-sm-5 col-form-label">description</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(ff.description,{'attr':{'class':'form-control'}}) }}
+
+                        {{ form_errors(ff.description,{'attr':{'class':'form-danger'}}) }}
+
+                    </div>
+
+                    <label for="inputText" class="col-sm-5 col-form-label">titre</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(ff.titre,{'attr':{'class':'form-control'}}) }}
+                        {{ form_errors(ff.titre,{'attr':{'class':'form-danger'}}) }}
+
+                    </div>
+
+                    <label for="inputText" class="col-sm-5 col-form-label">type</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(ff.type,{'attr':{'class':'form-control'}}) }}
+                        {{ form_errors(ff.type,{'attr':{'class':'form-danger'}}) }}
+
+                    </div>
+
+                    <label for="inputText" class="col-sm-5 col-form-label">domaine</label>
+                    <div class="col-sm-10">
+                        {{ form_widget(ff.domaine,{'attr':{'class':'form-control'}}) }}
+                        {{ form_errors(ff.domaine,{'attr':{'class':'form-danger'}}) }}
+
+                    </div>
+
+{#                    <label for="inputText" class="col-sm-5 col-form-label">prix</label>#}
+{#                    <div class="col-sm-10">#}
+{#                        {{ form_widget(ff.prix,{'attr':{'class':'form-control'}}) }}#}
+{#                        {{ form_errors(ff.prix,{'attr':{'class':'form-danger'}}) }}#}
+
+{#                    </div>#}
+
+{#                    <label for="inputText" class="col-sm-5 col-form-label">dateDebut</label>#}
+{#                    <div class="col-sm-10">#}
+{#                        {{ form_widget(ff.datedebut,{'attr':{'class':'form-control'}}) }}#}
+{#                        {{ form_errors(ff.datedebut,{'attr':{'class':'form-danger'}}) }}#}
+
+{#                    </div>#}
+
+{#                    <label for="inputText" class="col-sm-5 col-form-label">dateFin</label>#}
+{#                    <div class="col-sm-10">#}
+{#                        {{ form_widget(ff.datefin,{'attr':{'class':'form-control'}}) }}#}
+{#                        {{ form_errors(ff.datefin,{'attr':{'class':'form-danger'}}) }}#}
+
+{#                    </div>#}
+
+
+                    <br/>
+                    <div class="col-sm-10" style="display: flex;align-items: center;justify-content: center">
+
+                        {{ form_widget(ff.Ajouter,{'attr':{'class':'btn btn-primary'}}) }}
+                    </div>
+
+                    {{ form_end(ff) }}
+
+                    <a href="{{ 'formation' }}" class="text-body"><i class="fas fa-long-arrow-alt-left me-2"></i>Retour à la liste des formations</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

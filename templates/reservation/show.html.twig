@@ -1,0 +1,38 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Reservation{% endblock %}
+
+{% block body %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1>Reservation</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Idreservation</th>
+                <td>{{ reservation.idreservation }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ reservation.nom }}</td>
+            </tr>
+            <tr>
+                <th>Datereservation</th>
+                <td>{{ reservation.datereservation ? reservation.datereservation|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Idformation</th>
+                <td>{{ reservation.idFormation }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_reservation') }}">back to list</a>
+
+    <a href="{{ path('editreservation', {'idreservation': reservation.idreservation}) }}">edit</a>
+
+    {{ include('reservation/deletereservation.html.twig') }}
+{% endblock %}
