@@ -21,6 +21,8 @@ use Knp\Component\Pager\PaginatorInterface;
 
 class ReservationController extends AbstractController
 {
+
+
     /**
      * @Route("/reservation", name="app_reservation", methods={"GET"})
      */
@@ -37,7 +39,7 @@ class ReservationController extends AbstractController
     }
 
 
-
+## lel etudiant
     /**
      * @Route("/reservationEtudiant", name="app_reservation_Etudiant", methods={"GET"})
      */
@@ -48,6 +50,39 @@ class ReservationController extends AbstractController
             $request->query->getInt('page', 1),3
         );
         return $this->render('reservation/reservationEtudiant.html.twig', [
+            'controller_name' => 'ReservationController',
+            'reservation'=> $reservation
+        ]);
+    }
+
+### lel formateur
+    /**
+     * @Route("/reservationFormateur", name="app_reservation_Formateur", methods={"GET"})
+     */
+    public function reservationFormateur(ReservationRepository $repository,\Symfony\Component\HttpFoundation\Request $request, PaginatorInterface $paginator): Response
+    {
+        $reservation = $paginator->paginate(
+            $reservation = $repository->findAll(),
+            $request->query->getInt('page', 1),3
+        );
+        return $this->render('reservation/reservationFormateur.html.twig', [
+            'controller_name' => 'ReservationController',
+            'reservation'=> $reservation
+        ]);
+    }
+
+
+    ### lel admin
+    /**
+     * @Route("/reservationAdmin", name="app_reservation_Admin", methods={"GET"})
+     */
+    public function reservationAdmin(ReservationRepository $repository,\Symfony\Component\HttpFoundation\Request $request, PaginatorInterface $paginator): Response
+    {
+        $reservation = $paginator->paginate(
+            $reservation = $repository->findAll(),
+            $request->query->getInt('page', 1),3
+        );
+        return $this->render('reservation/reservationAdmin.html.twig', [
             'controller_name' => 'ReservationController',
             'reservation'=> $reservation
         ]);

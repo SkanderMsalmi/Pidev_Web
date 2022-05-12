@@ -76,12 +76,7 @@
 {#                <td>{{ formation.prix }}</td>#}
 {#                <td>{{ formation.datedebut ? formation.datedebut|date('Y-m-d') : '' }}</td>#}
 {#                <td>{{ formation.datefin ? formation.datefin|date('Y-m-d') : '' }}</td>#}
-                <td>
-                    <a class="btn btn-success" href="{{ path('editformation', {'idFormation': formation.idformation}) }}">Modifier</a>
-                </td>
-                <td>
-                    <a class="btn btn-danger" href="{{ path('deleteformation', {'idFormation': formation.idformation}) }}">Supprimer</a>
-                </td>
+
             </tr>
         {% else %}
             <tr>
