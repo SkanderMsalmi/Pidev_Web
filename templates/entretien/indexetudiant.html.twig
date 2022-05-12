@@ -8,7 +8,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Identretien</th>
+                
                 <th>Dateentretien</th>
                 <th>Stage</th>
                 <th>Etudiant</th>
@@ -19,7 +19,7 @@
         <tbody>
         {% for entretien in entretiens %}
             <tr>
-                <td>{{ entretien.identretien }}</td>
+                
                 <td>{{ entretien.dateentretien | date ('Y-m-d H:i:s') }}</td>
                 <td>{{ entretien.idstage }}</td>
                 <td>{{ entretien.iduser }}</td>

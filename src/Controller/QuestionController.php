@@ -19,7 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class QuestionController extends AbstractController
 {
     /**
-     * @Route("/listQuestions", name="afficherQuestions", methods={"GET"})
+     * @Route("/admin/listQuestions", name="afficherQuestions", methods={"GET"})
      */
     public function index(
         EntityManagerInterface $entityManager,
@@ -41,7 +41,7 @@ class QuestionController extends AbstractController
     }
 
     /**
-     * @Route("/addQuestion", name="ajouterQuestion", methods={"GET", "POST"})
+     * @Route("/admin/addQuestion", name="ajouterQuestion", methods={"GET", "POST"})
      */
     public function new(Request $request, EntityManagerInterface $entityManager, PropositionRepository $pr, QuestionRepository $qr): Response
     {
@@ -76,7 +76,7 @@ class QuestionController extends AbstractController
     }
 
     /**
-     * @Route("listQuestions/{idquestion}", name="afficherQuestion", methods={"GET"})
+     * @Route("/admin/listQuestions/{idquestion}", name="afficherQuestion", methods={"GET"})
      */
     public function show($idquestion): Response
     {
@@ -91,7 +91,7 @@ class QuestionController extends AbstractController
     }
 
     /**
-     * @Route("editQuestion/{idquestion}", name="modifierQuestion", methods={"GET", "POST"})
+     * @Route("/admin/editQuestion/{idquestion}", name="modifierQuestion", methods={"GET", "POST"})
      */
     public function edit(Request $request, $idquestion, EntityManagerInterface $entityManager): Response
     {
@@ -118,7 +118,7 @@ class QuestionController extends AbstractController
     }
 
     /**
-     * @Route("deleteQuestion/{idquestion}", name="supprimerQuestion", methods={"POST"})
+     * @Route("/admin/deleteQuestion/{idquestion}", name="supprimerQuestion", methods={"POST"})
      */
     public function delete(Request $request, $idquestion, EntityManagerInterface $entityManager): Response
     {

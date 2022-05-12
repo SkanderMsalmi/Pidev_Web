@@ -99,6 +99,7 @@ class UserController extends AbstractController
      */
 
     public function uploadCv(EntityManagerInterface $em,Request $request,UserRepository $repository,FlashyNotifier $flashyNotifier){
+        $fileName = null;
         $user =$repository->find($this->getUser()->getId()) ;
         $cvForm = $this->createFormBuilder()
             ->add('cv',FileType::class,['label'=>'CV'])->getForm();
@@ -116,7 +117,10 @@ class UserController extends AbstractController
 
                 }
             }
-            $user->setCv($fileName);
+            if($fileName){
+                $user->setCv($fileName);
+
+            }
             $em->flush();
             return $this->redirectToRoute('profile');
         }
