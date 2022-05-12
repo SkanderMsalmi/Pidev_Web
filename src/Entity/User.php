@@ -131,6 +131,11 @@ class User implements UserInterface
     private $pdp;
 
     /**
+     * @ORM\Column(name="cv", type="string", length=255, nullable=true)
+     */
+    private $cv;
+
+    /**
      * @var \Date
      * @Assert\LessThan("-18 years",message="vous devez etre plus que 18 ans")
      * @ORM\Column(name="datenaissance", type="date", nullable=true)
@@ -440,4 +445,26 @@ class User implements UserInterface
 
         return $this;
     }
+
+    /**
+     * @return string|null
+     */
+    public function getCv(): ?string
+    {
+        return $this->cv;
+    }
+
+    /**
+     * @param string|null $cv
+     */
+    public function setCv(?string $cv): void
+    {
+        $this->cv = $cv;
+    }
+    public function __toString(): string
+    {
+        return $this->getNom();
+    }
+
+
 }

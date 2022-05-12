@@ -25,4 +25,12 @@ class AcceuilController extends AbstractController
     {
         return $this->render('pages-error-404.html.twig', []);
     }
+
+        /**
+     * @Route("/admin", name="erreur")
+     */
+    public function adminside(): Response
+    {
+        return $this->render('baseAdmin.html.twig', []);
+    }
 }

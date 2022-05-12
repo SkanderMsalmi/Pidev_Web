@@ -142,9 +142,10 @@
       <path value="$PROJECT_DIR$/vendor/phenx/php-svg-lib" />
       <path value="$PROJECT_DIR$/vendor/phenx/php-font-lib" />
       <path value="$PROJECT_DIR$/vendor/sabberworm/php-css-parser" />
+      <path value="$PROJECT_DIR$/vendor/symfony/ux-chartjs" />
     </include_path>
   </component>
-  <component name="PhpProjectSharedConfiguration" php_language_level="8.0">
+  <component name="PhpProjectSharedConfiguration" php_language_level="7.1">
     <option name="suggestChangeDefaultLanguageLevel" value="false" />
   </component>
   <component name="PhpUnit">
