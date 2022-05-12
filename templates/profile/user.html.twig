@@ -1,0 +1,158 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{{ asset('assets3/css/bootstrap.min.css?ver=1.1.0') }}" rel="stylesheet">
+    <link href="{{ asset('assets3/css/main.css?ver=1.1.0') }}" rel="stylesheet">
+
+
+    <noscript>
+        <style type="text/css">
+            [data-aos] {
+                opacity: 1 !important;
+                transform: translate(0) scale(1) !important;
+            }
+        </style>
+    </noscript>
+    {{  parent() }}
+{% endblock %}
+{% block body %}
+
+    <div class="profile-page">
+        <div class="wrapper">
+            <div class="page-header page-header-small" filter-color="green">
+                <div class="page-header-image" data-parallax="true" style="background-image: {{asset('assets3/images/cc-bg-1.jpg')}}"></div>
+                <div class="container">
+                    <div class="content-center">
+                        <div class="cc-profile-image"><a href="#"><img src="{{ asset('profiles/' ~ user.pdp) }}" alt="Image"/></a></div>
+                        <div class=" ">{{ user.nom }}{{ user.prenom }}</div>
+                        <p class="category text-white">{{ user.profil }}</p><a class="btn btn-primary" href="#" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Download CV</a></p>
+                    </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    <div class="section" id="about">
+        <div class="container">
+            <div class="card" data-aos="fade-up" data-aos-offset="10">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12">
+                        <div class="card-body">
+                            <div class="h4 mt-0 text-info">About</div>
+                            <p>{{ user.infos }}</p>
+                            <div class="h4 mt-0 text-info">Faculte</div>
+                            <p >{{ user.idfaculte.nomfaculte }}</p>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-6 col-md-12">
+                        <div class="card-body">
+                            <div class="h4 mt-0 title">Basic Information</div>
+
+                            <div class="row mt-3">
+                                <div class="col-sm-4"><strong class="text-uppercase">Email:</strong></div>
+                                <div class="col-sm-8">{{user.email}}</div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-sm-4"><strong class="text-uppercase">Phone:</strong></div>
+                                <div class="col-sm-8">{{user.tel }}</div>
+                            </div>
+
+                            <div class="row mt-3">
+                                <div class="col-sm-4"><strong class="text-uppercase">Language:</strong></div>
+                                <div class="col-sm-8">English, German, French</div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section" id="skill">
+        <div class="container">
+            <div class="h4 text-center mb-4 title">Professional Skills</div>
+            <div class="card" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+                <div class="card-body">
+                    <div class="row">
+                        {% if competenes %}
+                        {%  for c in competenes %}
+                            <div class="col-md-6">
+                                <div class="progress-container progress-primary"><span class="progress-badge">{{ c.nomcompetance }}</span>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-primary" data-aos="progress-full" data-aos-offset="10" data-aos-duration="2000" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
+                                             style="width:
+                                             {%  if c.niveau == "Expert" %}
+                                                    95%
+                                             {% elseif c.niveau == "Intermediare" %}
+                                                     55%
+                                             {% else %}
+                                                     20%
+                                             {% endif %}
+                                                     ;
+                                                     ">
+
+                                        </div><span class="progress-value">{%  if c.niveau == "Expert" %}
+                                                Expert
+                                            {% elseif c.niveau == "Intermediare" %}
+                                                Intermediare
+                                            {% else %}
+                                                Debutant
+                                            {% endif %}
+                                                     </span>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        {% else %}
+                        <h2>No Competence</h2>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section" id="experience">
+        <div class="container cc-experience">
+            <div class="h4 text-center mb-4 title">Work Experience</div>
+            {% if experiences %}
+            {% for e in experiences  %}
+                <div class="card">
+                    <div class="row">
+                        <div class="col-md-3 bg-primary" data-aos="fade-right" data-aos-offset="50" data-aos-duration="500">
+                            <div class="card-body cc-experience-header">
+                                <p>{{ e.dateDebut | date("F Y") }} - {{ e.datefin | date("F Y")}}</p>
+                                <div class="h5">{{ e.societe }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-9" data-aos="fade-left" data-aos-offset="50" data-aos-duration="500">
+                            <div class="card-body">
+                                <div class="h5">{{ e.poste }}</div>
+                                <p>{{ e.description }}</p>
+                                <div class="competences mise en ouvre">
+                                    <p class="text-info">Competences Mise En Oeuvre :</p>
+                                    <p>{{ e.competanMiseEnOuvre}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            {% else %}
+            <div>
+                <h2>No Experience</h2>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <script src="{{ asset('assets3/js/core/jquery.3.2.1.min.js?ver=1.1.0') }}"></script>
+    <script src="{{ asset('assets3/js/core/popper.min.js?ver=1.1.0') }}"></script>
+    <script src="{{ asset('assets3/js/core/bootstrap.min.js?ver=1.1.0') }}"></script>
+    <script src="{{ asset('assets3/js/now-ui-kit.js?ver=1.1.0') }}"></script>
+    <script src="{{ asset('assets3/js/aos.js?ver=1.1.0') }}"></script>
+    <script src="{{ asset('assets3/scripts/main.js?ver=1.1.0') }}"></script>
+{% endblock %}
+
