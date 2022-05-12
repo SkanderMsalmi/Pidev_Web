@@ -88,7 +88,7 @@ class ReservationController extends AbstractController
         ]);
     }
 
-
+# ajout reservation etudiant
     /**
      * @Route("/newreservation", name="newreservation", methods={"GET", "POST"})
      */
@@ -106,13 +106,16 @@ class ReservationController extends AbstractController
             $entityManager->persist($reservation);
             $entityManager->flush();
             $this->addFlash('success','Reservation ajoutée avec sucées');
-            return $this->redirectToRoute('app_reservation', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('reservationEtudiant', [], Response::HTTP_SEE_OTHER);
         }
         return $this->render('reservation/newreservation.html.twig', [
             'formation' => $reservation,
             'f' => $form->createView(),
         ]);
     }
+
+
+
 ##Modifier reservation
     /**
      *  @Route("/editreservation/{idreservation}", name="editreservation", methods={"GET", "POST"})
