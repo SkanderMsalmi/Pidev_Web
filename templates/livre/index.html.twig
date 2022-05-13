@@ -1,6 +1,6 @@
 {% extends 'baseAdmin.html.twig' %}
 
-{% block title %}Hello BibliothequeController!
+{% block title %}Livre
 {% endblock %}
 
 {% block body %}
@@ -57,12 +57,12 @@
 								<td>{{c.auteurl}}</td>
 								<td>{{ c.descriptionl }}</td>
 								<td>
-									<a href="{{ path ('removeLivre',{'id': c.idl}) }}">
+									<a class='btn btn-outline-info' href="{{ path ('removeLivre',{'id': c.idl}) }}">
 										supprimer
 									</a>
 								</td>
 								<td>
-									<a href="{{ path ('updateLivre',{'id': c.idl}) }}">
+									<a class='btn btn-outline-info' href="{{ path ('updateLivre',{'id': c.idl}) }}">
 										modifier
 									</a>
 								</td>
@@ -70,6 +70,7 @@
 						{% endfor %}
 					</tbody>
 				</table>
+				{{ knp_pagination_render(Liv,'pagination.html.twig') }}
 
 
 			</div>

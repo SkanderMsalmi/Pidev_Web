@@ -52,7 +52,7 @@
                     <td colspan="5">no records found</td>
                 </tr>
             {% endfor %}
-            <a href="{{ path('DownloadProduitsDataReservation') }}" class="btn btn-dark waves-effect waves-light">Download PDF</a>
+            <a href="{{ path('DownloadProduitsDataReservation') }}" class="btn btn-outline-info waves-effect waves-light">Download PDF</a>
 
             <tbody id="search">
 
@@ -62,11 +62,11 @@
         </table>
 
 
-        <a href="{{ 'ListFormationAdmin' }}" class="text-body"><i class="fas fa-long-arrow-alt-left me-2"></i>Retour à la liste des formations</a>
 
-        <div class="pagination">
-            {{ knp_pagination_render(reservation) }}
-        </div>
+	<main class="d-flex justify-content-center">
+		{% do reservation.setPageRange(2) %}
+		{{ knp_pagination_render (reservation ,'pagination.html.twig') }}
+	</main>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>

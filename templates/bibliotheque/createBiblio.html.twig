@@ -15,7 +15,7 @@
                             <div class="d-flex justify-content-center py-4">
                                 <a href="index.html" class="logo d-flex align-items-center w-auto">
                                     <img src="assets/img/logo.png" alt="">
-                                    <span class="d-none d-lg-block">Mon Stage</span>
+                                    <span class="d-none d-lg-block">Bibliothèque</span>
                                 </a>
                             </div><!-- End Logo -->
 
@@ -28,8 +28,7 @@
                                 <div class="card-body">
 
                                     <div class="pt-4 pb-2">
-                                        <h5 class="card-title text-center pb-0 fs-4">La Bibliotheque</h5>
-                                        <p class="text-center small">Ajouter la bibliotheque </p>
+                                        <h5 class="card-title text-center pb-0 fs-4">Ajouter la bibliothèque </h5>
                                     </div>
 
                                     {{ form_start(form,{'attr':{novalidate:'novalidate'}}) }}
@@ -59,7 +58,7 @@
                                 </div>
                                 <div class="col-12">
                                 <center>
-                                    <a href="{{ path('addBibliotheque') }}" >  {{ form_widget (form.ajouter,{'attr':{'class':'btn btn-primary'}}) }} </a></center>
+                                    <a href="{{ path('addBibliotheque') }}" >  {{ form_widget (form.ajouter,{'attr':{'class':'btn btn-outline-info'}}) }} </a></center>
                                 </div>
 
                                 {{ form_end (form) }}
