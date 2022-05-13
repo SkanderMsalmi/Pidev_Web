@@ -93,7 +93,7 @@ class DemandestageController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager,$id,UserRepository $rep1,StageRepository $rep2,MailerInterface $mailer): Response
     {
         $demandestage = new Demandestage();
-        $personne = $rep1->find(1);
+        $personne = $rep1->find($this->getUser()->getId());
         $stage= $rep2->find($id);
         $demandestage->setIdstage($stage);
         $demandestage->setIduser($personne);
@@ -122,7 +122,7 @@ class DemandestageController extends AbstractController
             $message->body ='🥳Vous Avez Recu Une Nouvelle Demande De Stage🥳';
             $client->messages->create($message);
 */
-            return $this->redirectToRoute('app_demandestage_indexx', ['idpersonne' => "1"], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_demandestage_indexx', ['idpersonne' => $this->getUser()->getId()], Response::HTTP_SEE_OTHER);
 
     }
 
