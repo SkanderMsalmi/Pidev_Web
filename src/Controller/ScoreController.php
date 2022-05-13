@@ -118,18 +118,17 @@ class ScoreController extends AbstractController
     }
 
     /**
-     * @Route("/{idscore}", name="app_score_show", methods={"GET"})
+     * @Route("/{iduser}", name="app_score_show", methods={"GET"})
      */
     public function show(
-        $idscore,
         PaginatorInterface $paginator,
         Request $request
 
     ): Response {
-        $user = $this->getUser();
         $sr = $this->getDoctrine()->getRepository(Score::class);
         $qr = $this->getDoctrine()->getRepository(Quiz::class);
-        $data = $sr->findBy(["iduser" => $user->getId()]);
+        $data = $sr->findByiduser(["iduser" => $this->getUser()]);
+
         $quizz = [];
         // dd($score);
         foreach ($data as $s) {

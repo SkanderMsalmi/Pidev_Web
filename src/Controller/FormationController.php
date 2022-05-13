@@ -30,7 +30,7 @@ class FormationController extends AbstractController
     {
         $formation = $paginator->paginate(
             $formation = $repository->findAll(),
-            $request->query->getInt('page', 1),3
+            $request->query->getInt('page', 1),4
         );
 
         return $this->render('formation/index.html.twig', [
@@ -48,7 +48,7 @@ class FormationController extends AbstractController
     {
         $formation = $paginator->paginate(
             $formation = $repository->findAll(),
-            $request->query->getInt('page', 1),3
+            $request->query->getInt('page', 1),4
         );
 
         return $this->render('formation/ListFormationEtudiant.html.twig', [
@@ -66,7 +66,7 @@ class FormationController extends AbstractController
     {
         $formation = $paginator->paginate(
             $formation = $repository->findAll(),
-            $request->query->getInt('page', 1),3
+            $request->query->getInt('page', 1),4
         );
 
         return $this->render('formation/ListFormationAdmin.html.twig', [
@@ -84,7 +84,7 @@ class FormationController extends AbstractController
     {
         $formation = $paginator->paginate(
             $formation = $repository->findAll(),
-            $request->query->getInt('page', 1),3
+            $request->query->getInt('page', 1),4
         );
 
         return $this->render('formation/ListFormationFormateur.html.twig', [
