@@ -22,6 +22,7 @@ class CompetanceController extends AbstractController
             'competances' => $competances,
         ]);
     }
+
     /**
      * @Route("/addCompetance", name="add_competance")
      */
