@@ -5,16 +5,6 @@
 {% block body %}
     <main id="main" class="main">
 
-        <div class="pagetitle">
-            <h1>Data Tables</h1>
-            <nav>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item">Tables</li>
-                    <li class="breadcrumb-item active">Data</li>
-                </ol>
-            </nav>
-        </div><!-- End Page Title -->
 
         <section class="section">
             <div class="row">
@@ -69,10 +59,10 @@
                                 </tbody>
                             </table>
                             <!-- End Table with stripped rows -->
-                            <div class="navigation" >
-
-                                {{ knp_pagination_render(users,'pagination.html.twig') }}
-                            </div>
+	<main class="d-flex justify-content-center">
+		{% do users.setPageRange(2) %}
+		{{ knp_pagination_render (users ,'pagination.html.twig') }}
+	</main>
                         </div>
                     </div>
 
