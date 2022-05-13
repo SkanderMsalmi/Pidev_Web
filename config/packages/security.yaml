@@ -62,7 +62,7 @@ security:
     - { path:  ^/rate , roles: ROLE_ETUDIANT }
     - { path:  ^/reservationEtudiant , roles: ROLE_ETUDIANT}
     - { path:  ^/score , roles: ROLE_ETUDIANT}
-    
+    - { path: /profile, roles: [ ROLE_ETUDIANT , ROLE_FORMATEUR , ROLE_RECRUTEUR ]}
 
 
 
