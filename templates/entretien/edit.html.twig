@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Entretien{% endblock %}
+
+{% block body %}
+    <h1>Edit Entretien</h1>
+
+    {{ include('entretien/_form.html.twig', {'button_label': 'Update'}) }}
+
+
+    {{ include('entretien/_delete_form.html.twig') }}
+{% endblock %}

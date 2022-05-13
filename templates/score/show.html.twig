@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Score
+{% endblock %}
+
+{% block body %}
+
+	<div align="center" style="padding: 30px;">
+		<span>
+			<a class="btn btn-outline-success" href="{{ path('acceuil') }}">Back to Home</a>
+		</span>
+		<span>
+			<a class="btn btn-outline-primary" href="{{ path('app_quiz_new') }}">Passer Quiz</a>
+		</span>
+
+	</div>
+	<div style="display: flex;align-items: center;justify-content: center;padding-top:120px; margin-bottom:0">
+		{% for s in score %}
+
+
+			{% for q in quizzes %}
+
+				{% if q.idquiz is same as s.idquiz.idquiz %}
+					<div class="service-item text-center pt-3">
+						<div class="p-4">
+							<i class="fa fa-graduation-cap fa-6" aria-hidden="true"></i>
+							<h4 class="mb-3">{{ q.domaine }}
+								Quiz</h4>
+							<div class="h-body text-center">
+								Vous avez:
+								{{ s.score }}/5
+								<br>
+								le 
+								{{ q.datecreation | date("d/m/Y") }}
+							</div>
+									<span>
+			<div id="fb-root"></div>
+			<script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v13.0" nonce="KXbfhYNH"></script>
+			<div class="fb-share-button" data-href="/score/10" data-layout="button" data-size="small">
+				<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Partager</a>
+			</div>
+		</span>
+						</div>
+					</div>
+				{% endif %}
+
+
+			{% endfor %}
+
+
+		{% endfor %}
+	</div>
+
+
+	<div class="d-flex justify-content-center">
+		{% do score.setPageRange(2) %}
+		{{ knp_pagination_render (score ,'pagination.html.twig') }}
+	</div>
+
+{% endblock %}

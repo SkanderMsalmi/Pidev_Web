@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+
+
+    <div class="container">
+
+
+        <br> <br> <br> <br>
+        <div class="row">
+
+            <!-- Article main content -->
+            <article class="col-xs-12 maincontent">
+
+
+                <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <h3 class="thin text-center">modifier ce livre</h3>
+
+
+
+
+                            {{ form_start(form,{'attr':{novalidate:'novalidate'}}) }}
+
+                            <div class="top-margin">
+                                <label>Titre de livre <span class="text-danger">*</span></label>
+
+                                {{ form_widget (form.titrel,{'attr':{'class':'form-control'}}) }}
+                                {{ form_errors (form.titrel,{'attr':{'class':'text-danger'}}) }}
+                            </div>
+
+
+                            <div class="top-margin">
+                                <label>Description du livre <span class="text-danger">*</span></label>
+
+                                {{ form_widget (form.descriptionl,{'attr':{'class':'form-control'}}) }}
+                                {{ form_errors (form.descriptionl,{'attr':{'class':'text-danger'}}) }}
+                            </div>
+
+                            <div class="top-margin">
+                                <label>Auteur du livre <span class="text-danger">*</span></label>
+
+                                {{ form_widget (form.auteurl,{'attr':{'class':'form-control'}}) }}
+                                {{ form_errors (form.auteurl,{'attr':{'class':'text-danger'}}) }}
+                            </div>
+
+                            <div class="top-margin">
+                                <label>Image  <span class="text-danger">*</span></label>
+
+                                {{ form_widget (form.imagestring,{'attr':{'class':'form-control'}}) }}
+                                {{ form_errors (form.imagestring,{'attr':{'class':'text-danger'}}) }}
+                            </div>
+
+                            <div class="top-margin">
+                                <label> Image en format .jpg  <span class="text-danger">*</span></label>
+
+                                {{ form_row (form.imageFile)}}
+
+                            </div>
+
+                            <div class="top-margin">
+                                <label>la bibliotheque <span class="text-danger">*</span></label>
+
+                                {{ form_widget (form.intc,{'attr':{'class':'form-control'}}) }}
+                                {{ form_errors (form.intc,{'attr':{'class':'text-danger'}}) }}
+                            </div>
+
+                            <br> <br>
+                            <center><div>
+                                    {{ form_widget (form.ajouter,{'attr':{'class':'btn btn-primary'}}) }}
+                                </div></center>
+                            {{ form_end (form) }}
+                            <hr>
+
+
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </article>
+            <!-- /Article -->
+
+        </div>
+    </div>
+
+
+{% endblock %}

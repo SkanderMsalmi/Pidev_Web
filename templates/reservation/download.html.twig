@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Tableau des formations</title>
+</head>
+<body >
+<h2 style="text-align: center">Tableau des formations</h2>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th >nom</th>
+{#        <th >datereservation</th>#}
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for p in produits %}
+        <tr>
+            <td>{{ p.nom }}</td>
+{#            <td>{{ p.datereservation ? p.datereservation|date('Y-m-d') : '' }}</td>#}
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
+</body>
+</html>

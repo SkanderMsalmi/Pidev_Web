@@ -1,0 +1,53 @@
+<main>
+	<div class="container">
+
+		<section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+
+						<!-- End Logo -->
+
+						<div class="card mb-3">
+
+
+							<div class="card-body">
+
+
+
+
+								{{ form_start(form,{attr:{novalidate:'novalidate'}}) }}
+
+								<div class="col-12">
+									<label for="yourUsername" class="form-label">Enonce</label>
+									<div class="input-group has-validation">
+										{{ form_widget(form.enonce,{'attr':{'class':'form-control'}}) }}
+										{{ form_errors (form.enonce,{'attr':{'class':'text-danger'}}) }}
+
+									</div>
+								</div>
+
+								<div class="col-12">
+									<label for="yourPassword" class="form-label">Domaine</label>
+									{{ form_widget(form.domaine,{'attr':{'class':'form-control'}}) }}
+									{{ form_errors (form.domaine,{'attr':{'class':'text-danger'}}) }}
+								</div>
+
+								<div class="col-12">
+									<label for="yourPassword" class="form-label">Reponse Correcte</label>
+									{{ form_widget(form.reponsecorrecte,{'attr':{'class':'form-control'}}) }}
+									{{ form_errors (form.reponsecorrecte,{'attr':{'class':'text-danger'}}) }}
+								</div>
+
+								<ul class="props" data-index="{{ form.propositions|length > 0 ? form.propositions|last.vars.name + 1 : 0 }}" data-prototype="{{ form_widget(form.propositions.vars.prototype)|e('html_attr') }}">
+									{% for prop in form.propositions %}
+										<div class="col-12">
+											<label for="yourPassword" class="form-label">proposition</label>
+											{{ form_widget(prop.proposition,{'attr':{'class':'form-control'}}) }}
+											{{ form_errors (prop.proposition,{'attr':{'class':'text-danger'}}) }}
+										</div>
+
+									{% endfor %}
+								</ul>
+								<button class="btn btn-outline-success">{{ button_label|default('Save') }}</button>
+								{{ form_end(form) }}

@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Demandestage{% endblock %}
+
+{% block body %}
+<div style="display: flex;align-items: center;justify-content: center;padding:70px ">
+  <div class="top-margin" >
+    <h1 style="padding:50px">Demande stage</h1>
+
+    <table class="table">
+        <tbody>
+            
+            <tr>
+                <th>Etat</th>
+                <td>{{ demandestage.etat }}</td>
+            </tr>
+             <tr>
+                <th>Stage</th>
+                <td>{{ demandestage.idstage }}</td>
+            </tr>
+             <tr>
+                <th>Etudiant</th>
+                <td>{{ demandestage.iduser }}</td>
+            </tr>
+        </tbody>
+    </table>
+        <a class="btn btn-outline-primary"  href="{{ path('app_demandestage_indexxR', {'idpersonne': app.user.id}) }}">back to list</a>
+
+    <a class="btn btn-outline-info" href="{{ path('app_demandestage_edit', {'iddemande': demandestage.iddemande}) }}">edit</a>
+
+    {{ include('demandestage/_delete_form.html.twig') }}
+    </div>
+</div>
+
+
+{% endblock %}

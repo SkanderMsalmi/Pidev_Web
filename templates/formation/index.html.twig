@@ -1,0 +1,201 @@
+{% extends 'baseAdmin.html.twig' %}
+
+
+{% block body %}
+
+    <main id="main" class="main">
+
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="example-wrapper">
+
+        <!-- Jobs Container -->
+        <div class="row">
+
+            </form>
+
+            {# for filter buttons #}
+            </form>
+            </form>
+        </div>
+        <!-- Jobs Container / End -->
+
+
+
+    <div>
+        <p style="" > <input  id="myInput"  type="text" placeholder="search">
+
+    </div>
+
+    <div class="example-wrapper">
+
+
+        {% for message in app.flashes('success')%}
+            <div class="alert alert-success">
+
+                {{ message }}
+            </div>
+        {% endfor %}
+
+
+        <table class="table table-striped" id="t">
+        </thead>
+
+
+
+
+    <tr>
+            <th>Description</th>
+            <th>Titre</th>
+            <th>Type</th>
+            <th>Domaine</th>
+            <!--<th>Prix</th>
+            <th>Datedebut</th>
+            <th>Datefin</th>-->
+
+         </tr>
+
+
+
+        <tbody id="all">
+        <tbody>
+        <tbody>
+        <tbody id="myTable">
+        {% for formation in f %}
+            <tr>
+                <td>{{ formation.description }}</td>
+                <td>{{ formation.titre }}</td>
+                <td>{{ formation.type }}</td>
+                <td>{{ formation.domaine }}</td>
+{#                <td>{{ formation.prix }}</td>#}
+{#                <td>{{ formation.datedebut ? formation.datedebut|date('Y-m-d') : '' }}</td>#}
+{#                <td>{{ formation.datefin ? formation.datefin|date('Y-m-d') : '' }}</td>#}
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+
+
+
+        <a href="{{ path('DownloadProduitsDataFormation') }}" class="btn btn-outline-dark waves-effect waves-light">Download PDF</a>
+
+<br>
+
+{#        <div class="card aos-init aos-animate" data-aos="fade-up" data-aos-offset="10">#}
+{#            <div class="row">#}
+
+{#                <div class="col-lg-6 col-md-12">#}
+{#                    <div class="card-body">#}
+
+{#                        <div class="row mt-3">#}
+{#                            <div class="col-sm-4"><strong class="text-uppercase" _msthash="1627873" _msttexthash="586404">Description:</strong></div>#}
+{#                            <div class="col-sm-8" _msthash="1628016" _msttexthash="538421">lehne naayet leel description</div>#}
+{#                        </div>#}
+{#                        <div class="row mt-3">#}
+{#                            <div class="col-sm-4"><strong class="text-uppercase" _msthash="1628094" _msttexthash="177580">Type:</strong></div>#}
+{#                            <div class="col-sm-8" _msthash="1628237" _msttexthash="57538">type</div>#}
+{#                        </div>#}
+{#                        <div class="row mt-3">#}
+{#                            <div class="col-sm-4"><strong class="text-uppercase" _msthash="1628315" _msttexthash="30355">Domaine:</strong></div>#}
+{#                            <div class="col-sm-8" _msthash="1628458" _msttexthash="58032">Domaine</div>#}
+{#                        </div>                        <div class="row mt-3">#}
+{#                            <div class="col-sm-4"><strong class="text-uppercase" _msthash="1628315" _msttexthash="30355">Duree:</strong></div>#}
+{#                            <div class="col-sm-8" _msthash="1628458" _msttexthash="58032">Duree</div>#}
+{#                        </div>#}
+
+{#                        <div class="row mt-5" style="text-align: right">#}
+{#                            <a class="btn btn-success" href="/newreservation" _msthash="1504802" _msttexthash="319670">Modifier le profil</a>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+
+{# e exp twali formation f#}
+{#        ####### hedhy zedtha #}
+{#        <div class="section" id="experience">#}
+{#            <div class="container cc-experience">#}
+{#                <div class="h4 text-center mb-4 title">Formations disponible</div>#}
+{#                {% for formation in f %}#}
+
+
+
+{#                    <div class="card">#}
+{#                        <div class="row">#}
+{#                            <div class="col-md-3 bg-primary" data-aos="fade-right" data-aos-offset="50" data-aos-duration="500">#}
+{#                                <div class="card-body cc-experience-header">#}
+{#<img src="/public/assets/images/formation.png">#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="col-md-9" data-aos="fade-left" data-aos-offset="50" data-aos-duration="500">#}
+{#                                <div class="card-body">#}
+{#                                    <div class="h5">#}
+{#                                        <h4>Description : {{ formation.description }}<br>#}
+{#                                        Titre : {{ formation.titre }}<br>#}
+{#                                        Type : {{ formation.type }}<br>#}
+{#                                        Domaine : {{ formation.domaine }}#}
+{#                                        <div class="row mt-5" style="text-align: right">#}
+{#                                            <a class="btn btn-success" href="{{ path('newreservation', {'idFormation': formation.idFormation}) }} _msthash="1504802" _msttexthash="319670">Réserver</a>#}
+{#                                        </div>#}
+{#                                        <div class="row mt-5" style="text-align: right">#}
+{#                                            <a class="btn btn-danger" href="{{ path('deleteformation', {'idFormation': formation.idFormation}) }}" _msthash="1504802" _msttexthash="319670">Supprimer</a>#}
+{#                                        </div>#}
+
+{#                                    </div>#}
+
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                {% endfor %}#}
+
+{#<br>#}
+        <tbody id="search">
+
+        </tbody>
+
+
+        </tbody>
+
+
+    </table>
+
+
+    <a href="{{ path('newformation') }}">Creer une nouvelle formation</a>
+			 <main class="d-flex justify-content-center">
+		 {% do f.setPageRange(2) %}
+		 {{ knp_pagination_render (f ,'pagination.html.twig') }}
+		 </main>
+
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("#myInput").on("keyup", function() {
+                    var value = $(this).val().toLowerCase();
+                    $("#myTable tr").filter(function() {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    });
+                });
+            });
+        </script>
+
+
+
+
+
+
+    </main>
+
+
+{% endblock %}

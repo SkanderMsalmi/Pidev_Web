@@ -1,0 +1,7 @@
+{{ form_start(form) }}
+<h4>{{ form_widget(form) }} </h4>
+<a class="btn btn-outline-danger" href="{{ path('acceuil') }}">Retour à l'acceuil</a>
+
+<button class="btn btn-outline-success">{{ button_label|default('Commencer') }}</button>
+
+{{ form_end(form) }}

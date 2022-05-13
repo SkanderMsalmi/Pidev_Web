@@ -1,0 +1,112 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+
+	<div style="display:flex">
+		{% for s in stages %}
+
+			<div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+				<div class="service-item text-center pt-3">
+					<div class="p-4">
+						<div class="col">
+							<div class="card h-100 shadow-sm">
+								<div class="card-body">
+									<div class="clearfix mb-3">
+
+										<div>
+
+											<b>
+												<span class="float-end price-hp">Type :{{s.type}}</span>
+											</b><br>
+											<b>
+												<span class="float-end price-hp">Durée :{{s.duree}}
+													mois</span>
+											</b>
+										</div>
+										<span class="float-start badge rounded-pill bg-primary">Domaine :
+											{{ s.domaine }}</span>
+
+									</div>
+									<h5 class="card-title">Description :
+										{{ s.description }}</h5>
+									<h5 class="card-title">Sujet :
+										{{ s.sujet }}</h5>
+									<h5 class="card-title">Date début :
+										{{ s.datedebut | date('d-m-y')}}</h5>
+
+									<div class="text-center my-4">
+										<a href="{{ path ('app_demandestage_new',{'id':s.idstage })}}" class="btn btn-info">
+											Postuler</a>
+									</div>
+                                    
+								</div>
+							</div>
+						</div>
+					</div>  
+				</div>
+                
+			</div>
+		
+        {% endfor %}
+        
+        
+	</div>
+ <main class="d-flex justify-content-center">
+		{{ knp_pagination_render (stages ,'pagination.html.twig') }}
+	</main>
+    <style>
+    .stat { margin-top: 40px; height: 800px; width: 600;margin-left:100px;margin-bottom:50px}
+    
+</style>
+    <div class="stat">
+    <canvas id="my" ></canvas>
+    </div>
+
+	<script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js') }}" 
+            integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" 
+            crossorigin="anonymous" 
+            referrerpolicy="no-referrer"></script>
+
+	<script>
+
+
+		let my = document.querySelector("#my")
+let myGraph = new Chart(my, {
+type: "pie",
+data: {
+labels: [
+"Informatique",
+"Electronique",
+"Mécanique",
+"Gestion",
+"Economie",
+"Sport"
+],
+
+datasets: [
+{
+label: " #Statestique Selon Domaine ",
+data: [
+{{ info }},
+{{ elec }},
+{{ meca }},
+{{ ges }},
+{{ eco }},
+{{ sport }}
+],
+
+backgroundColor: [
+'Red',
+'Blue',
+'Yellow',
+'Green',
+'Purple',
+'Orange'
+]
+}
+]
+}
+
+})
+	</script>
+{% endblock %}

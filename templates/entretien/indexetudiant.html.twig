@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Entretien index{% endblock %}
+
+{% block body %}
+    <h1 style="padding:80px">Entretiens</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                
+                <th>Dateentretien</th>
+                <th>Stage</th>
+                <th>Etudiant</th>
+                <th>Lienentretien</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entretien in entretiens %}
+            <tr>
+                
+                <td>{{ entretien.dateentretien | date ('Y-m-d H:i:s') }}</td>
+                <td>{{ entretien.idstage }}</td>
+                <td>{{ entretien.iduser }}</td>
+                <td>{{ entretien.lienentretien }}</td>
+                <td>
+                    <a class="btn btn-outline-info" href="{{ path('app_entretien_show_etudiant', {'identretien': entretien.identretien}) }}">show</a>
+                    
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}

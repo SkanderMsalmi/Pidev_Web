@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Demandestage{% endblock %}
+
+{% block body %}
+    <h1>Create new Demandestage</h1>
+
+    {{ include('demandestage/_form.html.twig') }}
+
+    <a href="{{ path('app_demandestage_index') }}">back to list</a>
+{% endblock %}

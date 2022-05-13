@@ -1,0 +1,6 @@
+<form method="post" action="{{ path('app_demandestage_deletee', {'iddemande': demandestage.iddemande}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ demandestage.iddemande) }}">
+        <a class="btn btn-outline-primary"  href="{{ path('app_demandestage_indexx', {'idpersonne': app.user.id}) }}">back to list</a>
+
+    <button class="btn btn-outline-danger">Delete</button>
+</form>
