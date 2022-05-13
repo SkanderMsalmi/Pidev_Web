@@ -45,3 +45,24 @@ security:
     - { path: ^/entretien/admin, roles: ROLE_ADMIN }
     - { path: ^/quiz/admin, roles: ROLE_ADMIN }
     - { path: ^/profile, roles: ROLE_USER }
+    - { path:  /bibliothequeClient , roles: ROLE_ETUDIANT}
+    - { path: ^/livreC , roles: ROLE_ETUDIANT}
+    - { path: /addCompetance, roles: ROLE_ETUDIANT}
+    - { path: ^/editCompetance , roles: ROLE_ETUDIANT }
+    - { path: ^/suppCompetance , roles: ROLE_ETUDIANT}
+    - { path:  /addexperience , roles: ROLE_ETUDIANT}
+    - { path:  ^/editexperience , roles: ROLE_ETUDIANT}
+    - { path:  ^/suppexperience , roles: ROLE_ETUDIANT}
+    - { path:  ^/ListFormationFormateur , roles: ROLE_FORMATEUR}
+    - { path:  ^/newformation , roles: ROLE_FORMATEUR}
+    - { path:  ^/edit , roles: ROLE_FORMATEUR}
+    - { path:  ^/deleteformation , roles: ROLE_FORMATEUR}
+    - { path:  ^/telecharger , roles:  ROLE_ETUDIANT }
+    - { path:  ^/infoLivre , roles: ROLE_ETUDIANT}
+    - { path:  ^/rate , roles: ROLE_ETUDIANT }
+    - { path:  ^/reservationEtudiant , roles: ROLE_ETUDIANT}
+    - { path:  ^/score , roles: ROLE_ETUDIANT}
+    
+
+
+
