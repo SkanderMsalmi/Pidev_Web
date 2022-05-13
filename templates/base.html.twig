@@ -134,11 +134,13 @@
 							
 							<a href="{{path('app_bibliothequeClient')}}" class="nav-item nav-link">Bibliothèque</a>
 						{% elseif app.user.role == "Formateur" %}
-							<a href="{{path('ListFormationEtudiant')}}" class="nav-item nav-link ">Liste des formations</a>
+							<a href="{{path('ListFormationFormateur')}}" class="nav-item nav-link ">Liste des formations</a>
 							<a href="{{path('app_reservation_Etudiant')}}" class="nav-item nav-link ">Mes reservations</a>
 						{% elseif app.user.role == "Recruteur" %}
-							<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Mes Stages</a>
-							<a href="404.html" class="dropdown-item">Mes Demandes de stages</a>
+							<a href={{path('app_stage_mesStage',{'idpersonne' : app.user.id})}} class="nav-item nav-link ">Mes Stages</a>
+							<a href={{path('app_demandestage_indexxR',{'idpersonne': app.user.id})}} class="nav-item nav-link ">Mes Demandes de stages</a>
+							<a href={{path('app_entretien_indexxR',{'idpersonne': app.user.id})}} class="nav-item nav-link ">Mes Entretiens</a>
+
 
 						{% endif %}
 						<div class="nav-item dropdown">

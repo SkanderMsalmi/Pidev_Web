@@ -110,10 +110,12 @@ return $this->render('bibliotheque/biblioClient.html.twig', ['bibC' => $biblioth
     /**
      * @Route("/admin/removeBibliotheque{id}", name="removeBibliotheque")
      */
-    public function removeBibliotheque(Bibliotheque $bib,FlashyNotifier $flashy): Response
+    public function removeBibliotheque($id,FlashyNotifier $flashy): Response
     {
         $em = $this->getDoctrine()->getManager();
-        $em->remove($bib);
+        $br=$this->getDoctrine()->getRepository(Bibliotheque::class);
+        $biblio = $br->find($id);
+        $em->remove($biblio);
         $em->flush();
         $flashy->success('Bibliotheque supprimée ');
         return $this->redirectToRoute('app_bibliotheque');

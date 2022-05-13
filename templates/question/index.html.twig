@@ -9,7 +9,7 @@
 		<div>
 			<h1 class="card-title">Liste des Questions</h1>
 			<div style="display: flex;align-items: right;justify-content: right;">
-				<a class="btn btn-outline-success" href="{{ path('ajouterQuestion') }}">Ajouter Question
+				<a class="btn btn-outline-dark" href="{{ path('ajouterQuestion') }}">Ajouter Question
 				</a>
 			</div>
 			<table class="table">
@@ -29,7 +29,7 @@
 							<td>{{ question.domaine }}</td>
 							<td>{{ question.reponsecorrecte }}</td>
 							<td>
-								<a class="btn btn-outline-primary" href="{{ path('afficherQuestion', {'idquestion': question.idquestion}) }}">Afficher</a>
+								<a class="btn btn-outline-info" href="{{ path('afficherQuestion', {'idquestion': question.idquestion}) }}">Afficher</a>
 							</td>
 							<td>
 								<a class="btn btn-outline-secondary" href="{{ path('modifierQuestion', {'idquestion': question.idquestion}) }}">Modifier</a>

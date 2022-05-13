@@ -154,11 +154,11 @@ class DemandestageController extends AbstractController
         $demandestage=$rep1->find($iddemande);
         $form = $this->createForm(DemandestageType::class, $demandestage);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_demandestage_indexxR', ['idpersonne'=> "1"], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_demandestage_indexxR', ['idpersonne'=> $this->getUser()->getid()], Response::HTTP_SEE_OTHER);
 
           
             

@@ -13,20 +13,10 @@
 									{{ form_widget(form.etat,{attr:{'class':'form-control'}}) }} 
                                     
 								</div>
-								<div class="top-margin">  
-                                <label>Type <span class='text-danger'>*</span></label>
-                                    {{ form_widget(form.idstage,{attr:{'class':'form-control'}}) }} 
-                                   
-                                </div>
-                                <div class="top-margin">  
-                                <label>Domaine <span class='text-danger'>*</span></label>
-                                {{ form_widget(form.idpersonne,{attr:{'class':'form-control'}}) }} 
-                                
-                                </div>
 
                            
 								<hr>
-                                <button class="btn">{{ button_label|default('Save') }}</button>
+                                <button class="btn btn-outline-info">{{ button_label|default('Save') }}</button>
 								
 							{{ form_end(form) }}
 						</div>

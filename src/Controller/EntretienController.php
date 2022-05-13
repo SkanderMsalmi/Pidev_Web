@@ -135,7 +135,7 @@ class EntretienController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_entretien_indexxR', ['idpersonne'=> "1"], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_entretien_indexxR', ['idpersonne'=> $this->getUser()->getId()], Response::HTTP_SEE_OTHER);
         }
         
         return $this->render('entretien/editForm.html.twig', [
@@ -156,7 +156,7 @@ class EntretienController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_entretien_indexxR', ['idpersonne'=> "1"], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_entretien_indexxR', ['idpersonne'=>  $this->getUser()->getId()], Response::HTTP_SEE_OTHER);
     }
    
 }

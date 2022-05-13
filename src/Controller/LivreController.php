@@ -127,10 +127,12 @@ class LivreController extends AbstractController
     /**
      * @Route("/admin/removeLivre{id}", name="removeLivre")
      */
-    public function removeBibliotheque(Livre $liv, FlashyNotifier $flashy): Response
+    public function removeBibliotheque($id, FlashyNotifier $flashy): Response
     {
         $em = $this->getDoctrine()->getManager();
-        $em->remove($liv);
+        $br=$this->getDoctrine()->getRepository(Livre::class);
+        $biblio = $br->find($id);
+        $em->remove($biblio);
         $em->flush();
         $flashy->success('livre supprimé ');
         return $this->redirectToRoute('app_livre');
