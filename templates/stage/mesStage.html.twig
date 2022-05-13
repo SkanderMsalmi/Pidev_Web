@@ -13,7 +13,7 @@
                    </div>
      {% endfor %}
 
-     <a href="{{ path('app_stage_new') }}">Create new</a>
+     <a class="btn btn-outline-info" href="{{ path('app_stage_new') }}">Create new</a>
     <table class="table">
        
         <thead>
@@ -41,8 +41,8 @@
                 <td>{{ s.datedebut | date}}</td>
                 <td>{{ s.datefin | date}}</td>
                 <td>
-                    <a href="{{ path('app_stage_show', {'idstage': s.idstage}) }}">show</a>
-                    <a href="{{ path('app_stage_edit', {'idstage': s.idstage}) }}">edit</a>
+                    <a class="btn btn-outline-info" href="{{ path('app_stage_show', {'idstage': s.idstage}) }}">show</a>
+                    <a class="btn btn-outline-info" href="{{ path('app_stage_edit', {'idstage': s.idstage}) }}">edit</a>
                 </td>
             </tr>
         {% else %}

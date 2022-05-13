@@ -106,7 +106,7 @@ class ReservationController extends AbstractController
             $entityManager->persist($reservation);
             $entityManager->flush();
             $this->addFlash('success','Reservation ajoutée avec sucées');
-            return $this->redirectToRoute('app_reservation', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_reservation_Etudiant', [], Response::HTTP_SEE_OTHER);
         }
         return $this->render('reservation/newreservation.html.twig', [
             'formation' => $reservation,

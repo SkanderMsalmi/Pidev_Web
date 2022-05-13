@@ -16,7 +16,7 @@
 			<div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
 				<div class="dataTable-top"></div>
 				<div class="dataTable-search">
-					{{ form_start (form) }}
+					{{ form_start (form,{'attr':{novalidate:'novalidate'}}) }}
 					{{ form_widget (form.titrel) }}
 					{{ form_widget (form.ajouter)}}
 					{{ form_end (form) }}

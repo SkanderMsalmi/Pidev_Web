@@ -23,8 +23,8 @@
                 <td> {{ demandestage.idstage}}</td>
                 <td>{{ demandestage.iduser }}</td>
                 <td>
-                    <a href="{{ path('app_demandestage_show', {'iddemande': demandestage.iddemande}) }}">show</a>
-                    <a href="{{ path('app_demandestage_edit', {'iddemande': demandestage.iddemande}) }}">edit</a>
+                    <a class="btn btn-outline-info" href="{{ path('app_demandestage_show', {'iddemande': demandestage.iddemande}) }}">show</a>
+                    <a class="btn btn-outline-success" href="{{ path('app_demandestage_edit', {'iddemande': demandestage.iddemande}) }}">edit</a>
                 </td>
             </tr>
         {% else %}

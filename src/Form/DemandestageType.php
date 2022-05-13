@@ -14,11 +14,9 @@ class DemandestageType extends AbstractType
         $builder
             ->add('etat',ChoiceType::class, array(
                 'choices'=>array(
-                    'En_attente'=>1, 'Accepte'=>2 , 'Refuse'=>3
+                    'En_attente'=>'En_attente', 'Accepte'=>'Accepte' , 'Refuse'=>'Refuse'
                 )
             ))
-            ->add('idpersonne')
-            ->add('idstage')
         ;
     }
 

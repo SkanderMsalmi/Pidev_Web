@@ -89,7 +89,7 @@ class StageController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager, UserRepository $repository): Response
     {
         $stage = new Stage();
-        $personne = $repository->find(1);
+        $personne = $repository->find($this->getUser()->getId());
         $stage->setIduser($personne);
         $stage->setDatefin(new \DateTime("2023-10-10"));
         $form = $this->createForm(StageType::class, $stage);
@@ -104,7 +104,7 @@ class StageController extends AbstractController
 
             );
 
-            return $this->redirectToRoute('app_stage_mesStage', ['idpersonne' => "1"], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_stage_mesStage', ['idpersonne' =>  $this->getUser()->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('stage/new.html.twig', [
@@ -141,7 +141,7 @@ class StageController extends AbstractController
 
             );
 
-            return $this->redirectToRoute('app_stage_mesStage', ['idpersonne' => "1"], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_stage_mesStage', ['idpersonne' => $this->getUser()->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('stage/edit.html.twig', [
@@ -165,17 +165,17 @@ class StageController extends AbstractController
             );
         }
 
-        return $this->redirectToRoute('app_stage_mesStage', ['idpersonne' => "1"], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_stage_mesStage', ['idpersonne' =>  $this->getUser()->getId()], Response::HTTP_SEE_OTHER);
     }
     /**
      * @Route("/mesStage/{idpersonne}", name="app_stage_mesStage", methods={"GET", "POST"})
      */
-   public function MesStages(Request $request,  PaginatorInterface $paginator)
+   public function MesStages(Request $request,$idpersonne,  PaginatorInterface $paginator)
    {
        
        $stage = $paginator->paginate( $this->getDoctrine()
        ->getRepository(Stage::class)
-       ->ListStageByIdPersonne(1),$request->query->getInt('page', 1),6 );
+       ->ListStageByIdPersonne($idpersonne),$request->query->getInt('page', 1),6 );
 
         return $this-> render('stage/mesStage.html.twig',
         ['stage' => $stage]);

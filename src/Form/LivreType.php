@@ -21,7 +21,6 @@ class LivreType extends AbstractType
             ->add('titrel')
             ->add('auteurl')
             ->add('descriptionl')
-            ->add('imagestring')
             ->add('pdfivre',FileType::class,
                 ['mapped'=> false])
             ->add('image',FileType::class,

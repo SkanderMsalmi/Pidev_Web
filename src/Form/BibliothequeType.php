@@ -15,7 +15,7 @@ class BibliothequeType extends AbstractType
             ->add('nomc')
             ->add('descriptionc')
             ->add('domainec')
-            ->add('ajouter', SubmitType::class);
+            ->add('Confirmer', SubmitType::class);
 
 
         ;
