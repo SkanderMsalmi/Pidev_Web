@@ -43,7 +43,7 @@ class LivreController extends AbstractController
 
 
         $liv = $paginator->paginate($allLivres ,
-            $request->query->getInt('page', 1), 5);
+            $request->query->getInt('page', 1), 3);
         return $this->render('livre/index.html.twig', ['Liv' => $liv,'form'=>$form->createView()]
         );
     }
