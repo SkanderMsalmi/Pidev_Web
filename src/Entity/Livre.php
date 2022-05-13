@@ -27,7 +27,7 @@ class Livre
 
     /**
      * @var string
-     *@Assert\NotBlank(message="titre est vide ")
+     * @Assert\NotBlank(message="titre est vide ")
      * @ORM\Column(name="titreL", type="string", length=20, nullable=false)
      */
     private $titrel;

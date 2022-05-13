@@ -89,7 +89,7 @@ class EntretienController extends AbstractController
             $entityManager->persist($entretien);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_entretien_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_entretien_indexxR', ['idpersonne'=> $this->getUser()->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('entretien/new.html.twig', [

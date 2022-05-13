@@ -56,6 +56,7 @@ security:
     - { path:  ^/infoLivre , roles: ROLE_ETUDIANT}
     - { path:  ^/rate , roles: ROLE_ETUDIANT }
     - { path:  ^/score , roles: ROLE_ETUDIANT}
+    
 
 
 

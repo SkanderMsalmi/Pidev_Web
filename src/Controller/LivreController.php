@@ -25,17 +25,18 @@ class LivreController extends AbstractController
     /**
      * @Route("/admin/livre", name="app_livre",methods={"GET","POST"})
      */
-    public function index(PaginatorInterface $paginator, LivreRepository $repository, Request $request): Response
+    public function index(PaginatorInterface $paginator, LivreRepository $repository, Request $rq): Response
     {
         $livre = new Livre();
-        $form = $this->createFormBuilder($livre)->add('titrel',TextType::class,array('attr'=>array('class'=>'form-control')))->add('ajouter', SubmitType::class)-> getForm();
-        $rq = $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $term = $livre->getTitrel() ;
+        $form = $this->createFormBuilder($livre)->add('titrel',TextType::class,array('attr'=>array('class'=>'form-control')))->add('ajouter', SubmitType::class)->getForm();
+        $form->handleRequest($rq);
+        
 
-            $allLivres = $repository->search($rq->get('titrel')->getData());
+        if ($form->isSubmitted() && $form->isValid() ) {
+            $term = $livre->getTitrel($rq->get('titrel')) ;
+            $allLivres = $repository->search($term );
 
-        }else
+        }else 
         {
             $allLivres = $repository->findAll();
 
@@ -43,7 +44,7 @@ class LivreController extends AbstractController
 
 
         $liv = $paginator->paginate($allLivres ,
-            $request->query->getInt('page', 1), 3);
+            $rq->query->getInt('page', 1), 3);
         return $this->render('livre/index.html.twig', ['Liv' => $liv,'form'=>$form->createView()]
         );
     }
