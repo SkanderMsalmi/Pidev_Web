@@ -4,6 +4,7 @@
 
 {% block body %}
 
+	<main id="main" class="main">
 
     <style>
         .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
@@ -24,17 +25,13 @@
         </form>
         </form>
     </div>
-    <!-- Jobs Container / End -->
 
-
-
+{#Hedhy recherche dynamique #}
     <div>
         <p style="100px" > <input  id="myInput"  type="text" placeholder="search">
-
     </div>
 
     <div class="example-wrapper">
-
 
         {% for message in app.flashes('success')%}
             <div class="alert alert-success">
@@ -126,5 +123,5 @@
 
     </div>
 
-
+</main>
 {% endblock %}

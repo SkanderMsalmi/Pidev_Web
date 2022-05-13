@@ -73,4 +73,14 @@ class ScoreRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findByiduser($value)
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.iduser = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

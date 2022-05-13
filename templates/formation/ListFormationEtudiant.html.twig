@@ -5,34 +5,9 @@
 {% block body %}
 
 
-    <style>
-        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-    </style>
-    <br>
-    <br>
-    <br>
-    <br>
-    <div class="example-wrapper">
-
-    <!-- Jobs Container -->
-    <div class="row">
-
-        </form>
-
-        {# for filter buttons #}
-        </form>
-        </form>
-    </div>
-    <!-- Jobs Container / End -->
 
 
 
-    <div>
-        <p style="80px" > <input  id="myInput"  type="text" placeholder="search">
-            {#            <img src="https://img.icons8.com/nolan/344/google-web-search.png" style="width:50px;height:50px;"/></p>#}
-
-    </div>
 
     <div class="example-wrapper">
 
@@ -44,69 +19,44 @@
             </div>
         {% endfor %}
 
+        <div style="display:flex; width:max-content;">
 
-        <table class="table table-striped" id="t">
-            </thead>
+        {% for formation in f %}
+    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="service-item text-cener pt-3">
+    <div class="p-4" style="padding: 2px">
 
-
-
-
-            <tr>
-                <th>Description</th>
-                <th>Titre</th>
-                <th>Type</th>
-                <th>Domaine</th>
-                <!--<th>Prix</th>
-                <th>Datedebut</th>
-                <th>Datefin</th>-->
-
-            </tr>
-
-
-
-            <tbody id="all">
-            <tbody>
-            <tbody>
-            <tbody id="myTable">
-            {% for formation in f %}
-                <tr>
-                    <td>{{ formation.description }}</td>
-                    <td>{{ formation.titre }}</td>
-                    <td>{{ formation.type }}</td>
-                    <td>{{ formation.domaine }}</td>
-
-                    <td>
-                        <a class="btn btn-success" href="{{ path('newreservation', {'idFormation': formation.idFormation}) }}">Ajouter une Reservation</a>
-                    </td>
-
-
-                </tr>
-            {% else %}
-                <tr>
-                    <td colspan="9">no records found</td>
-                </tr>
-            {% endfor %}
-
-
-
-            <tbody id="search">
-
-            </tbody>
-
-
-            </tbody>
-
-
-        </table>
+            <div class="col"> <div class="card h-100 shadow-sm">
+                    <div class="card-body"> <div class="clearfix mb-3">
+                            <span class="float-start badge rounded-pill bg-primary">Domaine : {{ formation.domaine }}</span>
+                            <br>
+                            <div style="align-content: center">
+                            <span class="float-end price-hp">Titre :{{formation.titre}}</span>
+                            <br>
+                            <span class="float-end price-hp">Description :{{formation.description}}</span>
+                            <span class="float-end price-hp">Type :{{formation.type}}</span>
+                            </div>
+                        </div>
+                        <div class="text-center my-4"> <a href ="{{ path ('newreservation')}}"class="btn btn-outline-info">Reserver</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </div>
+    </div>
+        {% endfor %}
+        </div>
 
 
         {#        <a href="{{ path('newformation') }}">Creer une nouvelle formation</a>#}
 
 
 
-        <div class="pagination">
-            {{ knp_pagination_render(f) }}
-        </div>
+	<main class="d-flex justify-content-center">
+		{% do f.setPageRange(2) %}
+		{{ knp_pagination_render (f ,'pagination.html.twig') }}
+	</main>
 
 
 

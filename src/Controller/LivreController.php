@@ -55,10 +55,10 @@ class LivreController extends AbstractController
     {
         $livrecRepository = $this->getDoctrine()->getManager()->getRepository(Livre::class)->find($id);
 
+        
 
         return $this->render('rate/download.html.twig', ['ddd' => $livrecRepository]);
-      //  return $this->redirectToRoute('infoLivre', ['id' => $id]);
-
+       // return $this->redirectToRoute('acceuil');
     }
 
 
