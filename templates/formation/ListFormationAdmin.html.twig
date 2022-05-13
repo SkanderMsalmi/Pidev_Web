@@ -4,6 +4,7 @@
 
 {% block body %}
 
+	<main id="main" class="main">
 
     <style>
         .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
@@ -82,7 +83,7 @@
 
 
 
-            <a href="{{ path('DownloadProduitsDataFormation') }}" class="btn btn-dark waves-effect waves-light">Download PDF</a>
+            <a href="{{ path('DownloadProduitsDataFormation') }}" class="btn btn-outline-info waves-effect waves-light">Download PDF</a>
 
 
 
@@ -97,9 +98,10 @@
         </table>
 
 
-        <div class="pagination">
-            {{ knp_pagination_render(f) }}
-        </div>
+	<main class="d-flex justify-content-center">
+		{% do f.setPageRange(2) %}
+		{{ knp_pagination_render (f ,'pagination.html.twig') }}
+	</main>
 
 
 
@@ -122,5 +124,5 @@
 
     </div>
 
-
+</main>
 {% endblock %}

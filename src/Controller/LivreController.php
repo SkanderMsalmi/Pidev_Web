@@ -43,7 +43,7 @@ class LivreController extends AbstractController
 
 
         $liv = $paginator->paginate($allLivres ,
-            $request->query->getInt('page', 1), 5);
+            $request->query->getInt('page', 1), 3);
         return $this->render('livre/index.html.twig', ['Liv' => $liv,'form'=>$form->createView()]
         );
     }
@@ -55,10 +55,10 @@ class LivreController extends AbstractController
     {
         $livrecRepository = $this->getDoctrine()->getManager()->getRepository(Livre::class)->find($id);
 
+        
 
         return $this->render('rate/download.html.twig', ['ddd' => $livrecRepository]);
-      //  return $this->redirectToRoute('infoLivre', ['id' => $id]);
-
+       // return $this->redirectToRoute('acceuil');
     }
 
 

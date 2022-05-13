@@ -23,7 +23,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProfileController extends AbstractController
 {
 
-    #[IsGranted('ROLE_USER')]
+
     /**
      * @Route("/profile", name="profile")
      */

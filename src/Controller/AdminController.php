@@ -26,7 +26,7 @@ class AdminController extends AbstractController
 {
 
     /**
-     * @Route("/listUsers", name="app_admin_users")
+     * @Route("/admin/listUsers", name="app_admin_users")
      */
     public function listUsers(PaginatorInterface $paginator,Request $request,UserRepository $repository): Response
     {
@@ -56,7 +56,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/listsocietes", name="app_admin_societes")
+     * @Route("/admin/listsocietes", name="app_admin_societes")
      */
     public function listSociete(Request $request,SocieteRepository $repository,PaginatorInterface $paginator): Response
     {
@@ -74,7 +74,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/listcompetances", name="app_admin_competances")
+     * @Route("/admin/listcompetances", name="app_admin_competances")
      */
     public function listCompetances(PaginatorInterface $paginator,Request $request,CompetanceRepository $repository): Response
     {
@@ -89,7 +89,7 @@ class AdminController extends AbstractController
         ]);
     }
     /**
-     * @Route("/listfacultes", name="app_admin_facultes")
+     * @Route("/admin/listfacultes", name="app_admin_facultes")
      */
     public function listFacultes(PaginatorInterface $paginator,Request $request,FaculteRepository $faculteRepository): Response
     {
@@ -104,7 +104,7 @@ class AdminController extends AbstractController
         ]);
     }
     /**
-     * @Route("/listexperiences", name="app_admin_experiences")
+     * @Route("/admin/listexperiences", name="app_admin_experiences")
      */
     public function listExperiences(PaginatorInterface $paginator,Request $request,ExperienceRepository $experienceRepository): Response
     {
