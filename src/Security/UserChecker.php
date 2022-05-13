@@ -21,6 +21,7 @@ return;
 if ($user->getEtatBlock() == true) {
     throw new CustomUserMessageAuthenticationException('ACCES REFUSEE !! VOUS ÊTES BLOQUE !!');
 }
+
 }
 
 public function checkPostAuth(UserInterface $user): void

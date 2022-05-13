@@ -44,7 +44,6 @@ security:
     - { path: ^/admin, roles: ROLE_ADMIN }
     - { path: ^/entretien/admin, roles: ROLE_ADMIN }
     - { path: ^/quiz/admin, roles: ROLE_ADMIN }
-    - { path: ^/profile, roles: ROLE_USER }
     - { path:  /bibliothequeClient , roles: ROLE_ETUDIANT}
     - { path: ^/livreC , roles: ROLE_ETUDIANT}
     - { path: /addCompetance, roles: ROLE_ETUDIANT}
@@ -57,7 +56,6 @@ security:
     - { path:  ^/infoLivre , roles: ROLE_ETUDIANT}
     - { path:  ^/rate , roles: ROLE_ETUDIANT }
     - { path:  ^/score , roles: ROLE_ETUDIANT}
-    
 
 
 

@@ -32,11 +32,15 @@ class ProfileController extends AbstractController
         $user = $this->getUser();
         $competances = $competanceRepository->findBy(['idUser'=>$user->getId()]);
         $experiences = $experienceRepository->findBy(['iduser'=>$user->getId()]);
+
+
         return $this->render('profile/index.html.twig', [
             'user' => $user,
             'competenes'=>$competances,
             'experiences'=>$experiences
         ]);
+
+
     }
     /**
      * @Route("/editprofile/{idUser}", name="edit_profile")

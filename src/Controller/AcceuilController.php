@@ -13,6 +13,16 @@ class AcceuilController extends AbstractController
      */
     public function index(): Response
     {
+        $user=$this->getUser();
+        if($this->getUser()){
+            if($user->getRoles()[0] == "ROLE_ADMIN"){
+                return $this->redirectToRoute('app_admin_users');
+            }else {
+                return $this->render('acceuil/acceuil.html.twig', [
+                    'controller_name' => 'AcceuilController',
+                ]);
+            }
+        }
         return $this->render('acceuil/acceuil.html.twig', [
             'controller_name' => 'AcceuilController',
         ]);
