@@ -54,7 +54,6 @@ security:
     - { path:  ^/suppexperience , roles: ROLE_ETUDIANT}
     - { path:  ^/ListFormationFormateur , roles: ROLE_FORMATEUR}
     - { path:  ^/newformation , roles: ROLE_FORMATEUR}
-    - { path:  ^/edit , roles: ROLE_FORMATEUR}
     - { path:  ^/deleteformation , roles: ROLE_FORMATEUR}
     - { path:  ^/telecharger , roles:  ROLE_ETUDIANT }
     - { path:  ^/infoLivre , roles: ROLE_ETUDIANT}
