@@ -1,16 +1,33 @@
 {% extends 'base.html.twig' %}
 {% block body %}
 
-    <style>
-        img {
-            border-radius: 50%;
-        }
-    </style>
-<div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3 mt-3" >
-    {% for b in bibC %}
+	<style>
+		img {
+			border-radius: 50%;
+		}
+	</style>
+	<div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3 mt-3">
+		{% for b in bibC %}
 
-    <div class="col"> <div class="card h-100 shadow-sm"> <img src="uploads/bib.png" alt="Profile" class="card-img-top" alt="..."> <div class="card-body"> <div class="clearfix mb-3"> <span class="float-start badge rounded-pill bg-primary">Nom : {{ b.nomc }}</span> <span class="float-end price-hp">Domaine :{{b.domainec}}</span> </div> <h5 class="card-title">Description : {{ b.descriptionc }}</h5> <div class="text-center my-4"> <a href ="{{ path ('app_livreC',{'id':b.intc })}}"class="btn btn-warning"> Consulter les livres </a> </div> </div> </div> </div>
-    {% endfor %}
-</div>
+			<div class="col">
+				<div class="card h-100 shadow-sm">
+					<img src="uploads/bib.png" alt="Profile" class="card-img-top" alt="...">
+					<div class="card-body">
+						<div class="clearfix mb-3">
+							<span class="float-start badge rounded-pill bg-primary">Nom :
+								{{ b.nomc }}</span>
+							<span class="float-end price-hp">Domaine :{{b.domainec}}</span>
+						</div>
+						<h5 class="card-title">Description :
+							{{ b.descriptionc }}</h5>
+						<div class="text-center my-4">
+							<a href="{{ path ('app_livreC',{'id':b.intc })}}" class="btn btn-outline-info">
+								Consulter les livres
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
 {% endblock %}
-

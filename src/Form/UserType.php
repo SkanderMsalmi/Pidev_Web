@@ -54,8 +54,11 @@ class UserType extends AbstractType
             ->add('pdp',FileType::class,['label'=>'Image De Profil'])
 
             ->add('profil')
-            ->add('infos',TextareaType::class)
-            ->add('Inscip',SubmitType::class)
+            ->add('infos')
+            ->add('Insciption',SubmitType::class,[
+                'attr'=>['class'=>'btn btn-outline-info',
+                'style'=>'margin-top:15px']
+            ])
         ;
 
     }

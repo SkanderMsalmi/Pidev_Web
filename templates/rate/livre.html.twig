@@ -1,81 +1,87 @@
 {% extends 'baseTest.html.twig' %}
 {% block stylesheet %}
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
-    <link rel="stylesheet" href="{{ asset('assets/jquery.rateyo.css') }}"/>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+	<link rel="stylesheet" href="{{ asset('assets/jquery.rateyo.css') }}"/>
 {% endblock %}
 {% block body %}
-    <style>
-        img {
-            border-radius: 50%;
-        }
-    </style>
+	<style>
+		img {
+			border-radius: 50%;
+		}
+	</style>
 
-    <br><br><
+	<br><br><<br <center> <img src="{{ asset('uploads/' ~ infoL.image) }}" alt="Profile" class="rounded-circle" width=250px height=250px>>{{infoL.titrel}}</h4>
+	<br>
 
-    <center>
-<img src="{{ asset('uploads/' ~ infoL.image) }}" alt="Profile" class="rounded-circle" width=250px height=250px><br>{{infoL.titrel}}</h4> <br>
-
-        <h4> Auteur(s) :  {{ infoL.auteurl  }}</h4> <br>
-
-
-						<p>{{ infoL.descriptionl }}</p> <br>
+	<h4>
+		Auteur(s) :
+		{{ infoL.auteurl  }}</h4>
+	<br>
 
 
-
-    <h4> La note : {{ infoL.RateTotal | number_format(2) }} / 5 <i class="fa fa-heart"></i> </h4>
-        <div class="container">
-                <div class="row">
-
-                    <form action="http://127.0.0.1:8000/rate/{{ infoL.idl }}" method="POST">
-
-                        <div>
-                            <h3>rating livre</h3>
-                        </div>
+	<p>{{ infoL.descriptionl }}</p>
+	<br>
 
 
-                        <div class="rateyo" id= "rating"
-                             data-rateyo-rating="4"
-                             data-rateyo-num-stars="5"
-                             data-rateyo-score="3">
-                        </div>
+	<h4>
+		La note :
+		{{ infoL.RateTotal | number_format(2) }}
+		/ 5
+		<i class="fa fa-heart"></i>
+	</h4>
+	<div class="container">
+		<div class="row">
 
-                        <span class='result'>0 </span>
-                        <input type="hidden" name="rating">
+			<form action="http://127.0.0.1:8000/rate/{{ infoL.idl }}" method="POST">
 
-                </div>
-
-                <div><button type="submit" class="btn btn-danger"> Voter </button> </div>
-
-                </form>
-            </div>
-        </div>
-
-       <br>
-            Vous pouvez telecharger ce livre
-    <a href ="{{ path ('telecharger',{'id':infoL.idl })}}">    <button  class="btn btn-success"
-        type="button"> telecharger <i class="fa fa-file"></i> </button> </a>
-        <script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js') }}"></script>
-        <script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js') }}"></script>
-
-        <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
-        <script src="{{ asset('assets/js/jquery.rateyo.js')}}"></script>
+				<div>
+					<h3>rating livre</h3>
+				</div>
 
 
-        <script>
+				<div class="rateyo" id="rating" data-rateyo-rating="4" data-rateyo-num-stars="5" data-rateyo-score="3"></div>
+
+				<span class='result'>0
+				</span>
+				<input type="hidden" name="rating">
+
+			</div>
+
+			<div>
+				<button type="submit" class="btn btn-danger">
+					Voter
+				</button>
+			</div>
+
+		</form>
+	</div>
+</div>
+
+<br>
+Vous pouvez telecharger ce livre
+<a href="{{ path ('telecharger',{'id':infoL.idl })}}">
+	<button class="btn btn-success" type="button">
+		telecharger
+		<i class="fa fa-file"></i>
+	</button>
+</a>
+<script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js') }}"></script>
+<script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js') }}"></script>
+
+<script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+<script src="{{ asset('assets/js/jquery.rateyo.js')}}"></script>
 
 
-            $(function () {
-                $(".rateyo").rateYo().on("rateyo.change", function (e, data) {
-                    var rating = data.rating;
-                    $(this).parent().find('.score').text('score :'+ $(this).attr('data-rateyo-score'));
-                    $(this).parent().find('.result').text('rating :'+ rating);
-                    $(this).parent().find('input[name=rating]').val(rating); //add rating value to input field
-                });
-            });
+<script>
 
-        </script>
 
-    </center>
-
-{% endblock %}
+	$(function () {
+$(".rateyo").rateYo().on("rateyo.change", function (e, data) {
+var rating = data.rating;
+$(this).parent().find('.score').text('score :' + $(this).attr('data-rateyo-score'));
+$(this).parent().find('.result').text('rating :' + rating);
+$(this).parent().find('input[name=rating]').val(rating); // add rating value to input field
+});
+});
+</script></center>{% endblock %}
