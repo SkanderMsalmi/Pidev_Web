@@ -136,11 +136,19 @@
     <ul class="cards">
         <li>
             <a href="" class="card">
+            {% if infoL.image != NULL %}
                 <img src="{{ asset('uploads/' ~ infoL.image) }}" alt="Profile" class="card__image" alt="" width="40px" height="40px">
+                {% else %}
+                <img src="{{ asset('uploads/liv.jpg') }}" alt="Profile" class="card__image" alt="" width="40px" height="40px">
+                {% endif %}
                 <div class="card__overlay">
                     <div class="card__header">
                         <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>
+                        {% if infoL.image != NULL %}
                         <img class="card__thumb" src="{{ asset('uploads/' ~ infoL.image) }}" alt="" />
+                        {% else %}
+                        <img class="card__thumb" src="{{ asset('uploads/liv.jpg') }}" alt="" />
+                        {% endif %}
                         <div class="card__header-text">
                             <h3 class="card__title">{{infoL.titrel}}</h3>
                             <span class="card__status"> Auteur(s) :  {{ infoL.auteurl  }}</span>

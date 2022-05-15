@@ -97,7 +97,12 @@
 					<div class="col-md-4">
 						<a href="{{ path ('infoLivre',{'id':c.idl })}}">
 							<div class="card text-white card-has-bg click-col" style="background-image:url({{asset('uploads/' ~ c.image) }});">
+							{% if c.image != NULL %}
 								<img class="card-img d-none" src="{{asset('uploads/' ~ c.image) }}" alt="Goverment Lorem Ipsum Sit Amet Consectetur dipisi?">
+							{% else %}
+                        <img class="card__thumb" src="{{ asset('uploads/liv.jpg') }}" alt="" />
+
+							{% endif %}
 								<a href="{{ path ('infoLivre',{'id':c.idl })}}">
 									<div class="card-img-overlay d-flex flex-column">
 										<div class="card-body">
